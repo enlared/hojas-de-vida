@@ -1,0 +1,95 @@
+<ba-card cardTitle="Bienvenido al sistema SI-SAGA" baCardClass="with-scroll">
+	<form class="form-horizontal">
+		<div class="container-fluid">
+			<div class="form-group row">
+				<h4>Ingrese los datos para crear un usuario</h4>
+			</div>
+			<!-- Form group name for new user -->
+			<div class="form-group row">
+				<div class="form-group col-md-6">
+					<label for="shortnamenusr" class="control-label col-md-12">Nombre:</label>
+					<div class="col-md-12">
+						<input class="form-control" id="shortnamenusr" type="text" placeholder="Nombre">
+					</div>
+				</div>
+				<!-- Form group lastname for new user -->
+				<div class="form-group col-md-6">
+					<label for="namenusr" class="control-label col-md-12">Apellido:</label>
+					<div class="col-md-12">
+						<input type="text" class="form-control" id="namenusr" placeholder="Apellido">
+					</div>
+				</div>
+			</div>
+			<!-- Form group user for new user -->
+			<div class="form-group row">
+				<div class="form-group col-md-6">
+					<label for="usernusr" class="control-label col-md-12">Usuario:</label>
+					<div class="col-md-12">
+						<input type="text" class="form-control" id="usernusr" placeholder="Usuario">
+					</div>
+				</div>
+				<!-- Form group e-mail for new user -->
+				<div class="form-group col-md-6">
+					<label for="emailnusr" class="control-label col-md-12">Email:</label>
+					<div class="col-md-12">
+						<input type="email" class="form-control" id="emailnusr" placeholder="Email">
+					</div>
+				</div>
+			</div>
+			<!-- Form group rol for new user -->
+			<div class="form-group row">
+				<div class="form-group col-md-6">
+					<label for="rolnusr" class="control-label col-md-12">Rol:</label>
+					<div class="col-md-12">
+						<div class="input-group">
+							<input class="form-control" id="rolnusr" type="text" placeholder="Rol" readonly/>
+							<div class="input-group-btn">
+								<!-- Dropdown Rol in new user -->
+								<button class="btn btn-primary dropdown-togle" type="button" id="dropdownrolnusr" data-toggle="dropdown" aria-extended="true">
+																					Rol
+																					<span class="caret"></span>
+																				</button>
+								<ul class="dropdown-menu " role="menu" aria-labelledby="dropdownrolnusr">
+									<li role="presentation" class="dropdown-header ">Rol</li>
+									<li class="divider"></li>
+									<li role="presentation"> <a role="item" href="#"> Administrador
+																					</a></li>
+									<li role="presentation"> <a role="item" href="#"> Estandar
+																					</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Form group bottond save, close for new user -->
+			<div class="form-group row">
+				<div class="col-md-3">
+				</div>
+				<div class="col-md-6">
+				</div>
+				<div class="col-md-3">
+					<a href="#windowsavenewusr" class="btn btn-success " data-toggle="modal">Guardar</a>
+					<a href="#windowclosenewusr" class="btn btn-info " data-toggle="modal">Cancelar</a>
+					<div class="modal fade" id="windowsavenewusr">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h2 class="modal-title">Usuario</h2>
+								</div>
+								<div class="modal-body">
+									<p>¿Desea agregar el usuario?</p>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary">Agregar</button>
+										<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</ba-card>
