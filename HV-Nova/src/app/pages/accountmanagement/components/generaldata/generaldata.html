@@ -1,0 +1,299 @@
+<ba-card cardTitle="Bienvenido al sistema de Gestión de Cuentas" baCardClass="with-scroll">
+	<form class="form-horizontal">
+		<div class="container-fluid">
+			<div class="form-group row">
+				<h4>Información General </h4>
+			</div>
+
+			<div class="form-group row">
+				<div class="form-group col-md-6">
+					<label for="kBName" class="control-label col-md-12">Ejecutivo Negocio:</label>
+					<div class="col-md-12">
+						<div class="form-group">
+							<select class="form-control" id="kBName" name="kBName" [(ngModel)]="generalData.idkbsn" #kBName="ngModel" required>			
+									  <option *ngFor = "let kBName of generalDatas" [value] = "generalData.idkbsn">{{generalData.idkbsn}}</option>	
+							</select>
+							<div *ngIf="kBName.errors">
+								<div *ngIf="kBName.touched && !kBName.valid" class="alert alert-danger">
+									<strong>Warning!</strong>Campo requerido.
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="kAName" class="control-label col-md-12">Ejecutivo Cuenta:</label>
+					<div class="col-md-12">
+						<div class="form-group">
+							<select class="form-control" id="kAName" name="kAName" [(ngModel)]="generalData.idrgn" #kAName="ngModel" required>			
+									  <option *ngFor = "let kAName of generalDatas" [value] = "generalData.idrgn">{{generalData.idrgn}}</option>	
+							</select>
+							<div *ngIf="kAName.errors">
+								<div *ngIf="kAName.touched && !kAName.valid" class="alert alert-danger">
+									<strong>Warning!</strong>Campo requerido.
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<div class="form-group col-md-6">
+					<label for="codsap" class="control-label col-md-12">Código cliente SAP:</label>
+					<div class="col-md-12">
+						<input type="text" class="form-control" name="codsap" id="codsap" placeholder="Cod Sap" [(ngModel)]="generalData.codsap"
+						 #codsap="ngModel" required maxlength="200" minlength="3">
+						<div *ngIf="codsap.errors">
+							<div *ngIf="codsap.touched && !codsap.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+							<div *ngIf="!codsap.validator.minlength && codsap.touched" class="alert alert-danger ">
+								<strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group col-md-6 ">
+					<label for="typeCustomer" class="control-label col-md-12">Tipo de cliente:</label>
+					<div class="form-group">
+						<select class="form-control" id="typecustomer" name="typecustomer" [(ngModel)]="generalData.idkacnt" #typecustomer="ngModel"
+						 required>			
+								  <option *ngFor = "let tpCustomer of generalDatas" [value] = "generalData.idkacnt">{{generalData.idkacnt}}</option>	
+						</select>
+						<div *ngIf="typecustomer.errors">
+							<div *ngIf="typecustomer.touched && !typecustomer.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group row ">
+				<div class="form-group col-md-6">
+					<label for="regional" class="control-label col-md-12">Regional:</label>
+					<div class="col-md-12">
+						<div class="form-group">
+							<select class="form-control" id="regional" name="regional" [(ngModel)]="generalData.idhqrt" #regionals="ngModel" required>			
+								  <option *ngFor = "let regional of generalDatas" [value] = "generalData.idhqrt">{{generalData.idhqrt}}</option>	
+						</select>
+							<div *ngIf="regionals.errors">
+								<div *ngIf="regionals.touched && !regionals.valid" class="alert alert-danger">
+									<strong>Warning!</strong>Campo requerido.
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group col-md-6">
+					<label for="nameComercial" class="control-label col-md-12">Razón Social:</label>
+					<div class="col-md-12">
+						<input type="text" class="form-control" name="nameComercial" id="nameComercial" placeholder="Razón Social" [(ngModel)]="generalData.idinfbsn"
+						 #nameComercial="ngModel" required maxlength="200" minlength="3">
+						<div *ngIf="nameComercial.errors">
+							<div *ngIf="nameComercial.touched && !nameCommercial.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="form-group col-md-6">
+					<label for="nit" class="control-label col-md-12">NIT:</label>
+					<div class="col-md-12">
+						<input type="text" class="form-control" name="nit" id="nit" placeholder="Nit" [(ngModel)]="generalData.nit" #nit="ngModel"
+						 required maxlength="200" minlength="3">
+						<div *ngIf="nit.errors">
+							<div *ngIf="nit.touched && !nit.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="form-group col-md-6 ">
+					<label for="address" class="control-label col-md-12">Dirección:</label>
+					<div class="col-md-12">
+						<input type="text" class="form-control" name="address" id="address" placeholder="Dirección" [(ngModel)]="generalData.address"
+						 #address="ngModel" required maxlength="200" minlength="3">
+						<div *ngIf="address.errors">
+							<div *ngIf="address.touched && !address.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="form-group col-md-6">
+					<label for="barrio" class="control-label col-md-12">Barrio:</label>
+					<div class="col-md-12">
+						<input type="text" class="form-control" name="barrio" id="barrio" placeholder="Barrio" [(ngModel)]="generalData.barrio" #barrio="ngModel"
+						 required maxlength="200" minlength="3">
+						<div *ngIf="barrio.errors">
+							<div *ngIf="barrio.touched && !barrio.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="form-group col-md-6 ">
+					<label for="email" class="control-label col-md-12">Correo:</label>
+					<div class="col-md-12">
+						<input type="email" class="form-control" name="email" id="email" placeholder="Email" [(ngModel)]="generalData.email" #email="ngModel"
+						 required maxlength="200" minlength="3">
+						<div *ngIf="email.errors">
+							<div *ngIf="email.touched && !emailvalid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="form-group col-md-6">
+					<label for="telephone" class="control-label col-md-12">Teléfono Fijo:</label>
+					<div class="col-md-12">
+						<input type="text" class="form-control" name="telephone" id="telephone" placeholder="Teléfono" [(ngModel)]="generalData.telephone"
+						 #telephone="ngModel" required maxlength="200" minlength="3">
+						<div *ngIf="telephone.errors">
+							<div *ngIf="telephone.touched && !telephone.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="form-group col-md-6 ">
+					<label for="numberSedes" class="control-label col-md-12">No Sedes:</label>
+					<div class="col-md-12">
+						<input type="number" class="form-control" name="sedes" id="sedes" placeholder="sedes" [(ngModel)]="generalData.numberSedes"
+						 #numberSedes="ngModel" required maxlength="200" minlength="3">
+						<div *ngIf="numberSedes.errors">
+							<div *ngIf="numberSedes.touched && !numberSedes.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="form-group col-md-6">
+					<label for="celphone" class="control-label col-md-12">Celular:</label>
+					<div class="col-md-12">
+						<input type="text" class="form-control" name="celphone" id="celphone" placeholder="Celular" [(ngModel)]="generalData.celphone"
+						 #celphone="ngModel" required maxlength="200" minlength="3">
+						<div *ngIf="celphone.errors">
+							<div *ngIf="celphone.touched && !celphone.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="form-group col-md-6 ">
+
+				</div>
+			</div>
+			<div class="box-shadow-border"></div>
+			<br>
+			<h4>Vigencia Contrato</h4>
+			<div class="form-group row">
+				<div class="form-group col-md-6">
+					<label for="contractStart" class="control-label col-md-12">Fecha Inicio:</label>
+					<div class="col-md-12">
+						<div class="input-group date">
+							<my-date-picker name="contractStart" [options]="myDatePickerOptions" [(ngModel)]="generalData.contractstart" #contractStart="ngModel"
+							 required></my-date-picker>
+						</div>
+						<div *ngIf="contractStart.errors">
+							<div *ngIf="contractStart.touched && !contractStart.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group col-md-6 ">
+					<label for="contractEnd" class="control-label col-md-12">Fecha Fin:</label>
+					<div class="col-md-12">
+						<div class="input-group date">
+							<my-date-picker name="contractend" [options]="myDatePickerOptions" [(ngModel)]="generalData.contractend" #contractEnd="ngModel"
+							 required></my-date-picker>
+						</div>
+						<div *ngIf="contractEnd.errors">
+							<div *ngIf="contractEnd.touched && !contractEnd.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="box-shadow-border"></div>
+			<br>
+			<h4>Objetivos Singular de Venta</h4>
+			<div class="form-group row">
+				<div class="form-group col-md-6">
+					<label for="objetiveyear" class="control-label col-md-12">Anual:</label>
+					<div class="col-md-12">
+						<input type="number" class="form-control" name="objetiveyear" id="objetiveyear" placeholder="Objetivo anual" [(ngModel)]="generalData.objetiveyear"
+						 #objetiveyear="ngModel" required maxlength="200" minlength="3">
+						<div *ngIf="objetiveyear.errors">
+							<div *ngIf="objetiveyear.touched && !objetiveyear.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="form-group col-md-6 ">
+					<label for="objetivemonth" class="control-label col-md-12">Mensual:</label>
+					<div class="col-md-12">
+						<input type="number" class="form-control" name="objetivemonth" id="objetivemonth" placeholder="objetivemonth" [(ngModel)]="generalData.objetivemonth"
+						 #objetivemonth="ngModel" required maxlength="200" minlength="3">
+						<div *ngIf="objetivemonth.errors">
+							<div *ngIf="objetivemonth.touched && !objetivemonth.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<div class="col-md-4">
+				</div>
+				<div class="col-md-4">
+				</div>
+				<div class="col-md-4">
+
+					<div *ngIf="kBName.errors || kAName.errors || codsap.errors || typecustomer.errors || nameComercial.errors || regionals.errors 
+						|| nit.errors || address.errors || barrio.errors || email.errors || telephone.errors || numberSedes.errors || celphone.errors 
+						 || objetiveyear.errors || objetivemonth.errors || contractStart.errors || contractEnd.errors">
+						<button class="btn btn-primary" name="buttonSave" (click)="goSedes()" disabled>Negocio</button>
+						<button class="btn btn-success" (click)="saveGeneralData()" disabled="">Guardar</button>
+						<button class="btn btn-info" (click)="resetForm()">Cancelar</button>
+					</div>
+					<div *ngIf="!kBName.errors && !kAName.errors && !codsap.errors && !typecustomer.errors && !nameComercial.errors && !regionals.errors 
+							&& !nit.errors && !address.errors && !barrio.errors && !email.errors && !telephone.errors && !numberSedes.errors && !celphone.errors 
+							&& !contractStart.errors && !contractEnd.errors && !objetiveyear.errors && !objetivemonth.errors">
+						<button class="btn btn-primary" name="buttonSave" (click)="goSedes()">Negocio</button>
+						<button class="btn btn-success" (click)="saveGeneralData()">Guardar</button>
+						<button class="btn btn-info" (click)="resetForm()">Cancelar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</ba-card>
