@@ -4,9 +4,17 @@ import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 import { Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { BusinessDataService } from '../../../../theme/services/businessDataService/businessData.service';
 import { GeneralData } from '../../../../theme/services/generalDataService/generalData';
 import { GeneralDataService } from '../../../../theme/services/generalDataService/generalData.service';
+import { HeadQuarters } from '../../../../theme/services/headQuartersService/headQuarters';
+import { HeadQuartersService } from '../../../../theme/services/headQuartersService/headQuarters.service';
+import { KeyAccountService } from '../../../../theme/services/totalService/keyAccount.service'; 
+import { KeyAccountData } from '../../../../theme/services/totalService/keyAccount'; 
+import { RegionalsService } from '../../../../theme/services/totalService/regionals.service'; 
+import { RegionalsData } from '../../../../theme/services/totalService/regionals'; 
+import { KeyBusinessService } from '../../../../theme/services/totalService/keyBusiness.service'; 
+import { KeyBusinessData } from '../../../../theme/services/totalService/keyBusiness'; 
+
 import { IMyDpOptions } from 'mydatepicker';
 
 @Component({
@@ -19,11 +27,34 @@ export class Generaldata {
   msgError: string;
   generalDatas: GeneralData[];
   generalData: GeneralData = new GeneralData();
+
+  keyBusinessData: KeyBusinessData = new KeyBusinessData();
+  keyBusinessDatas: KeyBusinessData[];
+  keyAccountData: KeyAccountData = new KeyAccountData();
+  keyAccountDatas: KeyAccountData[];
+  headQuartersData: HeadQuarters = new HeadQuarters();
+  headQuartersDatas: HeadQuarters[];
+  regionalsData: RegionalsData = new RegionalsData();
+  regionalsDatas: RegionalsData[];
+
+
+
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private _generalDataService: GeneralDataService,
+    private _keyAccountDataService: KeyAccountService,
+    private _keyBusinessDataService: KeyBusinessService,
+    private _headQuartersDataService: HeadQuartersService,
+    private _regionalsDataService: RegionalsService,
+
   ) {
+
+this.loadKeyAccounts();
+this.loadKeyBusiness();
+this.loadRegionals();
+this.loadHeadQuarters();
 
   }
 
@@ -51,11 +82,6 @@ export class Generaldata {
       this.generalData.contractstart = '';
       this.generalData.objetivemonth = null;
       this.generalData.objetiveyear = null;
-      this.generalData.address = '';
-      this.generalData.barrio = '';
-      this.generalData.celphone = '';
-      this.generalData.email = '';
-      this.generalData.telephone = '';
 
     }
 
@@ -69,6 +95,26 @@ export class Generaldata {
     }
 
 
+  }
+
+  loadKeyAccounts() {
+    this._keyAccountDataService.getKeyAccount()
+    .subscribe(keyAccountDatas => this.keyAccountDatas = keyAccountDatas, error => this.msgError = <any>error);
+  }
+
+  loadKeyBusiness() {
+    this._keyBusinessDataService.getKeyBusiness()
+    .subscribe(keyBusinessDatas => this.keyBusinessDatas = keyBusinessDatas, error => this.msgError = <any>error);
+  }
+
+  loadRegionals() {
+    this._regionalsDataService.getRegionals()
+    .subscribe(regionalsDatas => this.regionalsDatas = regionalsDatas, error => this.msgError = <any>error);
+  }
+
+  loadHeadQuarters() {
+    this._headQuartersDataService.getHeadQuarters()
+    .subscribe(headQuartersData => this.headQuartersDatas = headQuartersData, error => this.msgError = <any>error);
   }
 
   saveGeneralData() {

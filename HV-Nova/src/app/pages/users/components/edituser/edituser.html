@@ -1,129 +1,126 @@
-<ba-card cardTitle="Bienvenido al sistema SI-SAGA" baCardClass="with-scroll">
-	<form class="form-horizontal">
-		<div class="container-fluid">
-			<div class="form-group row">
-				<h4>Buscar usuario para editar </h4>
-			</div>
-			<!-- Tab Panel for edit user -->
-			<div class="form-group row">
-				<div class="form-group col-md-6">
-					<!-- Form group ID in edit user (find) -->
-					<label for="ideusrfind" class="control-label col-md-12">ID:</label>
-					<div class="col-md-12">
-						<div class="input-group">
-							<input class="form-control" id="ideusrfind" type="text" placeholder="ID">
-							<div class="input-group-addon btn btn-primary"><span class="glyphicon glyphicon-search"></span></div>
+
+        <ba-card cardTitle="Bienvenido al sistema SI-SAGA" baCardClass="with-scroll">
+				<form class="form-horizontal">
+					<div class="container-fluid">
+						<div class="form-group row">
+							<h4>Ingrese los nuevos datos: </h4>
 						</div>
-					</div>
-				</div>
-				<!-- Form group name in edit user (find) -->
-				<div class="form-group col-md-6">
-					<label for="nameeusrfind" class="control-label col-md-12">Usuario:</label>
-					<div class="col-md-12">
-						<div class="input-group">
-							<input class="form-control" id="nameeusrfind" type="text" placeholder="Usuario">
-							<div class="input-group-addon btn btn-primary"><span class="glyphicon glyphicon-search"></span></div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="box-shadow-border"></div>
-			<br>
-			<div class="form-group row">
-				<h4>Ingrese los nuevos datos: </h4>
-			</div>
-			<!-- Form group ID in edit user  -->
-			<div class="form-group row">
-				<div class="form-group col-md-6">
-					<label for="ideusr" class="control-label col-md-12">ID:</label>
-					<div class="col-md-12">
-						<input class="form-control" id="ideusr" type="text" placeholder="01" readonly/>
-					</div>
-				</div>
-				<!-- Form group name in edit user  -->
-				<div class="form-group col-md-6">
-					<label for="nameeusr" class="control-label col-md-12">Nombre:</label>
-					<div class="col-md-12">
-						<input class="form-control" id="nameeusr" type="text" placeholder="Juan">
-					</div>
-				</div>
-			</div>
-			<!-- Form group lastname in edit user  -->
-			<div class="form-group row">
-				<div class="form-group col-md-6">
-					<label for="lastnameeusr" class="control-label col-md-12">Apellido:</label>
-					<div class="col-md-12">
-						<input type="text" class="form-control" id="lastnameeusr" placeholder="Macias">
-					</div>
-				</div>
-				<!-- Form group user in edit user  -->
-				<div class="form-group col-md-6">
-					<label for="usereusr" class="control-label col-md-12">Usuario:</label>
-					<div class="col-md-12">
-						<input type="text" class="form-control" id="usereusr" placeholder="juanjo10">
-					</div>
-				</div>
-			</div>
-			<!-- Form group email in edit user  -->
-			<div class="form-group row">
-				<div class="form-group col-md-6">
-					<label for="emaileusr" class="control-label col-md-12">Email:</label>
-					<div class="col-md-12">
-						<input type="text" class="form-control" id="emaileusr" placeholder="juanjo10@gmail.com">
-					</div>
-				</div>
-				<!-- Form group Rol in edit user -->
-				<div class="form-group  col-md-6">
-					<label for="roleusr" class="control-label col-md-12">Rol:</label>
-					<div class="col-md-12">
-						<div class="input-group">
-							<input class="form-control" id="roleusr" type="text" placeholder="Administrador" readonly/>
-							<div class="input-group-btn">
-								<!-- Dropdown Rol in edit user -->
-								<button class="btn btn-primary dropdown-togle" type="button" id="dropdownroleusr" data-toggle="dropdown" aria-extended="true">
-																					Rol
-																					<span class="caret"></span>
-																				</button>
-								<ul class="dropdown-menu " role="menu" aria-labelledby="dropdownroleusr">
-									<li role="presentation" class="dropdown-header ">Rol</li>
-									<li class="divider"></li>
-									<li role="presentation"> <a role="item" href="#"> Administrador
-																					</a></li>
-									<li role="presentation"> <a role="item" href="#"> Estandar</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Form group buttons save, close in edit user -->
-			<div class="form-group row">
-				<div class="col-md-3">
-				</div>
-				<div class="col-md-6">
-				</div>
-				<div class="col-md-3">
-					<a href="#windowsaveedituser" class="btn btn-success " data-toggle="modal">Guardar</a>
-					<a href="#windowcloseedituser" class="btn btn-info " data-toggle="modal">Cancelar</a>
-					<div class="modal fade" id="windowsaveedituser">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<h2 class="modal-title">Usuario</h2>
+						<div class="form-group row">
+							<div class="form-group col-md-6">
+								<label for="idnuser" class="control-label col-md-12">ID:</label>
+								<div class="col-md-12">
+									<input class="form-control" id="idnuser" type="text" placeholder="ID" name="idnuser" 
+									[(ngModel)]="user.idnuser" #idnuser="ngModel" value = {{user.idnuser}}
+									 maxlength="10" minlength="1" required readonly>
+									<div *ngIf="idnuser.errors">
+										<div *ngIf="idnuser.touched && !idnuser.valid" class="alert alert-danger">
+											<strong>Warning!</strong>Campo requerido.
+										</div>
+										<div *ngIf="!idnuser.validator.minlength && idnuser.touched" class="alert alert-danger ">
+											<strong>Warning!</strong>Se Requieren mínimo 1 caracter
+										</div>
+									</div>
 								</div>
-								<div class="modal-body">
-									<p>¿Desea guardar el usuario modificado?</p>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-primary">Confirmar</button>
-										<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="name" class="control-label col-md-12">Nombre:</label>
+								<div class="col-md-12">
+									<input class="form-control" id="name" type="text" placeholder="nombre" name="name" 
+									[(ngModel)]="user.name" #name="ngModel" value = {{user.name}}
+									 required maxlength="50" minlength="3">
+									<div *ngIf="name.errors">
+										<div *ngIf="name.touched && !name.valid" class="alert alert-danger">
+											<strong>Warning!</strong>Campo requerido.
+										</div>
+										<div *ngIf="!name.validator.minlength && name.touched" class="alert alert-danger ">
+											<strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+						<div class="form-group row">
+							<div class="form-group col-md-6">
+								<label for="lastname" class="control-label col-md-12">Apellido:</label>
+								<div class="col-md-12">
+									<input type="text" class="form-control" id="lastname" placeholder="apellido" name="lastname" [(ngModel)]="user.lastname"
+									 #lastname="ngModel" value = {{user.lastname}} required maxlength="50" minlength="3">
+									<div *ngIf="lastname.errors">
+										<div *ngIf="lastname.touched && !lastname.valid" class="alert alert-danger">
+											<strong>Warning!</strong>Campo requerido.
+										</div>
+										<div *ngIf="!lastname.validator.minlength && lastname.touched" class="alert alert-danger ">
+											<strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="nameuser" class="control-label col-md-12">Usuario:</label>
+								<div class="col-md-12">
+									<input type="text" class="form-control" id="nameuser" placeholder="usuario" name="nameuser" 
+									[(ngModel)]="user.nameuser" #nameuser="ngModel" value = {{user.nameuser}}
+									 required maxlength="50" minlength="3">
+									<div *ngIf="nameuser.errors">
+										<div *ngIf="nameuser.touched && !nameuser.valid" class="alert alert-danger">
+											<strong>Warning!</strong>Campo requerido.
+										</div>
+										<div *ngIf="!nameuser.validator.minlength && nameuser.touched" class="alert alert-danger ">
+											<strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+										</div>
+									</div>
+								</div>
+				
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="form-group col-md-6">
+								<label for="emai" class="control-label col-md-12">Email:</label>
+								<div class="col-md-12">
+									<input type="text" class="form-control" id="email" placeholder="e-mail" name="email"
+									[(ngModel)]="user.email" #email="ngModel" value = {{user.email}}
+									 required pattern = "^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+									<div *ngIf="email.errors">
+										<div *ngIf="!email.valid && email.touched" class="alert alert-danger">
+											<strong>Warning!</strong>Verifique Email
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group  col-md-6">
+								<label for="idnrole" class="control-label col-md-12">Rol:</label>
+								<div class="col-md-12">
+									<div class="form-group">
+										<select class="form-control" id="idnrole" name="idnrole" [(ngModel)]="user.idnrole" #idnrole="ngModel" required>
+											<option *ngFor = "let role of roles" [value] = "role.idnrole" >{{role.namerole}}</option>
+										</select>
+										<div *ngIf="idnrole.errors">
+											<div *ngIf="!idnrole.valid && idnrole.touched" class="alert alert-danger">
+												<strong>Warning!</strong>Campo Requerido
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-3">
+							</div>
+							<div class="col-md-6">
+							</div>
+							<div class="col-md-3">
+				
+								<div *ngIf=" idnuser.errors || name.errors || lastname.errors || nameuser.errors || email.errors || idnrole.errors">
+									<button class="btn btn-success" (click)="updateUser()" disabled="">Guardar</button>
+									<button class="btn btn-info" (click)="resetForm()">Cancelar</button>
+								</div>
+				
+								<div *ngIf="!idnuser.errors && !name.errors && !lastname.errors && !nameuser.errors && !email.errors && !idnrole.errors">
+									<button class="btn btn-success" (click)="updateUser()">Guardar</button>
+									<button class="btn btn-info" (click)="resetForm()">Cancelar</button>
+								</div>
+							</div>
+						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-	</form>
-</ba-card>
+				</form>
+				</ba-card>

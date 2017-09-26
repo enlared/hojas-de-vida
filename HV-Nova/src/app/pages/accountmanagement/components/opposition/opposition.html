@@ -1,129 +1,85 @@
 <ba-card cardTitle="Bienvenido al sistema de Gestión de Cuentas" baCardClass="with-scroll">
 	<form class="form-horizontal">
-		<div class="container-fluid">
+		<div class="container-fluid"><!--
 			<div class="form-group row">
 				<h4>Análisis de la Competencia </h4>
 			</div>
-			<!-- Form group short name new project -->
+			
 			<div class="form-group row">
 					<div class="form-group col-md-6">
-						<label for="idprjgnrnprj" class="control-label col-md-12">Nombre de la competencia:</label>
+						<label for="nameCompetence" class="control-label col-md-12">Nombre de la competencia:</label>
 						<div class="col-md-12">
-							<input class="form-control" id="shortnamenprj" type="text" placeholder="Competencia">
+							<input class="form-control" id="nameCompetence" type="text" placeholder="Competencia"  name="nameCompetence" 
+							[(ngModel)]="competition.name" #nameCompetence="ngModel" required maxlength="200" minlength="3">
+							<div *ngIf="nameCompetence.errors">
+									<div *ngIf="nameCompetence.touched && !nameCompetence.valid" class="alert alert-danger">
+										<strong>Warning!</strong>Campo requerido.
+									</div>
+									<div *ngIf="!nameCompetence.validator.minlength && nameCompetence.touched" class="alert alert-danger ">
+										<strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+									</div>
+								</div>
 						</div>
 					</div>
 				<div class="form-group col-md-6">
-					<label for="shortnamenprj" class="control-label col-md-12">Categoría competencia:</label>
+					<label for="category" class="control-label col-md-12">Categoría competencia:</label>
 					<div class="col-md-12">
-						<div class="input-group">
-							<input class="form-control" id="id" type="text" placeholder="Sector" readonly/>
-							<div class="input-group-btn">
-								<!-- Dropdown for author in new project-->
-								<button class="btn btn-primary dropdown-togle" type="button" id="dropdownauthornprj" data-toggle="dropdown" aria-extended="true">
-																					Categoría
-																					<span class="caret"></span>
-																				</button>
-								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownauthornprj">
-									<li role="presentation" class="dropdown-header ">Categoría</li>
-									<li class="divider"></li>
-									<li role="presentation"> <a role="item" href="#"><label class="checkbox-inline">
-																						<input type="checkbox"  name="" id=""> Juan Macias
-																					</label></a></li>
-									<li role="presentation"> <a role="item" href="#"><label class="checkbox-inline">
-																						<input type="checkbox"  name="" id=""> Luis Miguel
-																					</label></a></li>
-									<li role="presentation"> <a role="item" href="#"><label class="checkbox-inline">
-																						<input type="checkbox"  name="" id="" > Claudia Lopez
-																					</label></a></li>
-								</ul>
+							<div class="form-group">
+								<select class="form-control" id="oc" name="oc" [(ngModel)]="category.name" #category="ngModel" required>			
+										<option *ngFor = "let category of categorys" [value] = "category.name">{{category.name}}</option>		
+								</select>
+								<div *ngIf="category.errors">
+									<div *ngIf="category.touched && !category.valid" class="alert alert-danger">
+										<strong>Warning!</strong>Campo requerido.
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
 				</div>
 			</div>
 			<div class="form-group row">
 				<div class="form-group col-md-6">
-					<label for="namenprj" class="control-label col-md-12">Tipo Máquina:</label>
+					<label for="typeMac" class="control-label col-md-12">Tipo Máquina:</label>
 					<div class="col-md-12">
-						<div class="input-group">
-							<input class="form-control" id="id" type="text" placeholder="Tipo Máquina" readonly/>
-							<div class="input-group-btn">
-								<!-- Dropdown for author in new project-->
-								<button class="btn btn-primary dropdown-togle" type="button" id="dropdownauthornprj" data-toggle="dropdown" aria-extended="true">
-																					Tipo
-																					<span class="caret"></span>
-																				</button>
-								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownauthornprj">
-									<li role="presentation" class="dropdown-header ">Tipo</li>
-									<li class="divider"></li>
-									<li role="presentation"> <a role="item" href="#"><label class="checkbox-inline">
-																						<input type="checkbox"  name="" id=""> Juan Macias
-																					</label></a></li>
-									<li role="presentation"> <a role="item" href="#"><label class="checkbox-inline">
-																						<input type="checkbox"  name="" id=""> Luis Miguel
-																					</label></a></li>
-									<li role="presentation"> <a role="item" href="#"><label class="checkbox-inline">
-																						<input type="checkbox"  name="" id="" > Claudia Lopez
-																					</label></a></li>
-								</ul>
+							<div class="form-group">
+								<select class="form-control" id="typeMac" name="typeMac" [(ngModel)]="typemachine.name" #typeMac="ngModel" required>			
+										<option *ngFor = "let typemachine of typemachines" [value] = "typemachine.name">{{typemachine.name}}</option>		
+								</select>
+								<div *ngIf="typeMac.errors">
+									<div *ngIf="typeMac.touched && !typeMac.valid" class="alert alert-danger">
+										<strong>Warning!</strong>Campo requerido.
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
 				</div>
-			<!-- Form group description new project -->
+		
 				<div class="form-group col-md-6">
 					
 				</div>
 			</div>
 			
-			<!-- Form group bottons document, save, close in new project -->
+		
 			<div class="form-group row">
-				<div class="col-md-5">
+				<div class="col-md-4">
 				</div>
 				<div class="col-md-4">
 				</div>
-				<div class="col-md-3">
-					
-					<a href="#windowsavenprj" class="btn btn-success " data-toggle="modal">Guardar</a>
-					<a href="#windowclosenprj" class="btn btn-info " data-toggle="modal">Cancelar</a>
-					<!-- Action for botton document in new project -->
-					<div class="modal fade" id="windowdocumentnprj">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<h2 class="modal-title">Documento</h2>
-								</div>
-								<div class="modal-body">
-									<p>¿Desea agregar un documento al proyecto creado?</p>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-primary">Agregar</button>
-										<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
-									</div>
-								</div>
-							</div>
-						</div>
+				<div class="col-md-4">
+
+						<div *ngIf="nameCompetence.errors || category.errors || typeMac.errors">
+						
+						<button class="btn btn-success" (click)="saveOpposition()" disabled="">Guardar</button>
+						<button class="btn btn-info" (click)="resetForm()">Cancelar</button>
 					</div>
-					<!-- action for botton save in new ptoject -->
-					<div class="modal fade" id="windowsavenprj">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<h2 class="modal-title">Guardar</h2>
-								</div>
-								<div class="modal-body">
-									<p>¿Desea guardar el proyecto creado?</p>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-primary">Confirmar</button>
-										<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
-									</div>
-								</div>
-							</div>
-						</div>
+					<div *ngIf="!nameCompetence.errors && !category.errors && !typeMac.errors && !preventive.errors">
+						
+						<button class="btn btn-success" (click)="saveOpposition()">Guardar</button>
+						<button class="btn btn-info" (click)="resetForm()">Cancelar</button>
 					</div>
+				
 				</div>
-			</div>
+			</div>-->
 		</div>
 	</form>
 </ba-card>

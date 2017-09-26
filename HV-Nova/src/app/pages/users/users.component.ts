@@ -4,11 +4,10 @@ import {Component} from '@angular/core';
   selector: 'users',
   template: `<router-outlet></router-outlet>`
 })
+
 export class Users {
 
   constructor() {
   }
-
-
 
 }

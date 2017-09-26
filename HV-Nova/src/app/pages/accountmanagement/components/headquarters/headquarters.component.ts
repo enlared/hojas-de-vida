@@ -6,6 +6,10 @@ import { Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HeadQuartersService } from '../../../../theme/services/headQuartersService/headQuarters.service';
 import { HeadQuarters } from '../../../../theme/services/headQuartersService/headQuarters';
+import { SectorService } from '../../../../theme/services/totalService/sector.service'; 
+import { SectorData } from '../../../../theme/services/totalService/sector'; 
+import { TypeEmployeesService } from '../../../../theme/services/totalService/typeEmployees.service'; 
+import { TypeEmployeesData } from '../../../../theme/services/totalService/typeEmployees'; 
 import { IMyDpOptions } from 'mydatepicker';
 
 @Component({
@@ -18,11 +22,22 @@ export class Headquarters {
   msgError: string;
   headQuarters: HeadQuarters[];
   headQuarter: HeadQuarters = new HeadQuarters();
+  typeEmployeesDatas: TypeEmployeesData[];
+  typeEmployeesData: TypeEmployeesData = new TypeEmployeesData();
+  sectorData: SectorData = new SectorData();
+  sectorDatas: SectorData[];
+  
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private _headQuartersService: HeadQuartersService,
+    private _sectorDataService: SectorService,
+    private _typeEmployeesDataService: TypeEmployeesService,
+   
 ) {
+
+  this.loadSector();
+  this.loadTypeEmployees();
 
   }
 
@@ -33,12 +48,19 @@ export class Headquarters {
   }
 
 
+  loadTypeEmployees() {
+    this._typeEmployeesDataService.getTypeEmployees()
+    .subscribe(typeEmployeesDatas => this.typeEmployeesDatas = typeEmployeesDatas, error => this.msgError = <any>error);
+  }
+
+  loadSector() {
+    this._sectorDataService.getSector()
+    .subscribe(sectorDatas => this.sectorDatas = sectorDatas, error => this.msgError = <any>error);
+  }
+
   resetForm() {
     if(confirm("¿Desea cancelar la acción?")==true){
-      this.headQuarter.idhqrt= null;
-      this.headQuarter.name = '';
-      this.headQuarter.nameSector = '';
-      this.headQuarter.number = null;
+     
      
     }
   

@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class HeadQuartersService {
 
-  private url = 'http://localhost:8080/gnrproject';
+  private url = 'http://localhost:8080/headQuarters';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private headQuarters: HeadQuarters = new HeadQuarters();
 

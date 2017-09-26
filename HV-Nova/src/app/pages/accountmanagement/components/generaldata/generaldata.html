@@ -10,8 +10,8 @@
 					<label for="kBName" class="control-label col-md-12">Ejecutivo Negocio:</label>
 					<div class="col-md-12">
 						<div class="form-group">
-							<select class="form-control" id="kBName" name="kBName" [(ngModel)]="generalData.idkbsn" #kBName="ngModel" required>			
-									  <option *ngFor = "let kBName of generalDatas" [value] = "generalData.idkbsn">{{generalData.idkbsn}}</option>	
+							<select class="form-control" id="kBName" name="kBName" [(ngModel)]="keyBusinessData.name" #kBName="ngModel" required>			
+									  <option *ngFor = "let keyBusinessData of keyBusinessDatas" [value] = "keyBusinessData.name">{{keyBusinessData.name}}</option>	
 							</select>
 							<div *ngIf="kBName.errors">
 								<div *ngIf="kBName.touched && !kBName.valid" class="alert alert-danger">
@@ -25,8 +25,8 @@
 					<label for="kAName" class="control-label col-md-12">Ejecutivo Cuenta:</label>
 					<div class="col-md-12">
 						<div class="form-group">
-							<select class="form-control" id="kAName" name="kAName" [(ngModel)]="generalData.idrgn" #kAName="ngModel" required>			
-									  <option *ngFor = "let kAName of generalDatas" [value] = "generalData.idrgn">{{generalData.idrgn}}</option>	
+							<select class="form-control" id="kAName" name="kAName" [(ngModel)]="keyAccountData.name" #kAName="ngModel" required>			
+									  <option *ngFor = "let keyAccountData of keyAccountDatas" [value] = "keyAccountData.name">{{keyAccountData.name}}</option>	
 							</select>
 							<div *ngIf="kAName.errors">
 								<div *ngIf="kAName.touched && !kAName.valid" class="alert alert-danger">
@@ -56,10 +56,11 @@
 				</div>
 				<div class="form-group col-md-6 ">
 					<label for="typeCustomer" class="control-label col-md-12">Tipo de cliente:</label>
+					<div class="col-md-12">
 					<div class="form-group">
 						<select class="form-control" id="typecustomer" name="typecustomer" [(ngModel)]="generalData.idkacnt" #typecustomer="ngModel"
 						 required>			
-								  <option *ngFor = "let tpCustomer of generalDatas" [value] = "generalData.idkacnt">{{generalData.idkacnt}}</option>	
+								  <option *ngFor = "let generalData of generalDatas" [value] = "generalData.idkacnt">{{generalData.idkacnt}}</option>	
 						</select>
 						<div *ngIf="typecustomer.errors">
 							<div *ngIf="typecustomer.touched && !typecustomer.valid" class="alert alert-danger">
@@ -68,6 +69,7 @@
 						</div>
 					</div>
 				</div>
+				</div>
 			</div>
 
 			<div class="form-group row ">
@@ -75,8 +77,8 @@
 					<label for="regional" class="control-label col-md-12">Regional:</label>
 					<div class="col-md-12">
 						<div class="form-group">
-							<select class="form-control" id="regional" name="regional" [(ngModel)]="generalData.idhqrt" #regionals="ngModel" required>			
-								  <option *ngFor = "let regional of generalDatas" [value] = "generalData.idhqrt">{{generalData.idhqrt}}</option>	
+							<select class="form-control" id="regional" name="regional" [(ngModel)]="regionalsData.name" #regionals="ngModel" required>			
+								  <option *ngFor = "let regionalsData of regionalsDatas" [value] = "regionalsData.name">{{regionalsData.name}}</option>	
 						</select>
 							<div *ngIf="regionals.errors">
 								<div *ngIf="regionals.touched && !regionals.valid" class="alert alert-danger">
@@ -106,7 +108,7 @@
 				<div class="form-group col-md-6">
 					<label for="nit" class="control-label col-md-12">NIT:</label>
 					<div class="col-md-12">
-						<input type="text" class="form-control" name="nit" id="nit" placeholder="Nit" [(ngModel)]="generalData.nit" #nit="ngModel"
+						<input type="text" class="form-control" name="nit" id="nit" placeholder="Nit" [(ngModel)]="generalData.idinfbsn" #nit="ngModel"
 						 required maxlength="200" minlength="3">
 						<div *ngIf="nit.errors">
 							<div *ngIf="nit.touched && !nit.valid" class="alert alert-danger">
@@ -119,7 +121,7 @@
 				<div class="form-group col-md-6 ">
 					<label for="address" class="control-label col-md-12">Dirección:</label>
 					<div class="col-md-12">
-						<input type="text" class="form-control" name="address" id="address" placeholder="Dirección" [(ngModel)]="generalData.address"
+						<input type="text" class="form-control" name="address" id="address" placeholder="Dirección" [(ngModel)]="generalData.idinfbsn"
 						 #address="ngModel" required maxlength="200" minlength="3">
 						<div *ngIf="address.errors">
 							<div *ngIf="address.touched && !address.valid" class="alert alert-danger">
@@ -134,7 +136,7 @@
 				<div class="form-group col-md-6">
 					<label for="barrio" class="control-label col-md-12">Barrio:</label>
 					<div class="col-md-12">
-						<input type="text" class="form-control" name="barrio" id="barrio" placeholder="Barrio" [(ngModel)]="generalData.barrio" #barrio="ngModel"
+						<input type="text" class="form-control" name="barrio" id="barrio" placeholder="Barrio" [(ngModel)]="generalData.idinfbsn" #barrio="ngModel"
 						 required maxlength="200" minlength="3">
 						<div *ngIf="barrio.errors">
 							<div *ngIf="barrio.touched && !barrio.valid" class="alert alert-danger">
@@ -147,7 +149,7 @@
 				<div class="form-group col-md-6 ">
 					<label for="email" class="control-label col-md-12">Correo:</label>
 					<div class="col-md-12">
-						<input type="email" class="form-control" name="email" id="email" placeholder="Email" [(ngModel)]="generalData.email" #email="ngModel"
+						<input type="email" class="form-control" name="email" id="email" placeholder="Email" [(ngModel)]="generalData.idinfbsn" #email="ngModel"
 						 required maxlength="200" minlength="3">
 						<div *ngIf="email.errors">
 							<div *ngIf="email.touched && !emailvalid" class="alert alert-danger">
@@ -162,7 +164,7 @@
 				<div class="form-group col-md-6">
 					<label for="telephone" class="control-label col-md-12">Teléfono Fijo:</label>
 					<div class="col-md-12">
-						<input type="text" class="form-control" name="telephone" id="telephone" placeholder="Teléfono" [(ngModel)]="generalData.telephone"
+						<input type="text" class="form-control" name="telephone" id="telephone" placeholder="Teléfono" [(ngModel)]="generalData.idinfbsn"
 						 #telephone="ngModel" required maxlength="200" minlength="3">
 						<div *ngIf="telephone.errors">
 							<div *ngIf="telephone.touched && !telephone.valid" class="alert alert-danger">
@@ -175,7 +177,7 @@
 				<div class="form-group col-md-6 ">
 					<label for="numberSedes" class="control-label col-md-12">No Sedes:</label>
 					<div class="col-md-12">
-						<input type="number" class="form-control" name="sedes" id="sedes" placeholder="sedes" [(ngModel)]="generalData.numberSedes"
+						<input type="number" class="form-control" name="sedes" id="sedes" placeholder="sedes" [(ngModel)]="headQuartersData.numberSedes"
 						 #numberSedes="ngModel" required maxlength="200" minlength="3">
 						<div *ngIf="numberSedes.errors">
 							<div *ngIf="numberSedes.touched && !numberSedes.valid" class="alert alert-danger">
@@ -190,7 +192,7 @@
 				<div class="form-group col-md-6">
 					<label for="celphone" class="control-label col-md-12">Celular:</label>
 					<div class="col-md-12">
-						<input type="text" class="form-control" name="celphone" id="celphone" placeholder="Celular" [(ngModel)]="generalData.celphone"
+						<input type="text" class="form-control" name="celphone" id="celphone" placeholder="Celular" [(ngModel)]="generalData.idinfbsn"
 						 #celphone="ngModel" required maxlength="200" minlength="3">
 						<div *ngIf="celphone.errors">
 							<div *ngIf="celphone.touched && !celphone.valid" class="alert alert-danger">
@@ -257,7 +259,7 @@
 				<div class="form-group col-md-6 ">
 					<label for="objetivemonth" class="control-label col-md-12">Mensual:</label>
 					<div class="col-md-12">
-						<input type="number" class="form-control" name="objetivemonth" id="objetivemonth" placeholder="objetivemonth" [(ngModel)]="generalData.objetivemonth"
+						<input type="number" class="form-control" name="objetivemonth" id="objetivemonth" placeholder="Objetivo Mensual" [(ngModel)]="generalData.objetivemonth"
 						 #objetivemonth="ngModel" required maxlength="200" minlength="3">
 						<div *ngIf="objetivemonth.errors">
 							<div *ngIf="objetivemonth.touched && !objetivemonth.valid" class="alert alert-danger">

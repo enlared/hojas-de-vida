@@ -8,17 +8,20 @@
 			<div class="form-group row">
 				<div class="form-group col-md-6">
 					<label for="typeMachine" class="control-label col-md-12">Tipo Máquina:</label>
-					<div class="col-md-12">
-							<input type="text" class="form-control" name="typeMachine" id="typeMachine" placeholder="Tipo Máquina" 
-							[(ngModel)]="businessData.idinfbsn"
-							 #typemachine="ngModel" required maxlength="200" minlength="3">
-							<div *ngIf="typemachine.errors">
-								<div *ngIf="typemachine.touched && !typemachine.valid" class="alert alert-danger">
-									<strong>Warning!</strong>Campo requerido.
-								</div>
+						<div class="col-md-12">
+							<div class="form-group">
+									<select class="form-control" id="typeMachine" name="typeMachine" 
+									[(ngModel)]="typeMachineData.name" #typemachine="ngModel" required>			
+											  <option *ngFor = "let typeMachineData of typeMachineDatas" [value] = "typeMachineData.name">{{typeMachineData.name}}</option>	
+									</select>
+									<div *ngIf="typemachine.errors">
+										<div *ngIf="typemachine.touched && !typemachine.valid" class="alert alert-danger">
+											<strong>Warning!</strong>Campo requerido.
+										</div>
+									</div>
 								
-							</div>
-						</div>
+								</div>
+					</div>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="numberMachine" class="control-label col-md-12">No Máquinas:</label>
@@ -43,7 +46,8 @@
 							<div class="form-group">
 									<select class="form-control" id="typeGlass" name="typeGlass" 
 									[(ngModel)]="businessData.typeglass" #typeglass="ngModel" required>			
-											  <option *ngFor = "let typeGlass of businessDatas" [value] = "businessData.typeglass">{{businessData.typeglass}}</option>	
+											  <option value = "carton">Cartón</option>
+											  <option value = "Plastico">Plástico</option>	
 									</select>
 									<div *ngIf="typeglass.errors">
 										<div *ngIf="typeglass.touched && !typeglass.valid" class="alert alert-danger">
@@ -60,8 +64,8 @@
 						
 								<div class="form-group">
 										<select class="form-control" id="anclaje" name="anclaje" 
-										[(ngModel)]="businessData.idanlcmp" #anchorage="ngModel" required>			
-												  <option *ngFor = "let anchorage of businessDatas" [value] = "businessData.idanlcmp">{{businessData.idanlcmp}}</option>	
+										[(ngModel)]="anchorage.name" #anchorage="ngModel" required>			
+												  <option *ngFor = "let anchorageData of anchorageDatas" [value] = "anchorageData.name">{{anchorageData.name}}</option>	
 										</select>
 										<div *ngIf="anchorage.errors">
 											<div *ngIf="anchorage.touched && !anchorage.valid" class="alert alert-danger">
@@ -81,8 +85,8 @@
 					<div class="col-md-12">
 							<div class="form-group">
 									<select class="form-control" id="listPrecies" name="lastPrecies" 
-									[(ngModel)]="businessData.idlstprc" #listprices="ngModel" required>			
-											  <option *ngFor = "let listprecies of businessDatas" [value] = "businessData.idlstprc">{{businessData.idlstprc}}</option>	
+									[(ngModel)]="listPricesData.nombre" #listprices="ngModel" required>			
+											  <option *ngFor = "let listPricesData of listPricesDatas" [value] = "listPricesData.nombre">{{listPricesData.nombre}}</option>	
 									</select>
 									<div *ngIf="listprices.errors">
 										<div *ngIf="listprices.touched && !listprecies.valid" class="alert alert-danger">
@@ -99,8 +103,8 @@
 					<div class="col-md-12">
 							<div class="form-group">
 									<select class="form-control" id="typenegociation" name="typenegociation" 
-									[(ngModel)]="businessData.idtpngc" #typenegociation="ngModel" required>			
-											  <option *ngFor = "let tpNegociation of businessDatas" [value] = "businessData.idtpngc">{{businessData.idtpngc}}</option>	
+									[(ngModel)]="typeNegociationData.name" #typenegociation="ngModel" required>			
+											  <option *ngFor = "let typeNegociationData of typeNegociationDatas" [value] = "typeNegociationData.name">{{typeNegociationData.name}}</option>	
 									</select>
 									<div *ngIf="typenegociation.errors">
 										<div *ngIf="typenegociation.touched && !typenegociation.valid" class="alert alert-danger">
@@ -118,8 +122,8 @@
 					<div class="col-md-12">
 							<div class="form-group">
 									<select class="form-control" id="category" name="category" 
-									[(ngModel)]="businessData.idctg" #category="ngModel" required>			
-											  <option *ngFor = "let category of businessDatas" [value] = "businessData.idctg">{{businessData.idctg}}</option>	
+									[(ngModel)]="categoryData.name" #category="ngModel" required>			
+											  <option *ngFor = "let categoryData of categoryDatas" [value] = "categoryData.name">{{categoryData.name}}</option>	
 									</select>
 									<div *ngIf="category.errors">
 										<div *ngIf="category.touched && !category.valid" class="alert alert-danger">

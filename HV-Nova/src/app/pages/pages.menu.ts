@@ -106,23 +106,7 @@ export const PAGES_MENU = [
                 title: 'Listar Usuarios',
               }
             }
-          },
-          {
-            path: 'edituser',
-            data: {
-              menu: {
-                title: 'Editar usuario',
-              }
-            }
-          },
-          {
-            path: 'deleteuser',
-            data: {
-              menu: {
-                title: 'Eliminar Usuario',
-              }
-            }
-          }
+          },      
         ]
       },
 

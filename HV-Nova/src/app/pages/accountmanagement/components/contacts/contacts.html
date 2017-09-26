@@ -1,116 +1,105 @@
 <ba-card cardTitle="Bienvenido al sistema de Gestión de Cuentas" baCardClass="with-scroll">
 	<form class="form-horizontal">
-		<div class="container-fluid">
+		<div class="container-fluid"><!--
 			<div class="form-group row">
 				<h4>Información de contacto 1 </h4>
 			</div>
-			<!-- Form group short name new project -->
+			
 			<div class="form-group row">
 				<div class="form-group col-md-6">
-					<label for="shortnamenprj" class="control-label col-md-12">Nombres:</label>
+					<label for="contactname" class="control-label col-md-12">Nombres:</label>
 					<div class="col-md-12">
-						<input type="text" class="form-control" id="descriptionprj" placeholder="Nombres">
+						<input type="text" class="form-control" id="contactname" placeholder="Nombres" name="contactsName" [(ngModel)]="contactsData.name"
+						#contactsName="ngModel" required maxlength="200" minlength="3">
+						<div *ngIf="contactsName.errors">
+							<div *ngIf="contactsName.touched && !contactsName.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+							<div *ngIf="!contactsName.validator.minlength && contactsName.touched" class="alert alert-danger ">
+								<strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="form-group col-md-6">
-					<label for="namenprj" class="control-label col-md-12">Imfluencia Compradora:</label>
+					<label for="influence" class="control-label col-md-12">Influencia Compradora:</label>
 					<div class="col-md-12">
-						<div class="input-group">
-							<input class="form-control" id="id" type="text" placeholder="Influencia Compradora" readonly/>
-							<div class="input-group-btn">
-								<!-- Dropdown for author in new project-->
-								<button class="btn btn-primary dropdown-togle" type="button" id="dropdownauthornprj" data-toggle="dropdown" aria-extended="true">
-																					Influencia
-																					<span class="caret"></span>
-																				</button>
-								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownauthornprj">
-									<li role="presentation" class="dropdown-header ">Influencia</li>
-									<li class="divider"></li>
-									<li role="presentation"> <a role="item" href="#"><label class="checkbox-inline">
-																						<input type="checkbox"  name="" id=""> Juan Macias
-																					</label></a></li>
-									<li role="presentation"> <a role="item" href="#"><label class="checkbox-inline">
-																						<input type="checkbox"  name="" id=""> Luis Miguel
-																					</label></a></li>
-									<li role="presentation"> <a role="item" href="#"><label class="checkbox-inline">
-																						<input type="checkbox"  name="" id="" > Claudia Lopez
-																					</label></a></li>
-								</ul>
+						<div class="form-group">
+							<select class="form-control" id="influence" name="influence" [(ngModel)]="contactsData.idinfshp" #influence="ngModel" required>			
+									  <option *ngFor = "let influence of contactDatas" [value] = "contactsData.idinfshp">{{contactsData.idinfshp}}</option>	
+							</select>
+							<div *ngIf="influence.errors">
+								<div *ngIf="influence.touched && !influence.valid" class="alert alert-danger">
+									<strong>Warning!</strong>Campo requerido.
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- Form group description new project -->
+			
 			<div class="form-group row">
 				<div class="form-group col-md-6">
-					<label for="descriptionnproj" class="control-label col-md-12">Grado Influencia:</label>
+					<label for="gradeinfluence" class="control-label col-md-12">Grado Influencia:</label>
 					<div class="col-md-12">
-						<div class="input-group">
-							<input class="form-control" id="id" type="text" placeholder="Grado Influencia" readonly/>
-							<div class="input-group-btn">
-								<!-- Dropdown for author in new project-->
-								<button class="btn btn-primary dropdown-togle" type="button" id="dropdownauthornprj" data-toggle="dropdown" aria-extended="true">
-																					Grado
-																					<span class="caret"></span>
-																				</button>
-								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownauthornprj">
-									<li role="presentation" class="dropdown-header ">Grado</li>
-									<li class="divider"></li>
-									<li role="presentation"> <a role="item" href="#"><label class="checkbox-inline">
-																						<input type="checkbox"  name="" id=""> Juan Macias
-																					</label></a></li>
-									<li role="presentation"> <a role="item" href="#"><label class="checkbox-inline">
-																						<input type="checkbox"  name="" id=""> Luis Miguel
-																					</label></a></li>
-									<li role="presentation"> <a role="item" href="#"><label class="checkbox-inline">
-																						<input type="checkbox"  name="" id="" > Claudia Lopez
-																					</label></a></li>
-								</ul>
+						<div class="form-group">
+							<select class="form-control" id="gradeInfluence" name="gradeInfluence" [(ngModel)]="gradeInfluence.name" #gradeInfluence="ngModel" required>			
+									  <option *ngFor = "let gradeInfluence of gradeInfluence" [value] = "gradeInfluence.name">{{gradeInfluence.name}}</option>	
+							</select>
+							<div *ngIf="gradeInfluence.errors">
+								<div *ngIf="gradeInfluence.touched && !gradeInfluence.valid" class="alert alert-danger">
+									<strong>Warning!</strong>Campo requerido.
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="form-group col-md-6 ">
-					<label for="creationdatenprj" class="control-label col-md-12">Teléfono:</label>
+					<label for="telephone" class="control-label col-md-12">Teléfono:</label>
 					<div class="col-md-12">
-						<input type="text" class="form-control" id="descriptionprj" placeholder="Teléfono">
+						<input type="text" class="form-control" id="telephone" placeholder="Teléfono" name="telephone" [(ngModel)]="contactsData.telephone"
+						#contactsTelephone="ngModel" required maxlength="200" minlength="3">
+						<div *ngIf="contactsTelephone.errors">
+							<div *ngIf="contactsTelephone.touched && !contactsTelephone.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+							<div *ngIf="!contactsTelephone.validator.minlength && contactsTelephone.touched" class="alert alert-danger ">
+								<strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+							</div>
+						</div>
 					</div>
 				</div>	
 			</div>
-			<!-- Form group author for new project -->
+			
 			<div class="form-group row ">
 				<div class="form-group col-md-6">
-					<label for="authornprj" class="control-label col-md-12">Celular:</label>
+					<label for="celphone" class="control-label col-md-12">Celular:</label>
 					<div class="col-md-12">
-						<input type="text" class="form-control" id="descriptionprj" placeholder="Celular">
+						<input type="text" class="form-control" id="celphone" placeholder="Celular" 
+						name="contactsCelphone" [(ngModel)]="contactsData.celphone"
+						#contactsCelphone="ngModel" required maxlength="200" minlength="3">
+						<div *ngIf="contactsCelphone.errors">
+							<div *ngIf="contactsCelphone.touched && !contactsCelphone.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+							<div *ngIf="!contactsCelphone.validator.minlength && contactsCelphone.touched" class="alert alert-danger ">
+								<strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+							</div>
+						</div>
 					</div>
 				</div>
-				<!-- Form group for label in new project -->
+				
 				<div class="form-group col-md-6">
-					<label for="typeprojectnprjgnr" class="control-label col-md-12">Modo:</label>
+					<label for="contactsMode" class="control-label col-md-12">Modo:</label>
 					<div class="col-md-12">
-						<div class="input-group">
-							<input class="form-control" id="id" type="text" placeholder="Modo" readonly/>
-							<div class="input-group-btn">
-								<!-- Dropdown for author in new project-->
-								<button class="btn btn-primary dropdown-togle" type="button" id="dropdownauthornprj" data-toggle="dropdown" aria-extended="true">
-																					Modo
-																					<span class="caret"></span>
-																				</button>
-								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownauthornprj">
-									<li role="presentation" class="dropdown-header ">Modo</li>
-									<li class="divider"></li>
-									<li role="presentation"> <a role="item" href="#"><label class="checkbox-inline">
-																						<input type="checkbox"  name="" id=""> Juan Macias
-																					</label></a></li>
-									<li role="presentation"> <a role="item" href="#"><label class="checkbox-inline">
-																						<input type="checkbox"  name="" id=""> Luis Miguel
-																					</label></a></li>
-									<li role="presentation"> <a role="item" href="#"><label class="checkbox-inline">
-																						<input type="checkbox"  name="" id="" > Claudia Lopez
-																					</label></a></li>
-								</ul>
+						<div class="form-group">
+							<select class="form-control" id="contactsMode" name="contactsMode" [(ngModel)]="contactsData.mode" #contactsMode="ngModel" required>			
+									  <option *ngFor = "let contactsMode of contactDatas" [value] = "contactsData.mode">{{contactsData.mode}}</option>	
+							</select>
+							<div *ngIf="contactsMode.errors">
+								<div *ngIf="contactsMode.touched && !contactsMode.valid" class="alert alert-danger">
+									<strong>Warning!</strong>Campo requerido.
+								</div>
 							</div>
 						</div>
 					</div>
@@ -118,19 +107,32 @@
 			</div>
 			<div class="form-group row">
 				<div class="form-group col-md-6">
-					<label for="descriptionnproj" class="control-label col-md-12">Fecha Cumpleños:</label>
+					<label for="birthday" class="control-label col-md-12">Fecha Cumpleños:</label>
 					<div class="col-md-12">
 						<div class="input-group date">
-							<input type="text" class="form-control" placeholder="Fecha Cumpleaños" readonly/>
-							<span class="input-group-addon btn-primary" id="calendarnprj"><span class="glyphicon glyphicon-calendar"></span>
-							</span>
+							<my-date-picker name="birthday" [options]="myDatePickerOptions" [(ngModel)]="contactsData.birthdaydate" #birthday="ngModel"
+							 required></my-date-picker>
+						</div>
+						<div *ngIf="birthday.errors">
+							<div *ngIf="birthday.touched && !birthday.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
 						</div>
 					</div>
 				</div>
 				<div class="form-group col-md-6 ">
-					<label for="creationdatenprj" class="control-label col-md-12">Correo:</label>
+					<label for="email" class="control-label col-md-12">Correo:</label>
 					<div class="col-md-12">
-						<input type="text" class="form-control" id="descriptionprj" placeholder="Correo">
+						<input type="email" class="form-control" name="email" id="email" placeholder="Email" [(ngModel)]="contactsData.email" #email="ngModel"
+						required maxlength="200" minlength="3">
+						<div *ngIf="email.errors">
+							<div *ngIf="email.touched && !email.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+							<div *ngIf="!email.validator.minlength && email.touched" class="alert alert-danger ">
+								<strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+							</div>
+						</div>
 					</div>
 				</div>	
 			</div>
@@ -139,29 +141,66 @@
 			<h4>Información Cartera</h4>
 			<div class="form-group row">
 				<div class="form-group col-md-6">
-					<label for="descriptionnproj" class="control-label col-md-12">Contacto Tesoreria:</label>
+					<label for="financialContact" class="control-label col-md-12">Contacto Tesoreria:</label>
 					<div class="col-md-12">
-						<input type="text" class="form-control" id="descriptionprj" placeholder="Contacto Tesoreria">
+						<input type="text" class="form-control"  placeholder="Contacto Tesoreria"
+						name="financialContact" id="financialContact" [(ngModel)]="financialData.name" #financialName="ngModel"
+						required maxlength="200" minlength="3">
+						<div *ngIf="financialName.errors">
+							<div *ngIf="financialName.touched && !financialName.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+							<div *ngIf="!financialName.validator.minlength && financialName.touched" class="alert alert-danger ">
+								<strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="form-group col-md-6 ">
-					<label for="creationdatenprj" class="control-label col-md-12">Teléfono:</label>
+					<label for="financialTelephone" class="control-label col-md-12">Teléfono:</label>
 					<div class="col-md-12">
-						<input type="text" class="form-control" id="descriptionprj" placeholder="Teléfono">
+						<input type="text" class="form-control" id="financialTelephone" placeholder="Teléfono"  [(ngModel)]="financialData.telephone" #financialTelephone="ngModel"
+						required maxlength="200" minlength="3">
+						<div *ngIf="financialTelephone.errors">
+							<div *ngIf="financialTelephone.touched && !financialTelephone.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+							<div *ngIf="!financialTelephone.validator.minlength && financialTelephone.touched" class="alert alert-danger ">
+								<strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+							</div>
+						</div>
 					</div>
 				</div>	
 			</div>
 			<div class="form-group row">
 				<div class="form-group col-md-6">
-					<label for="descriptionnproj" class="control-label col-md-12">Celular:</label>
+					<label for="financialCelphone" class="control-label col-md-12">Celular:</label>
 					<div class="col-md-12">
-						<input type="text" class="form-control" id="descriptionprj" placeholder="Celular">
+						<input type="text" class="form-control" id="financialCelphone" placeholder="Celular" [(ngModel)]="financialData.celphone" #financialCelphone="ngModel"
+						required maxlength="200" minlength="3">
+						<div *ngIf="financialCelphone.errors">
+							<div *ngIf="financialCelphone.touched && !financialCelphone.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+							<div *ngIf="!financialCelphone.validator.minlength && financialCelphone.touched" class="alert alert-danger ">
+								<strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="form-group col-md-6 ">
-					<label for="creationdatenprj" class="control-label col-md-12">Correo:</label>
+					<label for="financiaEmail" class="control-label col-md-12">Correo:</label>
 					<div class="col-md-12">
-						<input type="text" class="form-control" id="descriptionprj" placeholder="Correo">
+						<input type="email" class="form-control" id="financialEmail" placeholder="Correo" [(ngModel)]="financialData.email" #financialEmail="ngModel"
+						required maxlength="200" minlength="3">
+						<div *ngIf="financialEmail.errors">
+							<div *ngIf="financialEmail.touched && !financialEmail.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+							<div *ngIf="!financialEmail.validator.minlength && financialEmail.touched" class="alert alert-danger ">
+								<strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+							</div>
+						</div>
 					</div>
 				</div>	
 			</div>
@@ -169,71 +208,71 @@
 			<br>
 			<h4>Agregar otro contacto</h4>
 			<br>
+			<div>
+				<button class="btn btn-primary" >Agregar</button>
+				
+				</div>
+				<br>
 			<div class="box-shadow-border"></div>
 			<br>
 			<h4>Información Contacto HSEQ</h4>
 			<div class="form-group row">
 				<div class="form-group col-md-6">
-					<label for="descriptionnproj" class="control-label col-md-12">Nombres:</label>
+					<label for="hseqName" class="control-label col-md-12">Nombres:</label>
 					<div class="col-md-12">
-						<input type="text" class="form-control" id="descriptionprj" placeholder="Nombres">
+						<input type="text" class="form-control" id="hseqName" placeholder="Nombres" [(ngModel)]="hseqData.name" #hseqName="ngModel"
+						required maxlength="200" minlength="3">
+						<div *ngIf="hseqName.errors">
+							<div *ngIf="hseqName.touched && !hseqName.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+							<div *ngIf="!hseqName.validator.minlength && hseqName.touched" class="alert alert-danger ">
+								<strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="form-group col-md-6 ">
-					<label for="creationdatenprj" class="control-label col-md-12">Teléfono:</label>
+					<label for="hseqTelephone" class="control-label col-md-12">Teléfono:</label>
 					<div class="col-md-12">
-						<input type="text" class="form-control" id="descriptionprj" placeholder="Teléfono">
+						<input type="text" class="form-control" id="hseqTelephone" placeholder="Teléfono"  [(ngModel)]="hseqData.telephone" #hseqTelephone="ngModel"
+						required maxlength="200" minlength="3">
+						<div *ngIf="hseqTelephone.errors">
+							<div *ngIf="hseqTelephone.touched && !hseqTelephone.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+							<div *ngIf="!hseqTelephone.validator.minlength && hseqTelephone.touched" class="alert alert-danger ">
+								<strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+							</div>
+						</div>
 					</div>
 				</div>	
 			</div>		
-			<!-- Form group bottons document, save, close in new project -->
+		
 			<div class="form-group row">
-				<div class="col-md-5">
+				<div class="col-md-4">
 				</div>
 				<div class="col-md-4">
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-4">
 					
-					<a href="#windowsavenprjgnr" class="btn btn-success " data-toggle="modal">Guardar</a>
-					<a href="#windowclosenprjgnr" class="btn btn-info " data-toggle="modal">Cancelar</a>
-					<!-- Action for botton document in new project -->
-					<div class="modal fade" id="windowdocumentnprjgnr">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<h2 class="modal-title">Proyecto Raiz</h2>
-								</div>
-								<div class="modal-body">
-									<p>¿Desea agregar un subproyecto al proyecto creado?</p>
-									<div class="modal-footer">
-										<button type="submit" class="btn btn-primary">Agregar</button>
-										<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- action for botton save in new folder -->
-					<div class="modal fade" id="windowsavenprjgnr">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<h2 class="modal-title">Guardar</h2>
-								</div>
-								<div class="modal-body">
-									<p>�Desea guardar el proyecto raiz creado?</p>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-primary">Confirmar</button>
-										<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+				
+					<div *ngIf="contactsName.errors || influence.errors || gradeInfluence.errors || contactsTelephone.errors ||contactsCelphone.errors || contactsMode.errors 
+					|| birthday.errors || email.errors  || email.errors || financialName.errors || financialTelephone.errors || financialCelphone.errors 
+					 || financialEmail.errors || hseqName.errors || hseqTelephone.errors ">
+					<button class="btn btn-primary" name="buttonSave" (click)="goSLA()" disabled>Negocio</button>
+					<button class="btn btn-success" (click)="saveContactsData()" disabled="">Guardar</button>
+					<button class="btn btn-info" (click)="resetForm()">Cancelar</button>
 				</div>
-			</div>
+				<div *ngIf="!contactsName.errors && !influence.errors && !gradeInfluence.errors && !contactsTelephone.errors && !contactsCelphone.errors && !contactsMode.errors 
+						&& !birthday.errors && !email.errors  && !email.errors && !financialName.errors && !financialTelephone.errors && !financialCelphone.errors 
+						&& !financialEmail.errors && !hseqName.errors && !hseqTelephone.errors ">
+					<button class="btn btn-primary" name="buttonSave" (click)="goSLA()">Negocio</button>
+					<button class="btn btn-success" (click)="saveContactsData()">Guardar</button>
+					<button class="btn btn-info" (click)="resetForm()">Cancelar</button>
+				</div>
+				</div>
+			</div>-->
 		</div>
 	</form>
 </ba-card>

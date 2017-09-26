@@ -2,7 +2,7 @@ export class HeadQuarters {
 
 idhqrt: number;
 name: string;
-number: number;
+numberSedes: number;
 nameSector: string;
 
 }
