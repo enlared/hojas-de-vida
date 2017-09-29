@@ -6,6 +6,11 @@ import { Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { OppositionService } from '../../../../theme/services/oppositionService/opposition.service';
 import { OppositionData } from '../../../../theme/services/oppositionService/opposition';
+import { TypeMachineService } from '../../../../theme/services/totalService/typeMachine.service';
+import { TypeMachineData } from '../../../../theme/services/totalService/typeMachine';
+import { CategoryService } from '../../../../theme/services/totalService/category.service';
+import { CategoryData } from '../../../../theme/services/totalService/category';
+
 import { IMyDpOptions } from 'mydatepicker';
 
 
@@ -18,10 +23,17 @@ export class Opposition {
   msgError: string;
   oppositionDatas: OppositionData[];
   oppositionData: OppositionData = new OppositionData();
+  categoryDatas: CategoryData[];
+  categoryData: CategoryData = new CategoryData();
+  typeMachineDatas: TypeMachineData[];
+  typeMachineData: TypeMachineData = new TypeMachineData();
+  
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private _oppositionDataService: OppositionService,
+    private _categoryDataService: CategoryService,
+    private _typeMachineDataService: TypeMachineService,
   ) {
 
   }

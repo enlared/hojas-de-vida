@@ -9,4 +9,7 @@ operationcurses: string;
 especificclient: string;
 idbilling: number;
 typessla: string;
+preventive: string;
+corrective: string;
+fumigations: string;
 }

@@ -7,3 +7,5 @@ export * from './typeNegociation.service';
 export * from './listPrices.service';
 export * from './category.service';
 export * from './anchorage.service';
+export * from './contactHseq.service';
+export * from './purse.service';

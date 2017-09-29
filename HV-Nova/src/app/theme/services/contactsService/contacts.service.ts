@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class ContactsService {
 
-  private url = 'http://localhost:8080/gnrproject';
+  private url = 'http://localhost:8080/informationContacts';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private contacts: ContactsData = new ContactsData();
 

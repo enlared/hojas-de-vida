@@ -6,6 +6,11 @@ import { Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ContactsService } from '../../../../theme/services/contactsService/contacts.service';
 import { ContactsData } from '../../../../theme/services/contactsService/contactsData';
+import { PurseService } from '../../../../theme/services/totalService/purse.service';
+import { PurseData } from '../../../../theme/services/totalService/purse';
+import { ContactHseqService } from '../../../../theme/services/totalService/contactHseq.service';
+import { ContactHseqData } from '../../../../theme/services/totalService/contactHseq';
+
 import { IMyDpOptions } from 'mydatepicker';
 
 @Component({
@@ -18,12 +23,22 @@ export class Contacts {
    msgError: string;
   contactDatas: ContactsData[];
   contactsData: ContactsData = new ContactsData();
- 
+  purseDatas: PurseData[];
+  purseData: PurseData = new PurseData();
+  contactHseqData: ContactHseqData = new ContactHseqData();
+  contactHseqDatas: ContactHseqData[];
+
   constructor(
+
+
     private route: ActivatedRoute,
     private router: Router,
     private _contactsDataService: ContactsService,
+    private _purseDataService: PurseService,
+    private _contactHseqService: ContactHseqService,
   ) {
+
+    this.loadContacts();
 
   }
 
@@ -33,16 +48,20 @@ export class Contacts {
     console.log(id);
   }
 
+  loadContacts() {
+    this._contactsDataService.getContacts()
+    .subscribe(contactDatas => this.contactDatas = contactDatas, error => this.msgError = <any>error);
+  }
 
   resetForm() {
-    if (confirm("¿Desea cancelar la acción?") == true) {
+    if (confirm("¿Desea cancelar la acción?") === true) {
  
 
     }
 
   }
   goSLA() {
-    if (confirm("¿Desea guardar y agregar un SLA?") == true) {
+    if (confirm("¿Desea guardar y agregar un SLA?") === true) {
 
       //this.saveBusinessData();
       let link = ['pages/accountmanagement/servicelevelagreement'];
@@ -52,8 +71,9 @@ export class Contacts {
 
   }
 
+
   saveContactsData() {
-    if (confirm("¿Desea guardar un Contacto?") == true) {
+    if (confirm("¿Desea guardar un Contacto?") === true) {
 
       this._contactsDataService.addContacts(this.contactsData)
         .subscribe(

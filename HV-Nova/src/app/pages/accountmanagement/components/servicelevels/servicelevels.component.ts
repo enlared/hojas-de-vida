@@ -6,6 +6,10 @@ import { Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ServiceLevelsService } from '../../../../theme/services/serviceLevelsService/serviceLevels.service';
 import { ServiceLevelsData } from '../../../../theme/services/serviceLevelsService/serviceLevels';
+import { BillingService } from '../../../../theme/services/totalService/billing.service';
+import { BillingData } from '../../../../theme/services/totalService/billing';
+import { DateEspecialsService } from '../../../../theme/services/totalService/dateEspecials.service';
+import { DateEspecialsData } from '../../../../theme/services/totalService/dateEspecials';
 import { IMyDpOptions } from 'mydatepicker';
 
 @Component({
@@ -18,10 +22,16 @@ export class Servicelevels {
     msgError: string;
     serviceLevels: ServiceLevelsData[];
     serviceLevel: ServiceLevelsData = new ServiceLevelsData();
+    billingData: BillingData[];
+    billingDatas: BillingData = new BillingData();
+    dateEspecialsData: DateEspecialsData[];
+    dateEspecialsDatas: DateEspecialsData = new DateEspecialsData();
     constructor(
       private route: ActivatedRoute,
       private router: Router,
       private _serviceLevelsService: ServiceLevelsService,
+      private _billingService: BillingService,
+      private _dateEspecialsService : DateEspecialsService,
     ) {
   
     }

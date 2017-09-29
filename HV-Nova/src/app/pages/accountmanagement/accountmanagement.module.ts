@@ -29,6 +29,7 @@ import { HeadQuartersService } from '../../theme/services/headQuartersService/he
 import { BusinessDataService } from '../../theme/services/businessDataService/businessData.service';
 import { GeneralDataService } from '../../theme/services/generalDataService/generalData.service';
 import { ContactsService } from '../../theme/services/contactsService/contacts.service';
+import { ContactsData } from '../../theme/services/contactsService/contactsData';
 import { ServiceLevelsService } from '../../theme/services/serviceLevelsService/serviceLevels.service';
 import { OppositionService } from '../../theme/services/oppositionService/opposition.service';
 import { CategoryService } from '../../theme/services/totalService/category.service'; 
@@ -41,6 +42,14 @@ import { TypeNegociationService } from '../../theme/services/totalService/typeNe
 import { TypeNegociationData } from '../../theme/services/totalService/typeNegociation'; 
 import { AnchorageService } from '../../theme/services/totalService/anchorage.service'; 
 import { AnchorageData } from '../../theme/services/totalService/anchorage'; 
+import { ContactHseqService } from '../../theme/services/totalService/contactHseq.service'; 
+import { ContactHseqData } from '../../theme/services/totalService/contactHseq'; 
+import { PurseService } from '../../theme/services/totalService/purse.service'; 
+import { PurseData } from '../../theme/services/totalService/purse'; 
+import { BillingService } from '../../theme/services/totalService/billing.service'; 
+import { BillingData } from '../../theme/services/totalService/billing'; 
+import { DateEspecialsService } from '../../theme/services/totalService/dateEspecials.service'; 
+import { DateEspecialsData } from '../../theme/services/totalService/dateEspecials'; 
 import { MyDatePickerModule } from 'mydatepicker';
 
 @NgModule({
@@ -86,6 +95,10 @@ import { MyDatePickerModule } from 'mydatepicker';
     TypeNegociationService,
     TypeMachineService,
     CategoryService,
+    ContactHseqService,
+    PurseService,
+    BillingService,
+    DateEspecialsService,
   ]
 })
 export class AccountmanagementModule {

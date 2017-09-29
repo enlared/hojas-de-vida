@@ -1,6 +1,6 @@
 <ba-card cardTitle="Bienvenido al sistema de Gestión de Cuentas" baCardClass="with-scroll">
 	<form class="form-horizontal">
-		<div class="container-fluid"><!--
+		<div class="container-fluid">
 			<div class="form-group row">
 				<h4>Acuerdos de nivel de servicio </h4>
 			</div>
@@ -37,8 +37,8 @@
 					<label for="corrective" class="control-label col-md-12">Correctivos:</label>
 					<div class="col-md-12">
 							<div class="form-group">
-								<select class="form-control" id="corrective" name="corrective" [(ngModel)]="correctives.name" #corrective="ngModel" required>			
-										  <option *ngFor = "let corrective of correctives" [value] = "correctives.name">{{corrective.name}}</option>	
+								<select class="form-control" id="corrective" name="corrective" [(ngModel)]="serviceLevel.corrective" #corrective="ngModel" required>			
+										  <option *ngFor = "let serviceLevel of serviceLevels" [value] = "serviceLevel.corrective">{{serviceLevel.corrective}}</option>	
 								</select>
 								<div *ngIf="corrective.errors">
 									<div *ngIf="corrective.touched && !corrective.valid" class="alert alert-danger">
@@ -52,8 +52,10 @@
 					<label for="fumigation" class="control-label col-md-12">Fumigaciones:</label>
 					<div class="col-md-12">
 							<div class="form-group">
-								<select class="form-control" id="fumigation" name="fumigation" [(ngModel)]="fumigations.name" #fumigation="ngModel" required>			
-										  <option *ngFor = "let fumigation of fumigations" [value] = "fumigation.name">{{fumigation.name}}</option>	
+								<select class="form-control" id="fumigation" name="fumigation" [(ngModel)]="serviceLevel.fumigations" #fumigation="ngModel" required>			
+										  <option  value = "Basica">Basica</option>	
+										  <option  value = "Periodica">Periodica</option>	
+
 								</select>
 								<div *ngIf="fumigation.errors">
 									<div *ngIf="fumigation.touched && !fumigation.valid" class="alert alert-danger">
@@ -70,8 +72,10 @@
 					<label for="preventive" class="control-label col-md-12">Preventivos:</label>
 					<div class="col-md-12">
 							<div class="form-group">
-								<select class="form-control" id="preventive" name="preventive" [(ngModel)]="preventive.name" #preventive="ngModel" required>			
-										  <option *ngFor = "let preventive of preventive" [value] = "preventive.name">{{preventive.name}}</option>	
+								<select class="form-control" id="preventive" name="preventive" [(ngModel)]="serviceLevel.preventive" #preventive="ngModel" required>			
+										  <option  value = "Básico">Básico</option>
+										  <option  value = "Medium">Medium</option>
+										  <option  value = "Completo">Completo</option>	
 								</select>
 								<div *ngIf="preventive.errors">
 									<div *ngIf="preventive.touched && !preventive.valid" class="alert alert-danger">
@@ -102,7 +106,7 @@
 				<div class="form-group col-md-6">
 					<label for="brigade" class="control-label col-md-12">Brigada Limpieza:</label>
 					<div class="col-md-12">
-						<input type="text" class="form-control" id="brigade" placeholder="Brigada Limpieza"name="brigade" 
+						<input type="text" class="form-control" id="brigade" placeholder="Brigada Limpieza" name="brigade" 
 						[(ngModel)]="serviceLevel.brigadeclear" #brigade="ngModel" required maxlength="200" minlength="3">
 						<div *ngIf="brigade.errors">
 							<div *ngIf="brigade.touched && !brigade.valid" class="alert alert-danger">
@@ -176,7 +180,7 @@
 					<label for="subside" class="control-label col-md-12">Tipo:</label>
 					<div class="col-md-12">
 							<div class="form-group">
-								<select class="form-control" id="subdside" name="subside" [(ngModel)]="serviceLevel.typessla" #subside="ngModel" required>			
+								<select class="form-control" id="subdside" name="subside" [(ngModel)]="billingDatas.typesale" #subside="ngModel" required>			
 										  <option  [value] = "Subsidiada">Subsidiada</option>
 										  <option  [value] = "Servicios">Servicios</option>
 								</select>
@@ -199,8 +203,9 @@
 					<label for="purserent" class="control-label col-md-12">Plazo Cartera/Subsidio:</label>
 					<div class="col-md-12">
 							<div class="form-group">
-								<select class="form-control" id="purserent" name="billing" [(ngModel)]="termpursesub.name" #billingSub="ngModel" required>			
-										  <option *ngFor = "let pursesub of pursesubs" [value] = "termpursesub.name">{{pursesub.name}}</option>	
+								<select class="form-control" id="purserent" name="billing" [(ngModel)]="billingDatas.pursesub" #billingSub="ngModel" required>			
+										  <option  value = "Mitad">Mitad</option>
+										  <option  value = "Tercio">Tercio</option>
 								</select>
 								<div *ngIf="billingSub.errors">
 									<div *ngIf="billingSub.touched && !billingSub.valid" class="alert alert-danger">
@@ -215,8 +220,9 @@
 								<label for="billingRent" class="control-label col-md-12">Plazo Cartera/Arriendos:</label>
 								<div class="col-md-12">
 										<div class="form-group">
-											<select class="form-control" id="billingRent" name="billingRent" [(ngModel)]="termnpurserent.name" #billingRent="ngModel" required>			
-													  <option *ngFor = "let purserent of purserents" [value] = "termpurserent.name">{{purserent.name}}</option>	
+											<select class="form-control" id="billingRent" name="billingRent" [(ngModel)]="billingDatas.purserent" #billingRent="ngModel" required>			
+													  <option  value = "Mensula">Mensual</option>
+													  <option  value = "Quincenal">Quincenal</option>	
 											</select>
 											<div *ngIf="billingRent.errors">
 												<div *ngIf="billingRent.touched && !billingRent.valid" class="alert alert-danger">
@@ -232,9 +238,9 @@
 						<label for="crosspurse" class="control-label col-md-12">Cruce Cartera:</label>
 						<div class="col-md-12">
 								<div class="form-group">
-									<select class="form-control" id="crosspurse" name="crossPurse" [(ngModel)]="billing.crosspurse" #crossPurse="ngModel" required>			
-											  <option  [value] = "Si">Sí</option>	
-											  <option  [value] = "No">No</option>
+									<select class="form-control" id="crosspurse" name="crossPurse" [(ngModel)]="billingDatas.crosspurse" #crossPurse="ngModel" required>			
+											  <option  value = "Si">Sí</option>	
+											  <option  value = "No">No</option>
 									</select>
 									<div *ngIf="crossPurse.errors">
 										<div *ngIf="crossPurse.touched && !crossPurse.valid" class="alert alert-danger">
@@ -249,9 +255,9 @@
 									<label for="oc" class="control-label col-md-12">Requiera OC compra:</label>
 									<div class="col-md-12">
 											<div class="form-group">
-												<select class="form-control" id="oc" name="oc" [(ngModel)]="billing.oc" #oc="ngModel" required>			
-														  <option [value] = "Si">Si</option>
-														  <option [value] = "No">no</option>	
+												<select class="form-control" id="oc" name="oc" [(ngModel)]="billingDatas.oc" #oc="ngModel" required>			
+														  <option value = "Si">Si</option>
+														  <option value = "No">no</option>	
 												</select>
 												<div *ngIf="oc.errors">
 													<div *ngIf="oc.touched && !oc.valid" class="alert alert-danger">
@@ -267,7 +273,7 @@
 							<label for="place" class="control-label col-md-12">Lugar Radicación:</label>
 							<div class="col-md-12">
 									<input type="text" class="form-control" id="place" placeholder="Lugar Radicación" name="place" 
-									[(ngModel)]="billing.place" #place="ngModel" required maxlength="200" minlength="3">
+									[(ngModel)]="billingDatas.place" #place="ngModel" required maxlength="200" minlength="3">
 									<div *ngIf="place.errors">
 											<div *ngIf="place.touched && !place.valid" class="alert alert-danger">
 												<strong>Warning!</strong>Campo requerido.
@@ -284,7 +290,7 @@
 										<label for="datemas" class="control-label col-md-12">Fecha Máxima Radicación:</label>
 										<div class="col-md-12">
 												<div class="input-group date">
-													<my-date-picker name="datemax" [options]="myDatePickerOptions" [(ngModel)]="billing.datemax" #dateMax="ngModel"
+													<my-date-picker name="datemax" [options]="myDatePickerOptions" [(ngModel)]="billingDatas.datemax" #dateMax="ngModel"
 													 required></my-date-picker>
 												</div>
 												<div *ngIf="dateMax.errors">
@@ -300,7 +306,7 @@
 								<label for="dateespecial" class="control-label col-md-12">Fechas especiales:</label>
 								<div class="col-md-12">
 										<div class="input-group date">
-											<my-date-picker name="dateespecial" [options]="myDatePickerOptions" [(ngModel)]="dateespecials.dateespecial" #dateEspecial="ngModel"
+											<my-date-picker name="dateespecial" [options]="myDatePickerOptions" [(ngModel)]="dateEspecialsDatas.dateespecial" #dateEspecial="ngModel"
 											 required></my-date-picker>
 										</div>
 										<div *ngIf="dateEspecial.errors">
@@ -315,7 +321,7 @@
 											<label for="motive" class="control-label col-md-12">Motivo:</label>
 											<div class="col-md-12">
 													<input type="text" class="form-control" id="motive" placeholder="Motivos" name="motive" 
-													[(ngModel)]="dateespecials.place" #motive="ngModel" required maxlength="200" minlength="3">
+													[(ngModel)]="dateEspecialsDatas.motive" #motive="ngModel" required maxlength="200" minlength="3">
 													<div *ngIf="motive.errors">
 															<div *ngIf="motive.touched && !motive.valid" class="alert alert-danger">
 																<strong>Warning!</strong>Campo requerido.
@@ -338,16 +344,16 @@
 		<br>
 		
 			<div class="form-group row">
-				<div class="col-md-5">
+				<div class="col-md-4">
 				</div>
 				<div class="col-md-4">
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-4">
 					
 						<div *ngIf="especific.errors || corrective.errors || fumigation.errors || preventive.errors ||curses.errors || brigade.errors 
 						|| others.errors || operationCurses.errors  || timesZones.errors || subside.errors || billingSub.errors || billingRent.errors 
 						 || crossPurse.errors || oc.errors || place.errors || dateMax.errors || dateEspecial.errors || motive.errors">
-						<button class="btn btn-primary" name="buttonSave" (click)="goCompetence()" disabled>Negocio</button>
+						<button class="btn btn-primary" name="buttonSave" (click)="goCompetence()" disabled>Competencia</button>
 						<button class="btn btn-success" (click)="saveServiceLevels()" disabled="">Guardar</button>
 						<button class="btn btn-info" (click)="resetForm()">Cancelar</button>
 					</div>
@@ -360,7 +366,7 @@
 					</div>
 				
 				</div>
-			</div>-->
+			</div>
 		</div>
 	</form>
 </ba-card>
