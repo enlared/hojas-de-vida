@@ -5,15 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nova.MsHv.dao.ParamestrosEjecutivoCuentaDao;
-import com.nova.MsHv.entidad.ParamEjecutivoCuenta;
+import com.nova.MsHv.dao.EjecutivoCuentaDao;
+import com.nova.MsHv.entidad.EjecutivoCuenta;
+
 
 @Service
 public class EjecutivoCuentaImpl  {
 
-	@Autowired ParamestrosEjecutivoCuentaDao paramestrosEjecutivoCuentaDao ;
+	@Autowired private EjecutivoCuentaDao ejecutivoCuentaDao ;
 	
-	public List<ParamEjecutivoCuenta> consultarTodosEjecutivoCuenta(){
-		return paramestrosEjecutivoCuentaDao.findAll();
+	public List<EjecutivoCuenta> consultarTodosEjecutivoCuenta(){
+		return ejecutivoCuentaDao.findAll();
 	}
 }

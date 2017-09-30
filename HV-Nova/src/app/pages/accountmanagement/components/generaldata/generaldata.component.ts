@@ -12,8 +12,8 @@ import { KeyAccountService } from '../../../../theme/services/totalService/keyAc
 import { EjecutivoCuenta } from '../../../../theme/services/totalService/EjecutivoCuenta';
 import { RegionalsService } from '../../../../theme/services/totalService/regionals.service';
 import { RegionalsData } from '../../../../theme/services/totalService/regionals';
-import { KeyBusinessService } from '../../../../theme/services/totalService/keyBusiness.service';
-import { KeyBusinessData } from '../../../../theme/services/totalService/keyBusiness';
+import { EjecutivoNegociosService } from '../../../../theme/services/totalService/EjecutivoNegocios.service';
+import { EjecutivoNegocios } from '../../../../theme/services/totalService/EjecutivoNegocios';
 
 import { IMyDpOptions } from 'mydatepicker';
 
@@ -28,8 +28,8 @@ export class Generaldata {
   generalDatas: GeneralData[];
   generalData: GeneralData = new GeneralData();
 
-  keyBusinessData: KeyBusinessData = new KeyBusinessData();
-  keyBusinessDatas: KeyBusinessData[];
+  keyBusinessData: EjecutivoNegocios = new EjecutivoNegocios();
+  keyBusinessDatas: EjecutivoNegocios[];
   keyAccountData: EjecutivoCuenta = new EjecutivoCuenta();
   keyAccountDatas: EjecutivoCuenta[];
   headQuartersData: HeadQuarters = new HeadQuarters();
@@ -45,7 +45,7 @@ export class Generaldata {
     private router: Router,
     private _generalDataService: GeneralDataService,
     private _keyAccountDataService: KeyAccountService,
-    private _keyBusinessDataService: KeyBusinessService,
+    private _keyBusinessDataService: EjecutivoNegociosService,
     private _headQuartersDataService: HeadQuartersService,
     private _regionalsDataService: RegionalsService,
 

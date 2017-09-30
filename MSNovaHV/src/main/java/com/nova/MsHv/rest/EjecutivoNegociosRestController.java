@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.nova.MsHv.entidad.EjecutivoCuenta;
-import com.nova.MsHv.impl.EjecutivoCuentaImpl;
+import com.nova.MsHv.entidad.EjecutivoNegocio;
+import com.nova.MsHv.impl.EjecutivoNegocioImpl;
 import com.nova.MsHvExcepciones.NovaHVDaoException;
 
 @CrossOrigin
@@ -23,16 +23,16 @@ import com.nova.MsHvExcepciones.NovaHVDaoException;
  * @author enlaRed.co
  * @version 1.0
  */
-public class EjecutivoCuentaRestController {
-	static final Logger log = Logger.getLogger(EjecutivoCuentaRestController.class);
-	@Autowired 	EjecutivoCuentaImpl ejecutivoCuentaImpl;
+public class EjecutivoNegociosRestController {
+	static final Logger log = Logger.getLogger(EjecutivoNegociosRestController.class);
+	@Autowired 	private EjecutivoNegocioImpl ejecutivoNegocioImpl;
 
-	@RequestMapping("ejecutivoCuenta/findAll")
+	@RequestMapping("ejecutivoNegocio/findAll")
 	@ResponseBody
 
-	public List<EjecutivoCuenta> getEjecutivoCuenta() throws NovaHVDaoException {
+	public List<EjecutivoNegocio> getEjecutivoCuenta() throws NovaHVDaoException {
 
-		return ejecutivoCuentaImpl.consultarTodosEjecutivoCuenta();
+		return ejecutivoNegocioImpl.consultarTodosEjecutivo();
 	}
 
 	

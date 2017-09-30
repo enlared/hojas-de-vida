@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class KeyAccountService {
 
-  private url = 'http://localhost:8080/ejecutivoCuentaImpl';
+  private url = 'http://localhost:8080/ejecutivoCuenta';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private keyAccountData: EjecutivoCuenta = new EjecutivoCuenta();
 

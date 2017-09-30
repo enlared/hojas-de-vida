@@ -17,8 +17,8 @@ import { Generaldata } from './components/generaldata/generaldata.component';
 import { Opposition } from './components/opposition/opposition.component';
 import { KeyAccountService } from '../../theme/services/totalService/keyAccount.service';
 import { EjecutivoCuenta } from '../../theme/services/totalService/EjecutivoCuenta';
-import { KeyBusinessService } from '../../theme/services/totalService/keyBusiness.service';
-import { KeyBusinessData } from '../../theme/services/totalService/keyBusiness';
+import { EjecutivoNegociosService } from '../../theme/services/totalService/EjecutivoNegocios.service';
+import { EjecutivoNegocios } from '../../theme/services/totalService/EjecutivoNegocios';
 import { SectorService } from '../../theme/services/totalService/sector.service';
 import { SectorData } from '../../theme/services/totalService/sector';
 import { TypeEmployeesService } from '../../theme/services/totalService/typeEmployees.service';
@@ -88,7 +88,7 @@ import { MyDatePickerModule } from 'mydatepicker';
     TypeEmployeesService,
     SectorService,
     KeyAccountService,
-    KeyBusinessService,
+    EjecutivoNegociosService,
     RegionalsService,
     AnchorageService,
     ListPricesService,

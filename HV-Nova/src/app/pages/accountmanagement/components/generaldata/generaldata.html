@@ -11,7 +11,7 @@
 					<div class="col-md-12">
 						<div class="form-group">
 							<select class="form-control" id="kBName" name="kBName" [(ngModel)]="keyBusinessData.name" #kBName="ngModel" required>
-									  <option *ngFor = "let keyBusinessData of keyBusinessDatas" [value] = "keyBusinessData.name">{{keyBusinessData.name}}</option>
+									  <option *ngFor = "let ejecutivoNegocios of keyBusinessDatas" [value] = "ejecutivoNegocios.id">{{ejecutivoNegocios.nombre}}</option>
 							</select>
 							<div *ngIf="kBName.errors">
 								<div *ngIf="kBName.touched && !kBName.valid" class="alert alert-danger">

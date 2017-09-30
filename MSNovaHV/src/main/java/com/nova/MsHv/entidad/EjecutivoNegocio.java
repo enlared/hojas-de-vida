@@ -5,31 +5,31 @@ import javax.persistence.*;
 
 
 /**
- * The persistent class for the param_ejecutivo_cuenta database table.
+ * The persistent class for the ejecutivo_negocios database table.
  * 
  */
 @Entity
-@Table(name="param_ejecutivo_cuenta")
-@NamedQuery(name="ParamEjecutivoCuenta.findAll", query="SELECT p FROM ParamEjecutivoCuenta p")
-public class ParamEjecutivoCuenta implements Serializable {
+@Table(name="ejecutivo_negocios")
+@NamedQuery(name="EjecutivoNegocio.findAll", query="SELECT e FROM EjecutivoNegocio e")
+public class EjecutivoNegocio implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 
 	private String codigo;
 
 	private String nombre;
 
-	public ParamEjecutivoCuenta() {
+	public EjecutivoNegocio() {
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
