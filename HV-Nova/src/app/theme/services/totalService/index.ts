@@ -1,4 +1,4 @@
-export * from './keyBusiness.service';
+export * from './EjecutivoNegocios.service';
 export * from './keyAccount.service';
 export * from './typeEmployees.service';
 export * from './sector.service';

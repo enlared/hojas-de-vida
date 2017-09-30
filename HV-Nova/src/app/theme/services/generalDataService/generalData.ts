@@ -10,5 +10,6 @@ idrgn: string;
 idkacnt: string;
 idhqrt: string;
 idinfbsn: string;
+idTipoCliente: string;
 
 }

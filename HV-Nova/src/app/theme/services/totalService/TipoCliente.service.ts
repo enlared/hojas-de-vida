@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GeneralData } from './generalData';
+import { TipoCliente } from './TipoCliente';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -8,51 +8,44 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 
-export class GeneralDataService {
+export class TipoClienteService {
 
-  private url = 'http://localhost:8080/customers';
+  private url = 'http://localhost:8080/tipoCliente';
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private generalData: GeneralData = new GeneralData();
+  private tipoCliente: TipoCliente = new TipoCliente();
 
   constructor(private http: Http) {
 
   }
 
 
-  deleteGeneralData(id: number)  {
-    let url = `${this.url}/delete/${id}`;
-    return this.http.delete(url)
-      .map(r => r.json())
-      .catch(this.handleError);
-  }
 
-
-  getGeneralDatas(): Observable<GeneralData[]> {
-    let url = `${this.url}/findall`;
+  getTipoClienteAll(): Observable<TipoCliente[]> {
+    let url = `${this.url}/findAll`;
     return this.http.get(url)
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-  getGeneralData(id: number): Observable<GeneralData> {
+  getTipoCliente(id: number): Observable<TipoCliente> {
     const url = `${this.url}/find/${id}`;
     return this.http.get(url)
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-  addGeneralData(generalData: GeneralData) {
+  adicionarTipoCliente(ejecutivoNegocios: TipoCliente) {
     let url = `${this.url}/save`;
-    let iJson = JSON.stringify(generalData);
+    let iJson = JSON.stringify(ejecutivoNegocios);
     return this.http.post(url, iJson, { headers: this.headers })
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-  putGeneralData(generalData: GeneralData) {
+editarTipoCliente(tipoCliente: TipoCliente) {
 
-    let url = `${this.url}/edit/${generalData.codsap}`;
-    let iJson = JSON.stringify(generalData);
+    let url = `${this.url}/edit/${tipoCliente.id}`;
+    let iJson = JSON.stringify(tipoCliente);
     return this.http.put(url, iJson, { headers: this.headers })
       .map(r => r.json())
       .catch(this.handleError);

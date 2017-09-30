@@ -50,6 +50,8 @@ import { BillingService } from '../../theme/services/totalService/billing.servic
 import { BillingData } from '../../theme/services/totalService/billing';
 import { DateEspecialsService } from '../../theme/services/totalService/dateEspecials.service';
 import { DateEspecialsData } from '../../theme/services/totalService/dateEspecials';
+import { TipoClienteService } from '../../theme/services/totalService/TipoCliente.service';
+
 import { MyDatePickerModule } from 'mydatepicker';
 
 @NgModule({
@@ -99,7 +101,8 @@ import { MyDatePickerModule } from 'mydatepicker';
     PurseService,
     BillingService,
     DateEspecialsService,
-  ]
+    TipoClienteService,
+  ],
 })
 export class AccountmanagementModule {
 }

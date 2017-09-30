@@ -3,5 +3,6 @@
 	<persistence-unit name="MSNovaHV">
 		<class>com.nova.MsHv.entidad.EjecutivoCuenta</class>
 		<class>com.nova.MsHv.entidad.EjecutivoNegocio</class>
+		<class>com.nova.MsHv.entidad.TipoCliente</class>
 	</persistence-unit>
 </persistence>

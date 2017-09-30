@@ -58,9 +58,9 @@
 					<label for="typeCustomer" class="control-label col-md-12">Tipo de cliente:</label>
 					<div class="col-md-12">
 					<div class="form-group">
-						<select class="form-control" id="typecustomer" name="typecustomer" [(ngModel)]="generalData.idkacnt" #typecustomer="ngModel"
+						<select class="form-control" id="typecustomer" name="typecustomer" [(ngModel)]="generalData.idTipoCliente" #typecustomer="ngModel"
 						 required>
-								  <option *ngFor = "let generalData of generalDatas" [value] = "generalData.idkacnt">{{generalData.idkacnt}}</option>
+								  <option *ngFor = "let tipo of tipoClientes" [value] = "tipo.id">{{tipo.nombre}}</option>
 						</select>
 						<div *ngIf="typecustomer.errors">
 							<div *ngIf="typecustomer.touched && !typecustomer.valid" class="alert alert-danger">

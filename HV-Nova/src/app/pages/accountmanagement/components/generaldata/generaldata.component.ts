@@ -14,7 +14,8 @@ import { RegionalsService } from '../../../../theme/services/totalService/region
 import { RegionalsData } from '../../../../theme/services/totalService/regionals';
 import { EjecutivoNegociosService } from '../../../../theme/services/totalService/EjecutivoNegocios.service';
 import { EjecutivoNegocios } from '../../../../theme/services/totalService/EjecutivoNegocios';
-
+import { TipoCliente } from '../../../../theme/services/totalService/TipoCliente';
+import { TipoClienteService } from '../../../../theme/services/totalService/TipoCliente.service';
 import { IMyDpOptions } from 'mydatepicker';
 
 @Component({
@@ -34,6 +35,10 @@ export class Generaldata {
   keyAccountDatas: EjecutivoCuenta[];
   headQuartersData: HeadQuarters = new HeadQuarters();
   headQuartersDatas: HeadQuarters[];
+
+  tipoCliente: TipoCliente = new TipoCliente();
+  tipoClientes: TipoCliente[];
+
   regionalsData: RegionalsData = new RegionalsData();
   regionalsDatas: RegionalsData[];
 
@@ -48,6 +53,7 @@ export class Generaldata {
     private _keyBusinessDataService: EjecutivoNegociosService,
     private _headQuartersDataService: HeadQuartersService,
     private _regionalsDataService: RegionalsService,
+    private _tipoClienteService: TipoClienteService,
 
   ) {
 
@@ -55,7 +61,7 @@ this.loadKeyAccounts();
 this.loadKeyBusiness();
 this.loadRegionals();
 this.loadHeadQuarters();
-
+this.loadTipoCliente();
   }
 
   public myDatePickerOptions: IMyDpOptions = {
@@ -117,6 +123,11 @@ this.loadHeadQuarters();
     .subscribe(headQuartersData => this.headQuartersDatas = headQuartersData, error => this.msgError = <any>error);
   }
 
+  loadTipoCliente() {
+    this._tipoClienteService.getTipoClienteAll()
+    .subscribe(tipoCliente => this.tipoClientes = tipoCliente, error => this.msgError = <any>error);
+
+  }
   saveGeneralData() {
     if (confirm("¿Desea guardar?") == true) {
 
