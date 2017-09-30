@@ -77,8 +77,8 @@
 					<label for="regional" class="control-label col-md-12">Regional:</label>
 					<div class="col-md-12">
 						<div class="form-group">
-							<select class="form-control" id="regional" name="regional" [(ngModel)]="regionalsData.name" #regionals="ngModel" required>
-								  <option *ngFor = "let regionalsData of regionalsDatas" [value] = "regionalsData.name">{{regionalsData.name}}</option>
+							<select class="form-control" id="regional" name="regional" [(ngModel)]="regionalsData.id" #regionals="ngModel" required>
+								  <option *ngFor = "let regionalsData of regionalsDatas" [value] = "regionalsData.id">{{regionalsData.nombre}}</option>
 						</select>
 							<div *ngIf="regionals.errors">
 								<div *ngIf="regionals.touched && !regionals.valid" class="alert alert-danger">

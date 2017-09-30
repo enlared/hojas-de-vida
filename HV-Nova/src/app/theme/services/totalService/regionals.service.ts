@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class RegionalsService {
 
-  private url = 'http://localhost:8080/regionals';
+  private url = 'http://localhost:8080/regionales';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private regionalsData: RegionalsData = new RegionalsData();
 
@@ -18,16 +18,16 @@ export class RegionalsService {
 
   }
 
-  
+
   deleteRegionals(id: number)  {
     let url = `${this.url}/delete/${id}`;
     return this.http.delete(url)
       .map(r => r.json())
       .catch(this.handleError);
-  }  
+  }
 
   getRegionals(): Observable<RegionalsData[]> {
-    let url = `${this.url}/findall`;
+    let url = `${this.url}/findAll`;
     return this.http.get(url)
       .map(r => r.json())
       .catch(this.handleError);
@@ -50,7 +50,7 @@ export class RegionalsService {
 
   putRegionals(regionalsData: RegionalsData) {
 
-    let url = `${this.url}/edit/${regionalsData.idrgn}`;
+    let url = `${this.url}/edit/${regionalsData.id}`;
     let iJson = JSON.stringify(regionalsData);
     return this.http.put(url, iJson, { headers: this.headers })
       .map(r => r.json())
@@ -65,7 +65,7 @@ export class RegionalsService {
       let body = error.json() || '';
       let err = body.error || JSON.stringify(body);
       errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-  
+
     } else {
 
       errMsg = error.message ? error.message : error.toString();

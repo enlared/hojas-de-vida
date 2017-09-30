@@ -1,6 +1,6 @@
 export class RegionalsData {
 
-idrgn: number;
-name: string;
+id: number;
+nombre: string;
 
 }
