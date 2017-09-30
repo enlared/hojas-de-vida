@@ -8,12 +8,12 @@ import { GeneralData } from '../../../../theme/services/generalDataService/gener
 import { GeneralDataService } from '../../../../theme/services/generalDataService/generalData.service';
 import { HeadQuarters } from '../../../../theme/services/headQuartersService/headQuarters';
 import { HeadQuartersService } from '../../../../theme/services/headQuartersService/headQuarters.service';
-import { KeyAccountService } from '../../../../theme/services/totalService/keyAccount.service'; 
-import { KeyAccountData } from '../../../../theme/services/totalService/keyAccount'; 
-import { RegionalsService } from '../../../../theme/services/totalService/regionals.service'; 
-import { RegionalsData } from '../../../../theme/services/totalService/regionals'; 
-import { KeyBusinessService } from '../../../../theme/services/totalService/keyBusiness.service'; 
-import { KeyBusinessData } from '../../../../theme/services/totalService/keyBusiness'; 
+import { KeyAccountService } from '../../../../theme/services/totalService/keyAccount.service';
+import { EjecutivoCuenta } from '../../../../theme/services/totalService/EjecutivoCuenta';
+import { RegionalsService } from '../../../../theme/services/totalService/regionals.service';
+import { RegionalsData } from '../../../../theme/services/totalService/regionals';
+import { KeyBusinessService } from '../../../../theme/services/totalService/keyBusiness.service';
+import { KeyBusinessData } from '../../../../theme/services/totalService/keyBusiness';
 
 import { IMyDpOptions } from 'mydatepicker';
 
@@ -30,8 +30,8 @@ export class Generaldata {
 
   keyBusinessData: KeyBusinessData = new KeyBusinessData();
   keyBusinessDatas: KeyBusinessData[];
-  keyAccountData: KeyAccountData = new KeyAccountData();
-  keyAccountDatas: KeyAccountData[];
+  keyAccountData: EjecutivoCuenta = new EjecutivoCuenta();
+  keyAccountDatas: EjecutivoCuenta[];
   headQuartersData: HeadQuarters = new HeadQuarters();
   headQuartersDatas: HeadQuarters[];
   regionalsData: RegionalsData = new RegionalsData();

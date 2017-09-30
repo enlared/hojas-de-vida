@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { KeyAccountData } from './keyAccount';
+import { EjecutivoCuenta } from './EjecutivoCuenta';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -10,37 +10,37 @@ import 'rxjs/add/operator/catch';
 
 export class KeyAccountService {
 
-  private url = 'http://localhost:8080/keyAccount';
+  private url = 'http://localhost:8080/ejecutivoCuentaImpl';
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private keyAccountData: KeyAccountData = new KeyAccountData();
+  private keyAccountData: EjecutivoCuenta = new EjecutivoCuenta();
 
   constructor(private http: Http) {
 
   }
 
-  
+
   deleteKeyAccount(id: number)  {
     let url = `${this.url}/delete/${id}`;
     return this.http.delete(url)
       .map(r => r.json())
       .catch(this.handleError);
-  }  
+  }
 
-  getKeyAccount(): Observable<KeyAccountData[]> {
-    let url = `${this.url}/findall`;
+  getKeyAccount(): Observable<EjecutivoCuenta[]> {
+    let url = `${this.url}/findAll`;
     return this.http.get(url)
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-  getKeyAccountData(id: number): Observable<KeyAccountData> {
+  getKeyAccountData(id: number): Observable<EjecutivoCuenta> {
     const url = `${this.url}/find/${id}`;
     return this.http.get(url)
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-  addKeyAccount(keyAccountData: KeyAccountData) {
+  addKeyAccount(keyAccountData: EjecutivoCuenta) {
     let url = `${this.url}/save`;
     let iJson = JSON.stringify(keyAccountData);
     return this.http.post(url, iJson, { headers: this.headers })
@@ -48,9 +48,9 @@ export class KeyAccountService {
       .catch(this.handleError);
   }
 
-  putKeyAccount(keyAccountData: KeyAccountData) {
+  putKeyAccount(keyAccountData: EjecutivoCuenta) {
 
-    let url = `${this.url}/edit/${keyAccountData.idkacnt}`;
+    let url = `${this.url}/edit/${keyAccountData.id}`;
     let iJson = JSON.stringify(keyAccountData);
     return this.http.put(url, iJson, { headers: this.headers })
       .map(r => r.json())
@@ -65,7 +65,7 @@ export class KeyAccountService {
       let body = error.json() || '';
       let err = body.error || JSON.stringify(body);
       errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-  
+
     } else {
 
       errMsg = error.message ? error.message : error.toString();
@@ -73,4 +73,4 @@ export class KeyAccountService {
     return Observable.throw(errMsg);
   }
 
-}  
+}

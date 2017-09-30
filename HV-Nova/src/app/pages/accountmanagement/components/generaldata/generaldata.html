@@ -10,8 +10,8 @@
 					<label for="kBName" class="control-label col-md-12">Ejecutivo Negocio:</label>
 					<div class="col-md-12">
 						<div class="form-group">
-							<select class="form-control" id="kBName" name="kBName" [(ngModel)]="keyBusinessData.name" #kBName="ngModel" required>			
-									  <option *ngFor = "let keyBusinessData of keyBusinessDatas" [value] = "keyBusinessData.name">{{keyBusinessData.name}}</option>	
+							<select class="form-control" id="kBName" name="kBName" [(ngModel)]="keyBusinessData.name" #kBName="ngModel" required>
+									  <option *ngFor = "let keyBusinessData of keyBusinessDatas" [value] = "keyBusinessData.name">{{keyBusinessData.name}}</option>
 							</select>
 							<div *ngIf="kBName.errors">
 								<div *ngIf="kBName.touched && !kBName.valid" class="alert alert-danger">
@@ -25,8 +25,8 @@
 					<label for="kAName" class="control-label col-md-12">Ejecutivo Cuenta:</label>
 					<div class="col-md-12">
 						<div class="form-group">
-							<select class="form-control" id="kAName" name="kAName" [(ngModel)]="keyAccountData.name" #kAName="ngModel" required>			
-									  <option *ngFor = "let keyAccountData of keyAccountDatas" [value] = "keyAccountData.name">{{keyAccountData.name}}</option>	
+							<select class="form-control" id="kAName" name="kAName" [(ngModel)]="keyAccountData.id" #kAName="ngModel" required>
+									  <option *ngFor = "let datos of keyAccountDatas" [value] = "datos.nombre">{{datos.nombre}}</option>
 							</select>
 							<div *ngIf="kAName.errors">
 								<div *ngIf="kAName.touched && !kAName.valid" class="alert alert-danger">
@@ -59,8 +59,8 @@
 					<div class="col-md-12">
 					<div class="form-group">
 						<select class="form-control" id="typecustomer" name="typecustomer" [(ngModel)]="generalData.idkacnt" #typecustomer="ngModel"
-						 required>			
-								  <option *ngFor = "let generalData of generalDatas" [value] = "generalData.idkacnt">{{generalData.idkacnt}}</option>	
+						 required>
+								  <option *ngFor = "let generalData of generalDatas" [value] = "generalData.idkacnt">{{generalData.idkacnt}}</option>
 						</select>
 						<div *ngIf="typecustomer.errors">
 							<div *ngIf="typecustomer.touched && !typecustomer.valid" class="alert alert-danger">
@@ -77,8 +77,8 @@
 					<label for="regional" class="control-label col-md-12">Regional:</label>
 					<div class="col-md-12">
 						<div class="form-group">
-							<select class="form-control" id="regional" name="regional" [(ngModel)]="regionalsData.name" #regionals="ngModel" required>			
-								  <option *ngFor = "let regionalsData of regionalsDatas" [value] = "regionalsData.name">{{regionalsData.name}}</option>	
+							<select class="form-control" id="regional" name="regional" [(ngModel)]="regionalsData.name" #regionals="ngModel" required>
+								  <option *ngFor = "let regionalsData of regionalsDatas" [value] = "regionalsData.name">{{regionalsData.name}}</option>
 						</select>
 							<div *ngIf="regionals.errors">
 								<div *ngIf="regionals.touched && !regionals.valid" class="alert alert-danger">
@@ -280,15 +280,15 @@
 				</div>
 				<div class="col-md-4">
 
-					<div *ngIf="kBName.errors || kAName.errors || codsap.errors || typecustomer.errors || nameComercial.errors || regionals.errors 
-						|| nit.errors || address.errors || barrio.errors || email.errors || telephone.errors || numberSedes.errors || celphone.errors 
+					<div *ngIf="kBName.errors || kAName.errors || codsap.errors || typecustomer.errors || nameComercial.errors || regionals.errors
+						|| nit.errors || address.errors || barrio.errors || email.errors || telephone.errors || numberSedes.errors || celphone.errors
 						 || objetiveyear.errors || objetivemonth.errors || contractStart.errors || contractEnd.errors">
 						<button class="btn btn-primary" name="buttonSave" (click)="goSedes()" disabled>Negocio</button>
 						<button class="btn btn-success" (click)="saveGeneralData()" disabled="">Guardar</button>
 						<button class="btn btn-info" (click)="resetForm()">Cancelar</button>
 					</div>
-					<div *ngIf="!kBName.errors && !kAName.errors && !codsap.errors && !typecustomer.errors && !nameComercial.errors && !regionals.errors 
-							&& !nit.errors && !address.errors && !barrio.errors && !email.errors && !telephone.errors && !numberSedes.errors && !celphone.errors 
+					<div *ngIf="!kBName.errors && !kAName.errors && !codsap.errors && !typecustomer.errors && !nameComercial.errors && !regionals.errors
+							&& !nit.errors && !address.errors && !barrio.errors && !email.errors && !telephone.errors && !numberSedes.errors && !celphone.errors
 							&& !contractStart.errors && !contractEnd.errors && !objetiveyear.errors && !objetivemonth.errors">
 						<button class="btn btn-primary" name="buttonSave" (click)="goSedes()">Negocio</button>
 						<button class="btn btn-success" (click)="saveGeneralData()">Guardar</button>
