@@ -4,6 +4,7 @@
 		<class>com.nova.MsHv.entidad.EjecutivoCuenta</class>
 		<class>com.nova.MsHv.entidad.EjecutivoNegocio</class>
 		<class>com.nova.MsHv.entidad.TipoCliente</class>
-		<class>com.nova.MsHv.entidad.Regionales</class>
+		<class>com.nova.MsHv.entidad.Cliente</class>
+		<class>com.nova.MsHv.entidad.Regional</class>
 	</persistence-unit>
 </persistence>

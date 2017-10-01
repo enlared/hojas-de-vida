@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nova.MsHv.dao.RegionalesDAO;
-import com.nova.MsHv.entidad.Regionales;
+import com.nova.MsHv.entidad.Regional;
 import com.nova.MsHvExcepciones.NovaHVDaoException;
 import com.nova.MsHvExcepciones.NovaHVRestException;
 
@@ -37,15 +37,15 @@ public class RegionalesRestController {
 
 	@RequestMapping("regionales/findAll")
 	@ResponseBody
-	public List<Regionales> getRegionalsAll() throws NovaHVDaoException {
-		List<Regionales> regionals = new ArrayList<Regionales>();
+	public List<Regional> getRegionalsAll() throws NovaHVDaoException {
+		List<Regional> regional = new ArrayList<Regional>();
 
 		PropertyConfigurator.configure("log4j.properties");
 		log.info("Log4j method find All for regionals");
 		try {
 
-			regionals = regionalesDAO.findAll();
-			if (regionals.equals(null)) {
+			regional = regionalesDAO.findAll();
+			if (regional.equals(null)) {
 
 				log.info("Log4j get the list regionalss ");
 			}
@@ -56,7 +56,7 @@ public class RegionalesRestController {
 
 		}
 
-		return regionals;
+		return regional;
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class RegionalesRestController {
 
 	@RequestMapping(value = "regionals/save", method = RequestMethod.POST)
 	@ResponseBody
-	public void setRegionals(@RequestBody Regionales regionals) throws NovaHVRestException {
+	public void setRegionals(@RequestBody Regional regionals) throws NovaHVRestException {
 
 		PropertyConfigurator.configure("log4j.properties");
 		log.info("Log4j method save for regionals");
@@ -88,7 +88,7 @@ public class RegionalesRestController {
 	@RequestMapping(method = RequestMethod.PUT, path = "regionals/edit/{id}")
 	@ResponseBody
 
-	public void editRegionals(@PathVariable("id") long id, @RequestBody Regionales regionals) throws NovaHVRestException {
+	public void editRegionals(@PathVariable("id") long id, @RequestBody Regional regionals) throws NovaHVRestException {
 
 		PropertyConfigurator.configure("log4j.properties");
 		log.info("Log4j method edit for regionals");

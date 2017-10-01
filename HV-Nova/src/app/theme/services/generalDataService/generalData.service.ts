@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class GeneralDataService {
 
-  private url = 'http://localhost:8080/customers';
+  private url = 'http://localhost:8080/clientes';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private generalData: GeneralData = new GeneralData();
 
@@ -19,8 +19,8 @@ export class GeneralDataService {
   }
 
 
-  deleteGeneralData(id: number)  {
-    let url = `${this.url}/delete/${id}`;
+  deleteGeneralData(id: number) {
+    const url = `${this.url}/delete/${id}`;
     return this.http.delete(url)
       .map(r => r.json())
       .catch(this.handleError);
@@ -28,7 +28,7 @@ export class GeneralDataService {
 
 
   getGeneralDatas(): Observable<GeneralData[]> {
-    let url = `${this.url}/findall`;
+    const url = `${this.url}/findAll`;
     return this.http.get(url)
       .map(r => r.json())
       .catch(this.handleError);
@@ -42,8 +42,8 @@ export class GeneralDataService {
   }
 
   addGeneralData(generalData: GeneralData) {
-    let url = `${this.url}/save`;
-    let iJson = JSON.stringify(generalData);
+    const url = `${this.url}/save`;
+    const iJson = JSON.stringify(generalData);
     return this.http.post(url, iJson, { headers: this.headers })
       .map(r => r.json())
       .catch(this.handleError);
@@ -51,8 +51,8 @@ export class GeneralDataService {
 
   putGeneralData(generalData: GeneralData) {
 
-    let url = `${this.url}/edit/${generalData.codsap}`;
-    let iJson = JSON.stringify(generalData);
+    const url = `${this.url}/edit/${generalData.codigosap}`;
+    const iJson = JSON.stringify(generalData);
     return this.http.put(url, iJson, { headers: this.headers })
       .map(r => r.json())
       .catch(this.handleError);
@@ -63,8 +63,8 @@ export class GeneralDataService {
 
     let errMsg: string;
     if (error instanceof Response) {
-      let body = error.json() || '';
-      let err = body.error || JSON.stringify(body);
+      const body = error.json() || '';
+      const err = body.error || JSON.stringify(body);
       errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
 
     } else {

@@ -42,9 +42,6 @@ export class Generaldata {
   regionalsData: RegionalsData = new RegionalsData();
   regionalsDatas: RegionalsData[];
 
-
-
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -78,16 +75,8 @@ this.loadTipoCliente();
 
   resetForm() {
     if (confirm("¿Desea cancelar la acción?") == true) {
-      this.generalData.codsap = null;
-      this.generalData.idhqrt = '';
-      this.generalData.idinfbsn = '';
-      this.generalData.idkacnt = '';
-      this.generalData.idkbsn = '';
-      this.generalData.idrgn = '';
-      this.generalData.contractend = '';
-      this.generalData.contractstart = '';
-      this.generalData.objetivemonth = null;
-      this.generalData.objetiveyear = null;
+      this.generalData = new GeneralData();
+
 
     }
 
@@ -128,8 +117,11 @@ this.loadTipoCliente();
     .subscribe(tipoCliente => this.tipoClientes = tipoCliente, error => this.msgError = <any>error);
 
   }
+
   saveGeneralData() {
     if (confirm("¿Desea guardar?") == true) {
+      this.generalData.fechafin = this.generalData.fechaFinObjeto.formatted;
+      this.generalData.fechainicio = this.generalData.fechaInicioObjeto.formatted;
 
       this._generalDataService.addGeneralData(this.generalData)
         .subscribe(

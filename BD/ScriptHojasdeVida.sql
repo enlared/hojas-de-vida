@@ -1,4 +1,4 @@
-CREATE TABLE param_ejecutivo_cuenta(
+CREATE TABLE ejecutivo_cuenta(
    ID  SERIAL PRIMARY KEY,
    NOMBRE           TEXT      NOT NULL,
    CODIGO           TEXT      NOT NULL
@@ -17,7 +17,29 @@ CREATE TABLE TIPO_CLIENTE(
 );
 
 
-CREATE TABLE REGIONALES(
+CREATE TABLE REGIONAL(
    ID  INTEGER PRIMARY KEY,
    NOMBRE           TEXT      NOT NULL
+);
+
+CREATE TABLE CLIENTE(
+   ID  SERIAL PRIMARY KEY,
+   ejecutivoNegocioID INTEGER REFERENCES EJECUTIVO_NEGOCIOS (ID) , 
+   ejecutivoCuentaId INTEGER REFERENCES ejecutivo_cuenta (ID),
+   idTipoCliente INTEGER REFERENCES TIPO_CLIENTE (ID),
+   codigoSap TEXT,
+   regionalId INTEGER REFERENCES REGIONAL (ID),
+   razonSocial TEXT,
+   direccion TEXT,
+   nit TEXT,
+   barrio TEXT,
+   email TEXT,
+   numberSedes INTEGER,
+   telfonoFijo TEXT,
+   numeroCelular TEXT,
+   objetivoAnual INTEGER,
+   objetivoMensual INTEGER,
+   fechaInicio date,
+   fechaFin date
+
 );

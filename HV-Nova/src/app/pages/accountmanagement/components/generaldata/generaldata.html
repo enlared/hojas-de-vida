@@ -10,8 +10,8 @@
 					<label for="kBName" class="control-label col-md-12">Ejecutivo Negocio:</label>
 					<div class="col-md-12">
 						<div class="form-group">
-							<select class="form-control" id="kBName" name="kBName" [(ngModel)]="keyBusinessData.name" #kBName="ngModel" required>
-									  <option *ngFor = "let ejecutivoNegocios of keyBusinessDatas" [value] = "ejecutivoNegocios.id">{{ejecutivoNegocios.nombre}}</option>
+							<select class="form-control" id="kBName" name="kBName" [(ngModel)]="generalData.ejecutivoNegocio" #kBName="ngModel" required>
+									  <option *ngFor = "let ejecutivoNegocios of keyBusinessDatas" [ngValue]= "ejecutivoNegocios">{{ejecutivoNegocios.nombre}}</option>
 							</select>
 							<div *ngIf="kBName.errors">
 								<div *ngIf="kBName.touched && !kBName.valid" class="alert alert-danger">
@@ -25,8 +25,8 @@
 					<label for="kAName" class="control-label col-md-12">Ejecutivo Cuenta:</label>
 					<div class="col-md-12">
 						<div class="form-group">
-							<select class="form-control" id="kAName" name="kAName" [(ngModel)]="keyAccountData.id" #kAName="ngModel" required>
-									  <option *ngFor = "let datos of keyAccountDatas" [value] = "datos.nombre">{{datos.nombre}}</option>
+							<select class="form-control" id="kAName" name="kAName" [(ngModel)]="generalData.ejecutivoCuenta" #kAName="ngModel" required>
+									  <option *ngFor = "let datos of keyAccountDatas" [ngValue] = "datos">{{datos.nombre}}</option>
 							</select>
 							<div *ngIf="kAName.errors">
 								<div *ngIf="kAName.touched && !kAName.valid" class="alert alert-danger">
@@ -42,7 +42,7 @@
 				<div class="form-group col-md-6">
 					<label for="codsap" class="control-label col-md-12">Código cliente SAP:</label>
 					<div class="col-md-12">
-						<input type="text" class="form-control" name="codsap" id="codsap" placeholder="Cod Sap" [(ngModel)]="generalData.codsap"
+						<input type="text" class="form-control" name="codsap" id="codsap" placeholder="Cod Sap" [(ngModel)]="generalData.codigosap"
 						 #codsap="ngModel" required maxlength="200" minlength="3">
 						<div *ngIf="codsap.errors">
 							<div *ngIf="codsap.touched && !codsap.valid" class="alert alert-danger">
@@ -58,9 +58,9 @@
 					<label for="typeCustomer" class="control-label col-md-12">Tipo de cliente:</label>
 					<div class="col-md-12">
 					<div class="form-group">
-						<select class="form-control" id="typecustomer" name="typecustomer" [(ngModel)]="generalData.idTipoCliente" #typecustomer="ngModel"
+						<select class="form-control" id="typecustomer" name="typecustomer" [(ngModel)]="generalData.tipoCliente" #typecustomer="ngModel"
 						 required>
-								  <option *ngFor = "let tipo of tipoClientes" [value] = "tipo.id">{{tipo.nombre}}</option>
+								  <option *ngFor = "let tipo of tipoClientes" [ngValue] = "tipo">{{tipo.nombre}}</option>
 						</select>
 						<div *ngIf="typecustomer.errors">
 							<div *ngIf="typecustomer.touched && !typecustomer.valid" class="alert alert-danger">
@@ -77,8 +77,8 @@
 					<label for="regional" class="control-label col-md-12">Regional:</label>
 					<div class="col-md-12">
 						<div class="form-group">
-							<select class="form-control" id="regional" name="regional" [(ngModel)]="regionalsData.id" #regionals="ngModel" required>
-								  <option *ngFor = "let regionalsData of regionalsDatas" [value] = "regionalsData.id">{{regionalsData.nombre}}</option>
+							<select class="form-control" id="regional" name="regional" [(ngModel)]="generalData.regional" #regionals="ngModel" required>
+								  <option *ngFor = "let regionalsData of regionalsDatas" [ngValue] = "regionalsData">{{regionalsData.nombre}}</option>
 						</select>
 							<div *ngIf="regionals.errors">
 								<div *ngIf="regionals.touched && !regionals.valid" class="alert alert-danger">
@@ -93,7 +93,7 @@
 				<div class="form-group col-md-6">
 					<label for="nameComercial" class="control-label col-md-12">Razón Social:</label>
 					<div class="col-md-12">
-						<input type="text" class="form-control" name="nameComercial" id="nameComercial" placeholder="Razón Social" [(ngModel)]="generalData.idinfbsn"
+						<input type="text" class="form-control" name="nameComercial" id="nameComercial" placeholder="Razón Social" [(ngModel)]="generalData.razonsocial"
 						 #nameComercial="ngModel" required maxlength="200" minlength="3">
 						<div *ngIf="nameComercial.errors">
 							<div *ngIf="nameComercial.touched && !nameCommercial.valid" class="alert alert-danger">
@@ -108,7 +108,7 @@
 				<div class="form-group col-md-6">
 					<label for="nit" class="control-label col-md-12">NIT:</label>
 					<div class="col-md-12">
-						<input type="text" class="form-control" name="nit" id="nit" placeholder="Nit" [(ngModel)]="generalData.idinfbsn" #nit="ngModel"
+						<input type="text" class="form-control" name="nit" id="nit" placeholder="Nit" [(ngModel)]="generalData.nit" #nit="ngModel"
 						 required maxlength="200" minlength="3">
 						<div *ngIf="nit.errors">
 							<div *ngIf="nit.touched && !nit.valid" class="alert alert-danger">
@@ -121,7 +121,7 @@
 				<div class="form-group col-md-6 ">
 					<label for="address" class="control-label col-md-12">Dirección:</label>
 					<div class="col-md-12">
-						<input type="text" class="form-control" name="address" id="address" placeholder="Dirección" [(ngModel)]="generalData.idinfbsn"
+						<input type="text" class="form-control" name="address" id="address" placeholder="Dirección" [(ngModel)]="generalData.direccion"
 						 #address="ngModel" required maxlength="200" minlength="3">
 						<div *ngIf="address.errors">
 							<div *ngIf="address.touched && !address.valid" class="alert alert-danger">
@@ -136,7 +136,7 @@
 				<div class="form-group col-md-6">
 					<label for="barrio" class="control-label col-md-12">Barrio:</label>
 					<div class="col-md-12">
-						<input type="text" class="form-control" name="barrio" id="barrio" placeholder="Barrio" [(ngModel)]="generalData.idinfbsn" #barrio="ngModel"
+						<input type="text" class="form-control" name="barrio" id="barrio" placeholder="Barrio" [(ngModel)]="generalData.barrio" #barrio="ngModel"
 						 required maxlength="200" minlength="3">
 						<div *ngIf="barrio.errors">
 							<div *ngIf="barrio.touched && !barrio.valid" class="alert alert-danger">
@@ -149,7 +149,7 @@
 				<div class="form-group col-md-6 ">
 					<label for="email" class="control-label col-md-12">Correo:</label>
 					<div class="col-md-12">
-						<input type="email" class="form-control" name="email" id="email" placeholder="Email" [(ngModel)]="generalData.idinfbsn" #email="ngModel"
+						<input type="email" class="form-control" name="email" id="email" placeholder="Email" [(ngModel)]="generalData.email" #email="ngModel"
 						 required maxlength="200" minlength="3">
 						<div *ngIf="email.errors">
 							<div *ngIf="email.touched && !emailvalid" class="alert alert-danger">
@@ -164,7 +164,7 @@
 				<div class="form-group col-md-6">
 					<label for="telephone" class="control-label col-md-12">Teléfono Fijo:</label>
 					<div class="col-md-12">
-						<input type="text" class="form-control" name="telephone" id="telephone" placeholder="Teléfono" [(ngModel)]="generalData.idinfbsn"
+						<input type="text" class="form-control" name="telephone" id="telephone" placeholder="Teléfono" [(ngModel)]="generalData.telfonofijo"
 						 #telephone="ngModel" required maxlength="200" minlength="3">
 						<div *ngIf="telephone.errors">
 							<div *ngIf="telephone.touched && !telephone.valid" class="alert alert-danger">
@@ -177,7 +177,7 @@
 				<div class="form-group col-md-6 ">
 					<label for="numberSedes" class="control-label col-md-12">No Sedes:</label>
 					<div class="col-md-12">
-						<input type="number" class="form-control" name="sedes" id="sedes" placeholder="sedes" [(ngModel)]="headQuartersData.numberSedes"
+						<input type="number" class="form-control" name="sedes" id="sedes" placeholder="sedes" [(ngModel)]="generalData.numbersedes"
 						 #numberSedes="ngModel" required maxlength="200" minlength="3">
 						<div *ngIf="numberSedes.errors">
 							<div *ngIf="numberSedes.touched && !numberSedes.valid" class="alert alert-danger">
@@ -192,7 +192,7 @@
 				<div class="form-group col-md-6">
 					<label for="celphone" class="control-label col-md-12">Celular:</label>
 					<div class="col-md-12">
-						<input type="text" class="form-control" name="celphone" id="celphone" placeholder="Celular" [(ngModel)]="generalData.idinfbsn"
+						<input type="text" class="form-control" name="celphone" id="celphone" placeholder="Celular" [(ngModel)]="generalData.numerocelular"
 						 #celphone="ngModel" required maxlength="200" minlength="3">
 						<div *ngIf="celphone.errors">
 							<div *ngIf="celphone.touched && !celphone.valid" class="alert alert-danger">
@@ -214,7 +214,7 @@
 					<label for="contractStart" class="control-label col-md-12">Fecha Inicio:</label>
 					<div class="col-md-12">
 						<div class="input-group date">
-							<my-date-picker name="contractStart" [options]="myDatePickerOptions" [(ngModel)]="generalData.contractstart" #contractStart="ngModel"
+							<my-date-picker name="contractStart" [options]="myDatePickerOptions" [(ngModel)]="generalData.fechaInicioObjeto" #contractStart="ngModel"
 							 required></my-date-picker>
 						</div>
 						<div *ngIf="contractStart.errors">
@@ -228,7 +228,7 @@
 					<label for="contractEnd" class="control-label col-md-12">Fecha Fin:</label>
 					<div class="col-md-12">
 						<div class="input-group date">
-							<my-date-picker name="contractend" [options]="myDatePickerOptions" [(ngModel)]="generalData.contractend" #contractEnd="ngModel"
+							<my-date-picker name="contractend" [options]="myDatePickerOptions" [(ngModel)]="generalData.fechaFinObjeto" #contractEnd="ngModel"
 							 required></my-date-picker>
 						</div>
 						<div *ngIf="contractEnd.errors">
@@ -246,7 +246,7 @@
 				<div class="form-group col-md-6">
 					<label for="objetiveyear" class="control-label col-md-12">Anual:</label>
 					<div class="col-md-12">
-						<input type="number" class="form-control" name="objetiveyear" id="objetiveyear" placeholder="Objetivo anual" [(ngModel)]="generalData.objetiveyear"
+						<input type="number" class="form-control" name="objetiveyear" id="objetiveyear" placeholder="Objetivo anual" [(ngModel)]="generalData.objetivoanual"
 						 #objetiveyear="ngModel" required maxlength="200" minlength="3">
 						<div *ngIf="objetiveyear.errors">
 							<div *ngIf="objetiveyear.touched && !objetiveyear.valid" class="alert alert-danger">
@@ -259,7 +259,7 @@
 				<div class="form-group col-md-6 ">
 					<label for="objetivemonth" class="control-label col-md-12">Mensual:</label>
 					<div class="col-md-12">
-						<input type="number" class="form-control" name="objetivemonth" id="objetivemonth" placeholder="Objetivo Mensual" [(ngModel)]="generalData.objetivemonth"
+						<input type="number" class="form-control" name="objetivemonth" id="objetivemonth" placeholder="Objetivo Mensual" [(ngModel)]="generalData.objetivomensual"
 						 #objetivemonth="ngModel" required maxlength="200" minlength="3">
 						<div *ngIf="objetivemonth.errors">
 							<div *ngIf="objetivemonth.touched && !objetivemonth.valid" class="alert alert-danger">

@@ -7,14 +7,14 @@ import javax.transaction.Transactional;
 import org.apache.log4j.Logger;
 import org.springframework.data.repository.CrudRepository;
 
-import com.nova.MsHv.entidad.Regionales;
+import com.nova.MsHv.entidad.Regional;
 
 
 @Transactional
-public interface RegionalesDAO extends CrudRepository<Regionales, Long> {
+public interface RegionalesDAO extends CrudRepository<Regional, Long> {
 	static final Logger log = Logger.getLogger(RegionalesDAO.class);
 
-	public List<Regionales> findAll();
+	public List<Regional> findAll();
 
 	
 }

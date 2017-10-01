@@ -2,6 +2,7 @@ package com.nova.MsHv.entidad;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -48,5 +49,6 @@ public class EjecutivoNegocio implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 
 }

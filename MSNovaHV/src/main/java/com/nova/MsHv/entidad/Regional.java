@@ -9,9 +9,9 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="regionales")
-@NamedQuery(name="Regionales.findAll", query="SELECT r FROM Regionales r")
-public class Regionales implements Serializable {
+@Table(name="regional")
+@NamedQuery(name="Regional.findAll", query="SELECT r FROM Regional r")
+public class Regional implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -20,7 +20,8 @@ public class Regionales implements Serializable {
 
 	private String nombre;
 
-	public Regionales() {
+
+	public Regional() {
 	}
 
 	public Integer getId() {

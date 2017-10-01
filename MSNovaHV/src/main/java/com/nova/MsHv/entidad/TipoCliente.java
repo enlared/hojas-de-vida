@@ -20,6 +20,7 @@ public class TipoCliente implements Serializable {
 
 	private String nombre;
 
+
 	public TipoCliente() {
 	}
 
