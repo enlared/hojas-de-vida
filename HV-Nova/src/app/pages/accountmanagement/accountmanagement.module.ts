@@ -22,7 +22,7 @@ import { EjecutivoNegocios } from '../../theme/services/totalService/EjecutivoNe
 import { SectorService } from '../../theme/services/totalService/sector.service';
 import { SectorData } from '../../theme/services/totalService/sector';
 import { TypeEmployeesService } from '../../theme/services/totalService/typeEmployees.service';
-import { TypeEmployeesData } from '../../theme/services/totalService/typeEmployees';
+import { TipoEmpleadoData } from '../../theme/services/totalService/TipoEmpleadoData';
 import { RegionalsService } from '../../theme/services/totalService/regionals.service';
 import { RegionalsData } from '../../theme/services/totalService/regionals';
 import { HeadQuartersService } from '../../theme/services/headQuartersService/headQuarters.service';

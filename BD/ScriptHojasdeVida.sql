@@ -43,3 +43,11 @@ CREATE TABLE CLIENTE(
    fechaFin date
 
 );
+
+
+CREATE TABLE TIPO_EMPLEADO(
+   ID  INTEGER PRIMARY KEY,
+   NOMBRE           TEXT      NOT NULL
+);
+
+

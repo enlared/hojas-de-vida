@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TypeEmployeesData } from './typeEmployees';
+import { TipoEmpleadoData } from './TipoEmpleadoData';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -10,37 +10,37 @@ import 'rxjs/add/operator/catch';
 
 export class TypeEmployeesService {
 
-  private url = 'http://localhost:8080/typeEmployees';
+  private url = 'http://localhost:8080/tipoEmpleado';
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private typeEmployeesData: TypeEmployeesData = new TypeEmployeesData();
+  private typeEmployeesData: TipoEmpleadoData = new TipoEmpleadoData();
 
   constructor(private http: Http) {
 
   }
 
-  
+
   deleteTypeEmployees(id: number)  {
     let url = `${this.url}/delete/${id}`;
     return this.http.delete(url)
       .map(r => r.json())
       .catch(this.handleError);
-  }  
+  }
 
-  getTypeEmployees(): Observable<TypeEmployeesData[]> {
+  getTypeEmployees(): Observable<TipoEmpleadoData[]> {
     let url = `${this.url}/findall`;
     return this.http.get(url)
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-  getTypeEmployeesData(id: number): Observable<TypeEmployeesData> {
+  getTypeEmployeesData(id: number): Observable<TipoEmpleadoData> {
     const url = `${this.url}/find/${id}`;
     return this.http.get(url)
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-  addTypeEmployees(typeEmployeesData: TypeEmployeesData) {
+  addTypeEmployees(typeEmployeesData: TipoEmpleadoData) {
     let url = `${this.url}/save`;
     let iJson = JSON.stringify(typeEmployeesData);
     return this.http.post(url, iJson, { headers: this.headers })
@@ -48,9 +48,9 @@ export class TypeEmployeesService {
       .catch(this.handleError);
   }
 
-  putTypeEmployees(typeEmployeesData: TypeEmployeesData) {
+  putTypeEmployees(typeEmployeesData: TipoEmpleadoData) {
 
-    let url = `${this.url}/edit/${typeEmployeesData.idtpemp}`;
+    let url = `${this.url}/edit/${typeEmployeesData.id}`;
     let iJson = JSON.stringify(typeEmployeesData);
     return this.http.put(url, iJson, { headers: this.headers })
       .map(r => r.json())
@@ -65,7 +65,7 @@ export class TypeEmployeesService {
       let body = error.json() || '';
       let err = body.error || JSON.stringify(body);
       errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-  
+
     } else {
 
       errMsg = error.message ? error.message : error.toString();

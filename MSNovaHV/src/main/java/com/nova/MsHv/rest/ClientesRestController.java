@@ -33,25 +33,6 @@ public class ClientesRestController {
 	@Autowired
 	ClienteDAO clienteDAO;
 
-	@RequestMapping("customers/find/{id}")
-	@ResponseBody
-
-	public Cliente getCustomers(@PathVariable("id") String codsap) throws NovaHVDaoException {
-		Cliente customers = new Cliente();
-
-		PropertyConfigurator.configure("log4j.properties");
-		log.info("Log4j for method find one in clientes");
-		try {
-			customers = clienteDAO.findByCodigosap(codsap);
-		} catch (Exception e) {
-			log.error("Log4j Error in Method Find for Cliente " + e);
-			throw new NovaHVDaoException(e);
-
-		}
-
-		return customers;
-	}
-
 	
 	
 	@RequestMapping("clientes/findAll")
@@ -73,6 +54,23 @@ public class ClientesRestController {
 		return customers;
 	}
 
+	@RequestMapping(value = "clientes/consultarSap", method = RequestMethod.POST)
+	@ResponseBody
+	public Cliente consultarSap(@RequestBody Cliente cliente) throws NovaHVRestException {
+		PropertyConfigurator.configure("log4j.properties");
+		log.info("Log4j method save for clientes");
+		 List<Cliente> var= new ArrayList<>();
+		try {
+			 var = clienteDAO.findByCodigosap(cliente.getCodigosap());
+		} catch (Exception e) {
+			log.error("Log4j Error in method Save for Cliente " + e);
+			throw new NovaHVRestException(e);
+
+		}
+		return var.get(0);
+	}
+
+	
 	
 	@RequestMapping(value = "clientes/save", method = RequestMethod.POST)
 	@ResponseBody

@@ -6,10 +6,10 @@ import { Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HeadQuartersService } from '../../../../theme/services/headQuartersService/headQuarters.service';
 import { HeadQuarters } from '../../../../theme/services/headQuartersService/headQuarters';
-import { SectorService } from '../../../../theme/services/totalService/sector.service'; 
-import { SectorData } from '../../../../theme/services/totalService/sector'; 
-import { TypeEmployeesService } from '../../../../theme/services/totalService/typeEmployees.service'; 
-import { TypeEmployeesData } from '../../../../theme/services/totalService/typeEmployees'; 
+import { SectorService } from '../../../../theme/services/totalService/sector.service';
+import { SectorData } from '../../../../theme/services/totalService/sector';
+import { TypeEmployeesService } from '../../../../theme/services/totalService/typeEmployees.service';
+import { TipoEmpleadoData } from '../../../../theme/services/totalService/TipoEmpleadoData';
 import { IMyDpOptions } from 'mydatepicker';
 
 @Component({
@@ -22,18 +22,18 @@ export class Headquarters {
   msgError: string;
   headQuarters: HeadQuarters[];
   headQuarter: HeadQuarters = new HeadQuarters();
-  typeEmployeesDatas: TypeEmployeesData[];
-  typeEmployeesData: TypeEmployeesData = new TypeEmployeesData();
+  typeEmployeesDatas: TipoEmpleadoData[];
+  typeEmployeesData: TipoEmpleadoData = new TipoEmpleadoData();
   sectorData: SectorData = new SectorData();
   sectorDatas: SectorData[];
-  
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private _headQuartersService: HeadQuartersService,
     private _sectorDataService: SectorService,
     private _typeEmployeesDataService: TypeEmployeesService,
-   
+
 ) {
 
   this.loadSector();
@@ -60,10 +60,10 @@ export class Headquarters {
 
   resetForm() {
     if(confirm("¿Desea cancelar la acción?")==true){
-     
-     
+
+
     }
-  
+
   }
   goBusiness() {
     if(confirm("¿Desea guardar y agregar un Negocio?")==true){
@@ -72,13 +72,13 @@ export class Headquarters {
       let link = ['pages/accountmanagement/businessdata'];
       this.router.navigate(link);
     }
-    
-  
+
+
   }
 
   saveHeadQuarters() {
     if(confirm("¿Desea guardar una Sede?")==true){
-    
+
      this._headQuartersService.addHeadQuarter(this.headQuarter)
        .subscribe(
        rt => console.log(rt),

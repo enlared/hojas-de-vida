@@ -14,7 +14,7 @@ public interface ClienteDAO extends CrudRepository<Cliente, Long> {
 	static final Logger log = Logger.getLogger(ClienteDAO.class);
 
 
-	public Cliente findByCodigosap(String codsap);
+	public List<Cliente> findByCodigosap(String codsap);
 
 	public List<Cliente> findAll();
 

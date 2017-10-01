@@ -41,6 +41,15 @@ export class GeneralDataService {
       .catch(this.handleError);
   }
 
+    consultarClienteCodigoSap(generalData: GeneralData) {
+    const url = `${this.url}/consultarSap`;
+    const iJson = JSON.stringify(generalData);
+    return this.http.post(url, iJson, { headers: this.headers })
+      .map(r => r.json())
+      .catch(this.handleError);
+
+    }
+
   addGeneralData(generalData: GeneralData) {
     const url = `${this.url}/save`;
     const iJson = JSON.stringify(generalData);

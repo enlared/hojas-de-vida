@@ -26,6 +26,8 @@ import { IMyDpOptions } from 'mydatepicker';
 
 export class Generaldata {
   msgError: string;
+  mostrarDataCliente: boolean= false;
+
   generalDatas: GeneralData[];
   generalData: GeneralData = new GeneralData();
 
@@ -62,7 +64,6 @@ this.loadTipoCliente();
   }
 
   public myDatePickerOptions: IMyDpOptions = {
-    // other options...
     dateFormat: 'yyyy-mm-dd',
   };
 
@@ -132,4 +133,64 @@ this.loadTipoCliente();
     }
   }
 
+  cargarConsulta(datos: GeneralData) {
+    this.generalData = datos;
+    this.generalData.fechaFinObjeto = datos.fechafin;
+    this.generalData.fechaInicioObjeto = datos.fechainicio;
+    this.generalData.tipoCliente= this.seleccionarTipoCliente(this.generalData.tipoCliente);
+    this.generalData.ejecutivoNegocio= this.seleccionarEjecutivoNegocio(this.generalData.ejecutivoNegocio);
+    this.generalData.ejecutivoCuenta= this.seleccionarEjecutivoCuenta(this.generalData.ejecutivoCuenta);
+    this.generalData.regional= this.seleccionarRegional(this.generalData.regional);
+    this.mostrarDataCliente= true;
+
+  }
+
+  seleccionarTipoCliente(tipoCliente: TipoCliente){
+    let tipoClienteSeleccion;
+    this.tipoClientes.forEach(element => {
+      if( tipoCliente.id === element.id ) {
+        tipoClienteSeleccion = element;
+      }
+    });
+    return tipoClienteSeleccion;
+  }
+
+  seleccionarEjecutivoNegocio(ejecutivo: EjecutivoNegocios){
+    let seleccion;
+    this.keyBusinessDatas.forEach(element => {
+      if( ejecutivo.id === element.id ) {
+        seleccion = element;
+      }
+    });
+    return seleccion;
+  }
+
+  seleccionarEjecutivoCuenta(ejecutivo: EjecutivoCuenta){
+    let seleccion;
+    this.keyAccountDatas.forEach(element => {
+      if( ejecutivo.id === element.id ) {
+        seleccion = element;
+      }
+    });
+    return seleccion;
+  }
+
+  seleccionarRegional(regional: RegionalsData) {
+    let seleccion;
+    this.regionalsDatas.forEach(element => {
+      if( regional.id === element.id ) {
+        seleccion = element;
+      }
+    });
+    return seleccion;
+  }
+
+  consultarCliente(){
+    this._generalDataService.consultarClienteCodigoSap(this.generalData)
+    .subscribe(
+    rt =>   this.cargarConsulta(rt),
+    error => this.msgError = <any>error,
+    () => console.log('Terminado'),
+  );
+  }
 }

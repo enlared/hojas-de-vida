@@ -6,5 +6,6 @@
 		<class>com.nova.MsHv.entidad.TipoCliente</class>
 		<class>com.nova.MsHv.entidad.Cliente</class>
 		<class>com.nova.MsHv.entidad.Regional</class>
+		<class>com.nova.MsHv.entidad.TipoEmpleado</class>
 	</persistence-unit>
 </persistence>
