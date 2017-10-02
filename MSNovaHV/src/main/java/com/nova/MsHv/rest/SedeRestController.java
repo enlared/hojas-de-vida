@@ -102,8 +102,6 @@ public class SedeRestController {
 		try {
 			sedeDAO.save(sede);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-
 			log.error("Log4j Error in method Save for head Sede " + e);
 			throw new NovaHVRestException(e);
 
