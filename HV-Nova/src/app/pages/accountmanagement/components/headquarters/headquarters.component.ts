@@ -7,7 +7,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HeadQuartersService } from '../../../../theme/services/headQuartersService/headQuarters.service';
 import { HeadQuarters } from '../../../../theme/services/headQuartersService/headQuarters';
 import { SectorService } from '../../../../theme/services/totalService/sector.service';
-import { SectorData } from '../../../../theme/services/totalService/sector';
+import { SectorData } from '../../../../theme/services/totalService/SectorData';
 import { TypeEmployeesService } from '../../../../theme/services/totalService/typeEmployees.service';
 import { TipoEmpleadoData } from '../../../../theme/services/totalService/TipoEmpleadoData';
 import { IMyDpOptions } from 'mydatepicker';
@@ -20,6 +20,7 @@ import { IMyDpOptions } from 'mydatepicker';
 export class Headquarters {
 
   msgError: string;
+  id_empresa:number;
   headQuarters: HeadQuarters[];
   headQuarter: HeadQuarters = new HeadQuarters();
   typeEmployeesDatas: TipoEmpleadoData[];
@@ -43,6 +44,7 @@ export class Headquarters {
 
   ngOnitInit() {
     let id = this.route.snapshot.params['id'];
+    this.id_empresa=id;
     if (!id) return;
     console.log(id);
   }
@@ -78,7 +80,7 @@ export class Headquarters {
 
   saveHeadQuarters() {
     if(confirm("¿Desea guardar una Sede?")==true){
-
+      this.headQuarter.clienteID= this.id_empresa;
      this._headQuartersService.addHeadQuarter(this.headQuarter)
        .subscribe(
        rt => console.log(rt),

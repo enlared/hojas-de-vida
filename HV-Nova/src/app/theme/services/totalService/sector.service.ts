@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SectorData } from './sector';
+import { SectorData } from './SectorData';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class SectorService {
 
-  private url = 'http://localhost:8080/keyAccount';
+  private url = 'http://localhost:8080/sector';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private sectorData: SectorData = new SectorData();
 
@@ -18,13 +18,13 @@ export class SectorService {
 
   }
 
-  
+
   deleteSector(id: number)  {
     let url = `${this.url}/delete/${id}`;
     return this.http.delete(url)
       .map(r => r.json())
       .catch(this.handleError);
-  }  
+  }
 
   getSector(): Observable<SectorData[]> {
     let url = `${this.url}/findall`;
@@ -50,7 +50,7 @@ export class SectorService {
 
   putSector(sectorData: SectorData) {
 
-    let url = `${this.url}/edit/${sectorData.idsct}`;
+    let url = `${this.url}/edit/${sectorData.id}`;
     let iJson = JSON.stringify(sectorData);
     return this.http.put(url, iJson, { headers: this.headers })
       .map(r => r.json())
@@ -65,7 +65,7 @@ export class SectorService {
       let body = error.json() || '';
       let err = body.error || JSON.stringify(body);
       errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-  
+
     } else {
 
       errMsg = error.message ? error.message : error.toString();

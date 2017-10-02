@@ -137,11 +137,11 @@ this.loadTipoCliente();
     this.generalData = datos;
     this.generalData.fechaFinObjeto = datos.fechafin;
     this.generalData.fechaInicioObjeto = datos.fechainicio;
-    this.generalData.tipoCliente= this.seleccionarTipoCliente(this.generalData.tipoCliente);
-    this.generalData.ejecutivoNegocio= this.seleccionarEjecutivoNegocio(this.generalData.ejecutivoNegocio);
-    this.generalData.ejecutivoCuenta= this.seleccionarEjecutivoCuenta(this.generalData.ejecutivoCuenta);
-    this.generalData.regional= this.seleccionarRegional(this.generalData.regional);
-    this.mostrarDataCliente= true;
+    this.generalData.tipoCliente = this.seleccionarTipoCliente(this.generalData.tipoCliente);
+    this.generalData.ejecutivoNegocio = this.seleccionarEjecutivoNegocio(this.generalData.ejecutivoNegocio);
+    this.generalData.ejecutivoCuenta = this.seleccionarEjecutivoCuenta(this.generalData.ejecutivoCuenta);
+    this.generalData.regional = this.seleccionarRegional(this.generalData.regional);
+    this.mostrarDataCliente = true;
 
   }
 

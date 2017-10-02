@@ -14,6 +14,7 @@ import com.nova.MsHv.entidad.Regional;
 public interface RegionalesDAO extends CrudRepository<Regional, Long> {
 	static final Logger log = Logger.getLogger(RegionalesDAO.class);
 
+	@Override
 	public List<Regional> findAll();
 
 	

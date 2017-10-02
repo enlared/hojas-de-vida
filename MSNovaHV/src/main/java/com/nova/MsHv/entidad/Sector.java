@@ -5,24 +5,21 @@ import javax.persistence.*;
 
 
 /**
- * The persistent class for the ejecutivo_negocios database table.
+ * The persistent class for the sector database table.
  * 
  */
 @Entity
-@Table(name="ejecutivo_negocios")
-@NamedQuery(name="EjecutivoNegocio.findAll", query="SELECT e FROM EjecutivoNegocio e")
-public class EjecutivoNegocio implements Serializable {
+@NamedQuery(name="Sector.findAll", query="SELECT s FROM Sector s")
+public class Sector implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 
-	private String codigo;
-
 	private String nombre;
 
-	public EjecutivoNegocio() {
+	public Sector() {
 	}
 
 	public Integer getId() {
@@ -31,14 +28,6 @@ public class EjecutivoNegocio implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getCodigo() {
-		return this.codigo;
-	}
-
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
 	}
 
 	public String getNombre() {

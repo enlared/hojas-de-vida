@@ -1,8 +1,12 @@
+import { SectorData } from '../../../theme/services/totalService/SectorData';
+import { TipoEmpleadoData } from '../../../theme/services/totalService/TipoEmpleadoData';
+
 export class HeadQuarters {
 
-idhqrt: number;
+id: number;
 name: string;
-numberSedes: number;
-nameSector: string;
-
+cantidadempleados: number;
+tipoempleado: TipoEmpleadoData;
+sector: SectorData;
+clienteID:number;
 }

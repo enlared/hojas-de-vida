@@ -20,7 +20,7 @@ import { EjecutivoCuenta } from '../../theme/services/totalService/EjecutivoCuen
 import { EjecutivoNegociosService } from '../../theme/services/totalService/EjecutivoNegocios.service';
 import { EjecutivoNegocios } from '../../theme/services/totalService/EjecutivoNegocios';
 import { SectorService } from '../../theme/services/totalService/sector.service';
-import { SectorData } from '../../theme/services/totalService/sector';
+import { SectorData } from '../../theme/services/totalService/SectorData';
 import { TypeEmployeesService } from '../../theme/services/totalService/typeEmployees.service';
 import { TipoEmpleadoData } from '../../theme/services/totalService/TipoEmpleadoData';
 import { RegionalsService } from '../../theme/services/totalService/regionals.service';

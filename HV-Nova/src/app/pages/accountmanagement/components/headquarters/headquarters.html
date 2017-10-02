@@ -11,9 +11,9 @@
 						<div class="col-md-12">
 								<div class="form-group">
 										<select class="form-control" id="typeemployees" name="typeemployees"
-										[(ngModel)]="typeEmployeesData.id" #typeEmployees="ngModel"
+										[(ngModel)]="headQuarter.tipoempleado" #typeEmployees="ngModel"
 										 required>
-											  <option *ngFor = "let typeEmployeesData of typeEmployeesDatas" [value] = "typeEmployeesData.id">{{typeEmployeesData.nombre}}</option>
+											  <option *ngFor = "let typeEmployeesData of typeEmployeesDatas" [ngValue]= "typeEmployeesData">{{typeEmployeesData.nombre}}</option>
 										</select>
 										<div *ngIf="typeEmployees.errors">
 											<div *ngIf="typeEmployees.touched && !typeEmployees.valid" class="alert alert-danger">
@@ -27,7 +27,7 @@
 					<label for="numberEmployees" class="control-label col-md-12">No Empleados:</label>
 					<div class="col-md-12">
 						<input type="number"class="form-control" id="numberEmployees" name="numberEmployees"
-						[(ngModel)]="typeEmployeesData.numberEmployees" #numberEmployees="ngModel"
+						[(ngModel)]="headQuarter.cantidadempleados" #numberEmployees="ngModel"
 						 required>
 						 <div *ngIf="numberEmployees.errors">
 							<div *ngIf="numberEmployees.touched && !numberEmployees.valid" class="alert alert-danger">
@@ -42,9 +42,13 @@
 				<div class="form-group col-md-6">
 					<label for="sectorName" class="control-label col-md-12">Sector:</label>
 					<div class="col-md-12">
-							<input type="text" class="form-control" name="sectorName" id="sectorName" placeholder="sector"
-							[(ngModel)]="sectorData.name" [value] = "sectorData.name"
-							 #sectorName="ngModel" required maxlength="200" minlength="3">
+
+                <select class="form-control" id="sectorName" name="sectorName"
+                [(ngModel)]="headQuarter.sector" #sectorName="ngModel"
+                 required>
+                    <option *ngFor = "let sector of sectorDatas" [ngValue]= "sector">{{sector.nombre}}</option>
+                </select>
+
 							<div *ngIf="sectorName.errors">
 								<div *ngIf="sectorName.touched && !sectorName.valid" class="alert alert-danger">
 									<strong>Warning!</strong>Campo requerido.

@@ -14,6 +14,7 @@ import com.nova.MsHv.entidad.EjecutivoCuenta;
 public interface EjecutivoCuentaDao extends CrudRepository<EjecutivoCuenta, Long> {
 	static final Logger log = Logger.getLogger(EjecutivoCuentaDao.class);
 
+	@Override
 	public List<EjecutivoCuenta> findAll();
 
 }

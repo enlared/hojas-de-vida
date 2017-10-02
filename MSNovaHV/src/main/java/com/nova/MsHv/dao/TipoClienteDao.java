@@ -13,6 +13,7 @@ import com.nova.MsHv.entidad.TipoCliente;
 public interface TipoClienteDao extends CrudRepository<TipoCliente, Long> {
 	static final Logger log = Logger.getLogger(TipoClienteDao.class);
 
+	@Override
 	public List<TipoCliente> findAll();
 
 }

@@ -13,6 +13,7 @@ import com.nova.MsHv.entidad.EjecutivoNegocio;
 public interface EjecutivoNegocioDao extends CrudRepository<EjecutivoNegocio, Long> {
 	static final Logger log = Logger.getLogger(EjecutivoNegocioDao.class);
 
+	@Override
 	public List<EjecutivoNegocio> findAll();
 
 }

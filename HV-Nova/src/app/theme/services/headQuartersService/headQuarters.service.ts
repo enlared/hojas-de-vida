@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class HeadQuartersService {
 
-  private url = 'http://localhost:8080/headQuarters';
+  private url = 'http://localhost:8080/sede';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private headQuarters: HeadQuarters = new HeadQuarters();
 
@@ -18,13 +18,13 @@ export class HeadQuartersService {
 
   }
 
-  
+
   deleteHeadQuartes(id: number)  {
     let url = `${this.url}/delete/${id}`;
     return this.http.delete(url)
       .map(r => r.json())
       .catch(this.handleError);
-  }  
+  }
 
 
   getHeadQuarters(): Observable<HeadQuarters[]> {
@@ -51,7 +51,7 @@ export class HeadQuartersService {
 
   putHeadQuarter(headQuarters: HeadQuarters) {
 
-    let url = `${this.url}/edit/${headQuarters.idhqrt}`;
+    let url = `${this.url}/edit/${headQuarters.id}`;
     let iJson = JSON.stringify(headQuarters);
     return this.http.put(url, iJson, { headers: this.headers })
       .map(r => r.json())
@@ -66,7 +66,7 @@ export class HeadQuartersService {
       let body = error.json() || '';
       let err = body.error || JSON.stringify(body);
       errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-  
+
     } else {
 
       errMsg = error.message ? error.message : error.toString();

@@ -16,6 +16,7 @@ public interface TipoEmpleadoDAO extends CrudRepository<TipoEmpleado, Long> {
 
 	public TipoEmpleado findById(Integer id);
 
+	@Override
 	public List<TipoEmpleado> findAll();
 
 	
