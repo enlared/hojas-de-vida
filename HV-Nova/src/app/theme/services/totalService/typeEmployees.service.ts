@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class TypeEmployeesService {
 
-  private url = 'http://localhost:8080/tipoEmpleado';
+  private url = 'http://45.55.95.110:7070/tipoEmpleado';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private typeEmployeesData: TipoEmpleadoData = new TipoEmpleadoData();
 

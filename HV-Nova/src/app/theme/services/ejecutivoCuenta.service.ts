@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class EjecutivoCuentaService {
 
-  private url = 'http://localhost:8080/ejecutivoCuentaImpl/findAll';
+  private url = 'http://45.55.95.110:7070/ejecutivoCuentaImpl/findAll';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private ejecutivoCuenta: EjecutivoCuenta = new EjecutivoCuenta();
 

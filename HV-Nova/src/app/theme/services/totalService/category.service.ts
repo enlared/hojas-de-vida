@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class CategoryService {
 
-  private url = 'http://localhost:8080/category';
+  private url = 'http://45.55.95.110:7070/category';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private categoryData: CategoryData = new CategoryData();
 

@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class EjecutivoNegociosService {
 
-  private url = 'http://localhost:8080/ejecutivoNegocio';
+  private url = 'http://45.55.95.110:7070/ejecutivoNegocio';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private keyBusinessData: EjecutivoNegocios = new EjecutivoNegocios();
 

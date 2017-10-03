@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class ContactHseqService {
 
-  private url = 'http://localhost:8080/contactHseq';
+  private url = 'http://45.55.95.110:7070/contactHseq';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private contactHseqData: ContactHseqData = new ContactHseqData();
 
@@ -18,13 +18,13 @@ export class ContactHseqService {
 
   }
 
-  
+
   deleteContactHseq(id: number)  {
     let url = `${this.url}/delete/${id}`;
     return this.http.delete(url)
       .map(r => r.json())
       .catch(this.handleError);
-  }  
+  }
 
   getContactHseq(): Observable<ContactHseqData[]> {
     let url = `${this.url}/findall`;
@@ -65,7 +65,7 @@ export class ContactHseqService {
       let body = error.json() || '';
       let err = body.error || JSON.stringify(body);
       errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-  
+
     } else {
 
       errMsg = error.message ? error.message : error.toString();

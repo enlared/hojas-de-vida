@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class ListPricesService {
 
-  private url = 'http://localhost:8080/listPrices';
+  private url = 'http://45.55.95.110:7070/listPrices';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private listPricesData: ListPricesData = new ListPricesData();
 

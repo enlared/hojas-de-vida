@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class TypeMachineService {
 
-  private url = 'http://localhost:8080/typeMachine';
+  private url = 'http://45.55.95.110:7070/typeMachine';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private typeMachineData: TypeMachineData = new TypeMachineData();
 

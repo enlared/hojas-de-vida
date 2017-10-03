@@ -1,4 +1,4 @@
-package com.nova.HojasVida;
+package com.nova.MsHv.HojasVidaBKMV;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class HojasVidaApplicationTests {
+public class HojasVidaBkmvApplicationTests {
 
 	@Test
 	public void contextLoads() {
