@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class DateEspecialsService {
 
-  private url = 'http://45.55.95.110:7070/dateEspecials';
+  private url = 'http://localhost:7070/dateEspecials';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private dateEspecialsData: DateEspecialsData = new DateEspecialsData();
 

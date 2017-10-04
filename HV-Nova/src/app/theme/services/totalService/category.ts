@@ -1,6 +1,6 @@
 export class CategoryData {
 
-idctg: number;
-name: string;
+id: number;
+nombre: string;
 
 }

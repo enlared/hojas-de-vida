@@ -141,7 +141,6 @@ this.loadTipoCliente();
     this.generalData.ejecutivoNegocio = this.seleccionarEjecutivoNegocio(this.generalData.ejecutivoNegocio);
     this.generalData.ejecutivoCuenta = this.seleccionarEjecutivoCuenta(this.generalData.ejecutivoCuenta);
     this.generalData.regional = this.seleccionarRegional(this.generalData.regional);
-    this.mostrarDataCliente = true;
 
   }
 
@@ -186,6 +185,8 @@ this.loadTipoCliente();
   }
 
   consultarCliente(){
+    this.mostrarDataCliente = true;
+
     this._generalDataService.consultarClienteCodigoSap(this.generalData)
     .subscribe(
     rt =>   this.cargarConsulta(rt),

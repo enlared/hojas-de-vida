@@ -67,7 +67,7 @@ public class ClientesRestController {
 			throw new NovaHVRestException(e);
 
 		}
-		return var.get(0);
+		return !var.isEmpty()? var.get(0):null;
 	}
 
 	

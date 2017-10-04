@@ -9,5 +9,11 @@
 		<class>com.nova.MsHv.entidad.TipoEmpleado</class>
 		<class>com.nova.MsHv.entidad.Sector</class>
 		<class>com.nova.MsHv.entidad.Sede</class>
+		<class>com.nova.MsHv.entidad.Anclaje</class>
+		<class>com.nova.MsHv.entidad.Categoria</class>
+		<class>com.nova.MsHv.entidad.TipoMaquina</class>
+		<class>com.nova.MsHv.entidad.TipoNegociacion</class>
+		<class>com.nova.MsHv.entidad.TipoVaso</class>
+		<class>com.nova.MsHv.entidad.ListaPrecio</class>
 	</persistence-unit>
 </persistence>

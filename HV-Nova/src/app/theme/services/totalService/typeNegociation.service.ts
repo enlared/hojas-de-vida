@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class TypeNegociationService {
 
-  private url = 'http://45.55.95.110:7070/typeNegociation';
+  private url = 'http://localhost:7070/typeNegociation';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private typeNegociationData: TypeNegociationData = new TypeNegociationData();
 
@@ -18,13 +18,13 @@ export class TypeNegociationService {
 
   }
 
-  
+
   deleteTypeNEgociation(id: number)  {
     let url = `${this.url}/delete/${id}`;
     return this.http.delete(url)
       .map(r => r.json())
       .catch(this.handleError);
-  }  
+  }
 
   getTypeNegociation(): Observable<TypeNegociationData[]> {
     let url = `${this.url}/findall`;
@@ -65,7 +65,7 @@ export class TypeNegociationService {
       let body = error.json() || '';
       let err = body.error || JSON.stringify(body);
       errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-  
+
     } else {
 
       errMsg = error.message ? error.message : error.toString();

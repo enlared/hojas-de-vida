@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class CategoryService {
 
-  private url = 'http://45.55.95.110:7070/category';
+  private url = 'http://localhost:7070/categoria';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private categoryData: CategoryData = new CategoryData();
 
@@ -18,13 +18,13 @@ export class CategoryService {
 
   }
 
-  
+
   deleteCategory(id: number)  {
     let url = `${this.url}/delete/${id}`;
     return this.http.delete(url)
       .map(r => r.json())
       .catch(this.handleError);
-  }  
+  }
 
   getCategory(): Observable<CategoryData[]> {
     let url = `${this.url}/findall`;
@@ -50,7 +50,7 @@ export class CategoryService {
 
   putCategory(categoryData: CategoryData) {
 
-    let url = `${this.url}/edit/${categoryData.idctg}`;
+    let url = `${this.url}/edit/${categoryData.id}`;
     let iJson = JSON.stringify(categoryData);
     return this.http.put(url, iJson, { headers: this.headers })
       .map(r => r.json())
@@ -65,7 +65,7 @@ export class CategoryService {
       let body = error.json() || '';
       let err = body.error || JSON.stringify(body);
       errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-  
+
     } else {
 
       errMsg = error.message ? error.message : error.toString();
