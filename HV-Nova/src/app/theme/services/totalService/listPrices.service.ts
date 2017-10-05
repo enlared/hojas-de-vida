@@ -18,13 +18,13 @@ export class ListPricesService {
 
   }
 
-  
+
   deleteListPrices(id: number)  {
     let url = `${this.url}/delete/${id}`;
     return this.http.delete(url)
       .map(r => r.json())
       .catch(this.handleError);
-  }  
+  }
 
   getListPrices(): Observable<ListPricesData[]> {
     let url = `${this.url}/findall`;
@@ -50,7 +50,7 @@ export class ListPricesService {
 
   putListPrices(listPricesData: ListPricesData) {
 
-    let url = `${this.url}/edit/${listPricesData.idlstprc}`;
+    let url = `${this.url}/edit/${listPricesData.id}`;
     let iJson = JSON.stringify(listPricesData);
     return this.http.put(url, iJson, { headers: this.headers })
       .map(r => r.json())
@@ -65,7 +65,7 @@ export class ListPricesService {
       let body = error.json() || '';
       let err = body.error || JSON.stringify(body);
       errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-  
+
     } else {
 
       errMsg = error.message ? error.message : error.toString();

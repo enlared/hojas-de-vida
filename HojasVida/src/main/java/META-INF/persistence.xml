@@ -15,5 +15,6 @@
 		<class>com.nova.MsHv.entidad.TipoNegociacion</class>
 		<class>com.nova.MsHv.entidad.TipoVaso</class>
 		<class>com.nova.MsHv.entidad.ListaPrecio</class>
+		<class>com.nova.MsHv.entidad.Negocio</class>
 	</persistence-unit>
 </persistence>

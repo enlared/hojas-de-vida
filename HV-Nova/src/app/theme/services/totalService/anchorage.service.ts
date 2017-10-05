@@ -18,19 +18,20 @@ export class AnchorageService {
 
   }
 
-  
+
   deleteAnchorage(id: number)  {
     let url = `${this.url}/delete/${id}`;
     return this.http.delete(url)
       .map(r => r.json())
       .catch(this.handleError);
-  }  
+  }
 
   getAnchorage(): Observable<AnchorageData[]> {
     let url = `${this.url}/findall`;
     return this.http.get(url)
       .map(r => r.json())
       .catch(this.handleError);
+
   }
 
   getAnchorageData(id: number): Observable<AnchorageData> {
@@ -50,7 +51,7 @@ export class AnchorageService {
 
   putAnchorage(anchorageData: AnchorageData) {
 
-    let url = `${this.url}/edit/${anchorageData.idanchg}`;
+    let url = `${this.url}/edit/${anchorageData.id}`;
     let iJson = JSON.stringify(anchorageData);
     return this.http.put(url, iJson, { headers: this.headers })
       .map(r => r.json())
@@ -65,7 +66,7 @@ export class AnchorageService {
       let body = error.json() || '';
       let err = body.error || JSON.stringify(body);
       errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-  
+
     } else {
 
       errMsg = error.message ? error.message : error.toString();

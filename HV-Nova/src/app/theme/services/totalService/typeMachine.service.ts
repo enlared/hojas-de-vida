@@ -18,13 +18,13 @@ export class TypeMachineService {
 
   }
 
-  
+
   deleteTypeMachine(id: number)  {
     let url = `${this.url}/delete/${id}`;
     return this.http.delete(url)
       .map(r => r.json())
       .catch(this.handleError);
-  }  
+  }
 
   getTypeMachine(): Observable<TypeMachineData[]> {
     let url = `${this.url}/findall`;
@@ -50,7 +50,7 @@ export class TypeMachineService {
 
   putTypeMachine(typeMachineData: TypeMachineData) {
 
-    let url = `${this.url}/edit/${typeMachineData.idtpmac}`;
+    let url = `${this.url}/edit/${typeMachineData.id}`;
     let iJson = JSON.stringify(typeMachineData);
     return this.http.put(url, iJson, { headers: this.headers })
       .map(r => r.json())
@@ -65,7 +65,7 @@ export class TypeMachineService {
       let body = error.json() || '';
       let err = body.error || JSON.stringify(body);
       errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-  
+
     } else {
 
       errMsg = error.message ? error.message : error.toString();

@@ -1,7 +1,7 @@
 export class TypeMachineData {
 
-idtpmac: number;
-name: string;
+id: number;
+nombre: string;
 
 
 }

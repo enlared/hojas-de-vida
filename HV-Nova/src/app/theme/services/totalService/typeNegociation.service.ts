@@ -50,7 +50,7 @@ export class TypeNegociationService {
 
   putTypeNegociation(typeNegociationData: TypeNegociationData) {
 
-    let url = `${this.url}/edit/${typeNegociationData.idtpngc}`;
+    let url = `${this.url}/edit/${typeNegociationData.id}`;
     let iJson = JSON.stringify(typeNegociationData);
     return this.http.put(url, iJson, { headers: this.headers })
       .map(r => r.json())

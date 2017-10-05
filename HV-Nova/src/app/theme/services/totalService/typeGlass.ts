@@ -1,6 +1,5 @@
-export class AnchorageData  {
+export class typeGlass {
 
 id: number;
 nombre: string;
-
 }

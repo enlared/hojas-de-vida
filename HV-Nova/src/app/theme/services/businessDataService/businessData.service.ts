@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class BusinessDataService {
 
-  private url = 'http://localhost:8080/gnrproject';
+  private url = 'http://localhost:7070/negocio';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private businessData: BusinessData = new BusinessData();
 
@@ -18,13 +18,13 @@ export class BusinessDataService {
 
   }
 
-  
+
   deleteBusinessData(id: number)  {
     let url = `${this.url}/delete/${id}`;
     return this.http.delete(url)
       .map(r => r.json())
       .catch(this.handleError);
-  }  
+  }
 
 
   getBusinessDatas(): Observable<BusinessData[]> {
@@ -51,7 +51,7 @@ export class BusinessDataService {
 
   putBusinessData(businessData: BusinessData) {
 
-    let url = `${this.url}/edit/${businessData.idinfbsn}`;
+    let url = `${this.url}/edit/${businessData.id}`;
     let iJson = JSON.stringify(businessData);
     return this.http.put(url, iJson, { headers: this.headers })
       .map(r => r.json())
@@ -66,7 +66,7 @@ export class BusinessDataService {
       let body = error.json() || '';
       let err = body.error || JSON.stringify(body);
       errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-  
+
     } else {
 
       errMsg = error.message ? error.message : error.toString();

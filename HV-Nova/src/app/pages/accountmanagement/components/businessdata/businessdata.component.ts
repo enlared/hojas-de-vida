@@ -7,16 +7,16 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { BusinessDataService } from '../../../../theme/services/businessDataService/businessData.service';
 import { BusinessData } from '../../../../theme/services/businessDataService/businessData';
 import { IMyDpOptions } from 'mydatepicker';
-import { TypeNegociationService } from '../../../../theme/services/totalService/typeNegociation.service'; 
-import { TypeNegociationData } from '../../../../theme/services/totalService/typeNegociation'; 
-import { TypeMachineService } from '../../../../theme/services/totalService/typeMachine.service'; 
-import { TypeMachineData } from '../../../../theme/services/totalService/typeMachine'; 
-import { AnchorageService } from '../../../../theme/services/totalService/anchorage.service'; 
-import { AnchorageData } from '../../../../theme/services/totalService/anchorage'; 
-import { CategoryService } from '../../../../theme/services/totalService/category.service'; 
-import { CategoryData } from '../../../../theme/services/totalService/category'; 
-import { ListPricesService } from '../../../../theme/services/totalService/listPrices.service'; 
-import { ListPricesData } from '../../../../theme/services/totalService/listPrices'; 
+import { TypeNegociationService } from '../../../../theme/services/totalService/typeNegociation.service';
+import { TypeNegociationData } from '../../../../theme/services/totalService/typeNegociation';
+import { TypeMachineService } from '../../../../theme/services/totalService/typeMachine.service';
+import { TypeMachineData } from '../../../../theme/services/totalService/typeMachine';
+import { AnchorageService } from '../../../../theme/services/totalService/anchorage.service';
+import { AnchorageData } from '../../../../theme/services/totalService/anchorage';
+import { CategoryService } from '../../../../theme/services/totalService/category.service';
+import { CategoryData } from '../../../../theme/services/totalService/category';
+import { ListPricesService } from '../../../../theme/services/totalService/listPrices.service';
+import { ListPricesData } from '../../../../theme/services/totalService/listPrices';
 
 @Component({
   selector: 'businessdata',
@@ -38,7 +38,7 @@ export class Businessdata {
   anchorageData: AnchorageData = new AnchorageData();
   typeNegociationDatas: TypeNegociationData[];
   typeNegociationData: TypeNegociationData = new TypeNegociationData();
-  
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -69,15 +69,7 @@ this.loadTypeNegociation();
 
   resetForm() {
     if (confirm("¿Desea cancelar la acción?") == true) {
-      this.businessData.idinfbsn = null;
-      this.businessData.idanchg = null;
-      this.businessData.idanlcmp = null;
-      this.businessData.idctg = null;
-      this.businessData.idlstprc = null;
-      this.businessData.idsla = null;
-      this.businessData.numbermachine = null;
-      this.businessData.totalsale = null;
-      this.businessData.typeglass = '';
+      this.businessData= new BusinessData();
 
     }
 
@@ -100,7 +92,7 @@ this.loadTypeNegociation();
 
   loadTypeNegociation() {
     this._typeNegociationDataService.getTypeNegociation()
-    .subscribe(typeNegociationDatas => 
+    .subscribe(typeNegociationDatas =>
     this.typeNegociationDatas = typeNegociationDatas, error => this.msgError = <any>error);
   }
 
@@ -135,5 +127,6 @@ this.loadTypeNegociation();
       );
     }
   }
+
 
 }

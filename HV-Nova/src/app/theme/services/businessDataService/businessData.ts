@@ -1,14 +1,21 @@
+import { typeGlass } from '../totalService/typeGlass';
+import { AnchorageData } from '../totalService/anchorage';
+import { TypeNegociationData } from '../totalService/typeNegociation';
+import { TypeMachineData } from '../totalService/typeMachine';
+import { ListPricesData } from '../totalService/listPrices';
+import { CategoryData } from '../totalService/category';
+
 export class BusinessData {
 
-idinfbsn: number;
-numbermachine: number;
-typeglass: string;
+id: number;
+clienteId: number;
+numeroMaquina: number;
+tipoVasoId: number;
 totalsale: number;
-idanchg: number;
-idtpngc: number;
-idlstprc: number;
-idctg: number;
-idsla: number;
-idanlcmp: number;
+anclaje: AnchorageData;
+tipoNegociacion: TypeNegociationData;
+numeromaquina: TypeMachineData;
+listaPrecio: ListPricesData;
+categoria: CategoryData;
 
 }

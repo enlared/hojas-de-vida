@@ -1,6 +1,7 @@
 export class ListPricesData {
 
-idlstprc: number;
-nombre: string;
+id: number;
+codigo  : string;
+descripcion  : string;
 
 }

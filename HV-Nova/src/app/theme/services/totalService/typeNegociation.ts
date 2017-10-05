@@ -1,7 +1,6 @@
 export class TypeNegociationData {
 
-idtpngc: number;
-name: string;
-value: number;
+id: number;
+nombre: string;
 
 }
