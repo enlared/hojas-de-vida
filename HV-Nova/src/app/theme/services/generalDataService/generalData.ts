@@ -5,7 +5,7 @@ import { TipoCliente } from '../totalService/TipoCliente';
 import { RegionalsData } from '../totalService/regionals';
 
 export class GeneralData {
-
+id: number;
 codigosap: number;
 fechaInicioObjeto: any;
 fechaFinObjeto: any;

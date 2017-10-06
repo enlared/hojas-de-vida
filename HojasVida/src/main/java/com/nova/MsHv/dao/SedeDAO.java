@@ -15,6 +15,7 @@ public interface SedeDAO extends CrudRepository<Sede, Long> {
 	static final Logger log = Logger.getLogger(SedeDAO.class);
 
 	public Sede findById(Integer id);
+	public List<Sede> findByClienteid(Integer id);
 
 	public List<Sede> findAll();
 

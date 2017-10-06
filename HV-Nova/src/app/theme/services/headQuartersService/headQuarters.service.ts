@@ -41,6 +41,13 @@ export class HeadQuartersService {
       .catch(this.handleError);
   }
 
+  getSectoresCliente(id: number ): Observable<HeadQuarters[]> {
+    const url = `${this.url}/findCliente/${  id }`;
+    return this.http.get(url)
+      .map(r => r.json())
+      .catch(this.handleError);
+  }
+
   addHeadQuarter(headQuarters: HeadQuarters) {
     let url = `${this.url}/save`;
     let iJson = JSON.stringify(headQuarters);

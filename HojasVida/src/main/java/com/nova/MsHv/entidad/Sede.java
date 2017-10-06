@@ -31,9 +31,7 @@ public class Sede implements Serializable {
 		this.tipoempleado = tipoempleado;
 	}
 
-	@ManyToOne
-	@JoinColumn(name="clienteid")
-	private Cliente cliente;
+	private Integer clienteid;
 
 	//bi-directional many-to-one association to Sector
 	@ManyToOne
@@ -59,20 +57,20 @@ public class Sede implements Serializable {
 		this.cantidadempleados = cantidadempleados;
 	}
 
-	public Cliente getCliente() {
-		return this.cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
 	public Sector getSector() {
 		return this.sector;
 	}
 
 	public void setSector(Sector sector) {
 		this.sector = sector;
+	}
+
+	public Integer getClienteid() {
+		return clienteid;
+	}
+
+	public void setClienteid(Integer clienteid) {
+		this.clienteid = clienteid;
 	}
 
 }

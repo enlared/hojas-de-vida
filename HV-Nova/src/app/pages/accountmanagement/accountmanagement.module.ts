@@ -51,6 +51,7 @@ import { BillingData } from '../../theme/services/totalService/billing';
 import { DateEspecialsService } from '../../theme/services/totalService/dateEspecials.service';
 import { DateEspecialsData } from '../../theme/services/totalService/dateEspecials';
 import { TipoClienteService } from '../../theme/services/totalService/TipoCliente.service';
+import { datosbasicos } from '../../theme/services/datosBasicos';
 
 import { MyDatePickerModule } from 'mydatepicker';
 
@@ -102,6 +103,7 @@ import { MyDatePickerModule } from 'mydatepicker';
     BillingService,
     DateEspecialsService,
     TipoClienteService,
+    datosbasicos,
   ],
 })
 export class AccountmanagementModule {

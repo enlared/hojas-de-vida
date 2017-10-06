@@ -73,16 +73,47 @@
 						<div *ngIf="typeEmployees.errors || numberEmployees.errors || sectorName.errors ">
 								<button class="btn btn-primary" name="buttonSave" (click)="goBusiness()" disabled>Sedes</button>
 								<button class="btn btn-success" (click)="saveHeadQuarters()" disabled="">Guardar</button>
-								<button class="btn btn-info" (click)="resetForm()">Cancelar</button>
+                <button class="btn btn-info" (click)="resetForm()">Cancelar</button>
+                <button class="btn btn-info" (click)="consultaSectoresCliente()">Actualizar</button>
+
 							</div>
 							<div *ngIf="!typeEmployees.errors && !numberEmployees.errors && !sectorName.errors ">
 								<button class="btn btn-primary" name="buttonSave" (click)="goBusiness()">Sedes</button>
 								<button class="btn btn-success" (click)="saveHeadQuarters()">Guardar</button>
-								<button class="btn btn-info" (click)="resetForm()">Cancelar</button>
+                <button class="btn btn-info" (click)="  consultaSectoresCliente()">Cancelar</button>
+                <button class="btn btn-info" (click)="consultaSectoresCliente()">Actualizar</button>
+
 							</div>
 
 				</div>
 			</div>
-		</div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">Información de usuarios</div>
+      <table class="table table-striped" >
+        <thead>
+          <tr>
+            <th style="width: 20%">
+              Tipo Empleados:
+            </th>
+            <th style="width: 20%">
+              No Empleados:
+            </th>
+            <th style="width: 20%">
+              Sector:
+            </th>
+          <tr>
+         </thead>
+        <tbody>
+          <tr *ngFor="let data of sectoresClientes">
+            <td>{{data.tipoempleado.nombre}}</td>
+            <td> {{data.cantidadempleados}}</td>
+            <td> {{data.sector.nombre}}</td>
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
 	</form>
 </ba-card>

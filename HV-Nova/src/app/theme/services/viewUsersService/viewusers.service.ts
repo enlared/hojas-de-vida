@@ -14,10 +14,10 @@ export class ViewUsersService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
 
 private user: Users = new Users();
- 
+
 
   constructor(private http: Http) {
-    
+
   }
 
   deleteUser(id: number): Observable<Users> {
@@ -34,7 +34,7 @@ private user: Users = new Users();
         .catch(this.handleError);
   }
 
-  getUsers(): Observable<Users[]>{  
+  getUsers(): Observable<Users[]>{
     let url = `${this.url}/findall`;
      return this.http.get(url)
      .map(r => r.json())
@@ -50,7 +50,7 @@ private user: Users = new Users();
           }
 
           putUser(user: Users){
-            
+
 let url  = `${this.url}/edit/${user.idnuser}`;
 let iJson = JSON.stringify(user);
 return this.http.put(url,iJson,{headers: this.headers})
@@ -60,15 +60,15 @@ return this.http.put(url,iJson,{headers: this.headers})
 }
 
     private handleError(error:Response | any){
-    
+
     let errMsg: string;
     if(error instanceof Response){
     let body = error.json() || '';
     let err =  body.error || JSON.stringify(body);
     errMsg = `${error.status} - ${error.statusText || '' } ${err}`;
-    
+
     }else{
-    
+
       errMsg= error.message ? error.message : error.toString();
     }
     return Observable.throw(errMsg);

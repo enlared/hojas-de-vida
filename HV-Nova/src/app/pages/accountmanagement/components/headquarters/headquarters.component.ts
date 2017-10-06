@@ -11,7 +11,7 @@ import { SectorData } from '../../../../theme/services/totalService/SectorData';
 import { TypeEmployeesService } from '../../../../theme/services/totalService/typeEmployees.service';
 import { TipoEmpleadoData } from '../../../../theme/services/totalService/TipoEmpleadoData';
 import { IMyDpOptions } from 'mydatepicker';
-
+import { datosbasicos } from '../../../../theme/services/datosBasicos';
 @Component({
   selector: 'headquarters',
   templateUrl: './headquarters.html',
@@ -20,13 +20,15 @@ import { IMyDpOptions } from 'mydatepicker';
 export class Headquarters {
 
   msgError: string;
-  id_empresa:number;
+  idCliente: number;
   headQuarters: HeadQuarters[];
   headQuarter: HeadQuarters = new HeadQuarters();
   typeEmployeesDatas: TipoEmpleadoData[];
   typeEmployeesData: TipoEmpleadoData = new TipoEmpleadoData();
   sectorData: SectorData = new SectorData();
   sectorDatas: SectorData[];
+  sectoresClientes: HeadQuarters[];
+  sectoresCli: HeadQuarters = new HeadQuarters();
 
   constructor(
     private route: ActivatedRoute,
@@ -34,25 +36,33 @@ export class Headquarters {
     private _headQuartersService: HeadQuartersService,
     private _sectorDataService: SectorService,
     private _typeEmployeesDataService: TypeEmployeesService,
+    private datosb: datosbasicos,
 
 ) {
 
   this.loadSector();
   this.loadTypeEmployees();
-
+  this.ngOnitInit();
+  this.consultaSectoresCliente();
   }
 
   ngOnitInit() {
-    let id = this.route.snapshot.params['id'];
-    this.id_empresa=id;
-    if (!id) return;
-    console.log(id);
+
+      this.idCliente = this.datosb.getid();
   }
 
 
   loadTypeEmployees() {
     this._typeEmployeesDataService.getTypeEmployees()
     .subscribe(typeEmployeesDatas => this.typeEmployeesDatas = typeEmployeesDatas, error => this.msgError = <any>error);
+  }
+
+  consultaSectoresCliente() {
+    if( this.datosb.getid() != null) {
+      this._headQuartersService.getSectoresCliente(this.datosb.getid())
+      .subscribe(sectoresClientes => this.sectoresClientes = sectoresClientes, error => this.msgError = <any>error);
+    }
+
   }
 
   loadSector() {
@@ -62,7 +72,7 @@ export class Headquarters {
 
   resetForm() {
     if(confirm("¿Desea cancelar la acción?")==true){
-
+      this.headQuarter=new HeadQuarters();
 
     }
 
@@ -79,8 +89,13 @@ export class Headquarters {
   }
 
   saveHeadQuarters() {
+
+    if(this.idCliente===null || this.idCliente===undefined){
+      alert("Es necesario buscar el cliente");
+      return;
+    }
     if(confirm("¿Desea guardar una Sede?")==true){
-      this.headQuarter.clienteID= this.id_empresa;
+      this.headQuarter.clienteid= this.idCliente;
      this._headQuartersService.addHeadQuarter(this.headQuarter)
        .subscribe(
        rt => console.log(rt),
@@ -88,6 +103,7 @@ export class Headquarters {
        () => console.log('Terminado'),
        );
     }
+    ;
   }
 
 }

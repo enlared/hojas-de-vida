@@ -8,5 +8,5 @@ name: string;
 cantidadempleados: number;
 tipoempleado: TipoEmpleadoData;
 sector: SectorData;
-clienteID:number;
+clienteid: number;
 }

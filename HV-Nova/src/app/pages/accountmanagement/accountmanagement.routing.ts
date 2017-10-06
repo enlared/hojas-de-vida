@@ -15,7 +15,7 @@ const routes: Routes = [
     component: Accountmanagement,
     children: [
       { path: 'headquarters', component: Headquarters },
-      
+      { path: 'headquarters/:id', component: Headquarters },
       { path: 'businessdata', component: Businessdata },
       { path: 'generaldata', component: Generaldata },
       { path: 'contacts', component: Contacts },

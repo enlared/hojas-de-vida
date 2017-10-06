@@ -18,13 +18,13 @@ export class ServiceLevelsService {
 
   }
 
-  
+
   deleteServiceLevels(id: number)  {
     let url = `${this.url}/delete/${id}`;
     return this.http.delete(url)
       .map(r => r.json())
       .catch(this.handleError);
-  }  
+  }
 
   getServiceLevels(): Observable<ServiceLevelsData[]> {
     let url = `${this.url}/findall`;
@@ -65,7 +65,7 @@ export class ServiceLevelsService {
       let body = error.json() || '';
       let err = body.error || JSON.stringify(body);
       errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-  
+
     } else {
 
       errMsg = error.message ? error.message : error.toString();

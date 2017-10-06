@@ -9,7 +9,7 @@
         <div class="form-group col-md-6">
           <label for="codsap" class="control-label col-md-12">Código cliente SAP:</label>
           <div class="col-md-12">
-            <input type="text" class="form-control" name="codsap" id="codsap" placeholder="Cod Sap" [(ngModel)]="generalData.codigosap"
+            <input type="text" class="form-control" name="codsap" id="codsap" [disabled]="dataEdicion" placeholder="Cod Sap" [(ngModel)]="generalData.codigosap"
               #codsap="ngModel" required maxlength="200" minlength="3">
             <div *ngIf="codsap.errors">
               <div *ngIf="codsap.touched && !codsap.valid" class="alert alert-danger">
@@ -111,7 +111,7 @@
           <div class="form-group col-md-6">
             <label for="nit" class="control-label col-md-12">NIT:</label>
             <div class="col-md-12">
-              <input type="text" class="form-control" name="nit" id="nit" placeholder="Nit" [(ngModel)]="generalData.nit" #nit="ngModel"
+              <input type="text" class="form-control" name="nit" id="nit" [disabled]="dataEdicion" placeholder="Nit" [(ngModel)]="generalData.nit" #nit="ngModel"
                 required maxlength="200" minlength="3">
               <div *ngIf="nit.errors">
                 <div *ngIf="nit.touched && !nit.valid" class="alert alert-danger">
@@ -293,7 +293,7 @@
             <div *ngIf="!kBName.errors && !kAName.errors && !codsap.errors && !typecustomer.errors && !nameComercial.errors && !regionals.errors
 							&& !nit.errors && !address.errors && !barrio.errors && !email.errors && !telephone.errors && !numberSedes.errors && !celphone.errors
 							&& !contractStart.errors && !contractEnd.errors && !objetiveyear.errors && !objetivemonth.errors">
-              <button class="btn btn-primary" name="buttonSave" (click)="goSedes()">Negocio</button>
+              <button class="btn btn-primary" name="buttonSave" (click)="goSedes()">Sede</button>
               <button class="btn btn-success" (click)="saveGeneralData()">Guardar</button>
               <button class="btn btn-info" (click)="resetForm()">Cancelar</button>
             </div>

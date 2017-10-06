@@ -59,7 +59,29 @@ public class SedeRestController {
 		return sede;
 	}
 
-	
+	@RequestMapping("sede/findCliente/{id}")
+	@ResponseBody
+
+	public List<Sede> getSedeCliente(@PathVariable("id") int id) throws NovaHVDaoException {
+		List<Sede> sede = new ArrayList<>();
+
+		PropertyConfigurator.configure("log4j.properties");
+		log.info("Log4j for method find one in head quarters");
+		try {
+
+			sede = sedeDAO.findByClienteid(id);
+			if (!sede.equals(null)) {
+
+				log.info("Log4j get the head quarters with id ");
+			}
+		} catch (Exception e) {
+			log.error("Log4j Error in Method Find for head quarters " + e);
+			throw new NovaHVDaoException(e);
+
+		}
+
+		return sede;
+	}
 	
 
 

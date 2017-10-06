@@ -61,7 +61,7 @@ public class ClientesRestController {
 		log.info("Log4j method save for clientes");
 		 List<Cliente> var= new ArrayList<>();
 		try {
-			 var = clienteDAO.findByCodigosap(cliente.getCodigosap());
+			var = clienteDAO.findByCodigosap(cliente.getCodigosap());
 		} catch (Exception e) {
 			log.error("Log4j Error in method Save for Cliente " + e);
 			throw new NovaHVRestException(e);
@@ -72,14 +72,23 @@ public class ClientesRestController {
 
 	
 	
+	private Cliente validarNitEmpresa(Cliente cliente ) {
+		List<Cliente> resultado = clienteDAO.findByNit(cliente.getNit());
+		for(Cliente client:resultado){
+			cliente.setId(client.getId());
+			return cliente;
+		}
+		return cliente;
+	}
+
 	@RequestMapping(value = "clientes/save", method = RequestMethod.POST)
 	@ResponseBody
-	public void setCustomers(@RequestBody Cliente cliente) throws NovaHVRestException {
+	public Cliente setClientes(@RequestBody Cliente cliente) throws NovaHVRestException {
 
 		PropertyConfigurator.configure("log4j.properties");
 		log.info("Log4j method save for clientes");
 		try {
-			clienteDAO.save(cliente);
+			return clienteDAO.save(validarNitEmpresa(cliente));
 		} catch (Exception e) {
 			log.error("Log4j Error in method Save for Cliente " + e);
 			throw new NovaHVRestException(e);
@@ -90,22 +99,6 @@ public class ClientesRestController {
 
 	
 
-	@RequestMapping(method = RequestMethod.PUT, path = "customers/edit/{id}")
-	@ResponseBody
-
-	public void editCustomers(@PathVariable("id") long idadtcst, @RequestBody Cliente clientes) throws NovaHVRestException {
-
-		PropertyConfigurator.configure("log4j.properties");
-		log.info("Log4j method edit for clientes");
-		try {
-			clienteDAO.save(clientes);
-
-		} catch (Exception e) {
-			log.error("Log4j Error in method Update for clientes " + e);
-			throw new NovaHVRestException(e);
-		}
-
-	}
 
 	
 	@RequestMapping(method = RequestMethod.DELETE, path = "clientes/delete/{id}")
