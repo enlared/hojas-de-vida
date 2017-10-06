@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class GeneralDataService {
 
-  private url = 'http://localhost:7070/clientes';
+  private url = 'http://45.55.95.110:7070/clientes';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private generalData: GeneralData = new GeneralData();
 

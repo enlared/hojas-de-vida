@@ -3239,7 +3239,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var HeadQuartersService = (function () {
     function HeadQuartersService(http) {
         this.http = http;
-        this.url = 'http://localhost:7070/headQuarters';
+        this.url = 'http://45.55.95.110:7070/headQuarters';
         this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
         this.headQuarters = new __WEBPACK_IMPORTED_MODULE_1__headQuarters__["a" /* HeadQuarters */]();
     }
@@ -3347,7 +3347,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var CategoryService = (function () {
     function CategoryService(http) {
         this.http = http;
-        this.url = 'http://localhost:7070/category';
+        this.url = 'http://45.55.95.110:7070/category';
         this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
         this.categoryData = new __WEBPACK_IMPORTED_MODULE_1__category__["a" /* CategoryData */]();
     }
@@ -3455,7 +3455,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var TypeMachineService = (function () {
     function TypeMachineService(http) {
         this.http = http;
-        this.url = 'http://localhost:7070/typeMachine';
+        this.url = 'http://45.55.95.110:7070/typeMachine';
         this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
         this.typeMachineData = new __WEBPACK_IMPORTED_MODULE_1__typeMachine__["a" /* TypeMachineData */]();
     }
@@ -16123,7 +16123,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var BusinessDataService = (function () {
     function BusinessDataService(http) {
         this.http = http;
-        this.url = 'http://localhost:7070/gnrproject';
+        this.url = 'http://45.55.95.110:7070/gnrproject';
         this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
         this.businessData = new __WEBPACK_IMPORTED_MODULE_1__businessData__["a" /* BusinessData */]();
     }
@@ -16231,7 +16231,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var ContactsService = (function () {
     function ContactsService(http) {
         this.http = http;
-        this.url = 'http://localhost:7070/informationContacts';
+        this.url = 'http://45.55.95.110:7070/informationContacts';
         this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
         this.contacts = new __WEBPACK_IMPORTED_MODULE_1__contactsData__["a" /* ContactsData */]();
     }
@@ -16339,7 +16339,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var GeneralDataService = (function () {
     function GeneralDataService(http) {
         this.http = http;
-        this.url = 'http://localhost:7070/customers';
+        this.url = 'http://45.55.95.110:7070/customers';
         this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
         this.generalData = new __WEBPACK_IMPORTED_MODULE_1__generalData__["a" /* GeneralData */]();
     }
@@ -16447,7 +16447,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var OppositionService = (function () {
     function OppositionService(http) {
         this.http = http;
-        this.url = 'http://localhost:7070/competition';
+        this.url = 'http://45.55.95.110:7070/competition';
         this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
         this.opposition = new __WEBPACK_IMPORTED_MODULE_1__opposition__["a" /* OppositionData */]();
     }
@@ -16556,7 +16556,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var ServiceLevelsService = (function () {
     function ServiceLevelsService(http) {
         this.http = http;
-        this.url = 'http://localhost:7070/serviceLevelAgreement';
+        this.url = 'http://45.55.95.110:7070/serviceLevelAgreement';
         this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
         this.serviceLevels = new __WEBPACK_IMPORTED_MODULE_1__serviceLevels__["a" /* ServiceLevelsData */]();
     }
@@ -16664,7 +16664,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var AnchorageService = (function () {
     function AnchorageService(http) {
         this.http = http;
-        this.url = 'http://localhost:7070/anchorage';
+        this.url = 'http://45.55.95.110:7070/anchorage';
         this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
         this.anchorageData = new __WEBPACK_IMPORTED_MODULE_1__anchorage__["a" /* AnchorageData */]();
     }
@@ -16772,7 +16772,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var BillingService = (function () {
     function BillingService(http) {
         this.http = http;
-        this.url = 'http://localhost:7070/billing';
+        this.url = 'http://45.55.95.110:7070/billing';
         this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
         this.billingData = new __WEBPACK_IMPORTED_MODULE_1__billing__["a" /* BillingData */]();
     }
@@ -16880,7 +16880,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var ContactHseqService = (function () {
     function ContactHseqService(http) {
         this.http = http;
-        this.url = 'http://localhost:7070/contactHseq';
+        this.url = 'http://45.55.95.110:7070/contactHseq';
         this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
         this.contactHseqData = new __WEBPACK_IMPORTED_MODULE_1__contactHseq__["a" /* ContactHseqData */]();
     }
@@ -16988,7 +16988,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var DateEspecialsService = (function () {
     function DateEspecialsService(http) {
         this.http = http;
-        this.url = 'http://localhost:7070/dateEspecials';
+        this.url = 'http://45.55.95.110:7070/dateEspecials';
         this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
         this.dateEspecialsData = new __WEBPACK_IMPORTED_MODULE_1__dateEspecials__["a" /* DateEspecialsData */]();
     }
@@ -17096,7 +17096,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var KeyAccountService = (function () {
     function KeyAccountService(http) {
         this.http = http;
-        this.url = 'http://localhost:7070/keyAccount';
+        this.url = 'http://45.55.95.110:7070/keyAccount';
         this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
         this.keyAccountData = new __WEBPACK_IMPORTED_MODULE_1__keyAccount__["a" /* KeyAccountData */]();
     }
@@ -17204,7 +17204,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var KeyBusinessService = (function () {
     function KeyBusinessService(http) {
         this.http = http;
-        this.url = 'http://localhost:7070/keyBusiness';
+        this.url = 'http://45.55.95.110:7070/keyBusiness';
         this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
         this.keyBusinessData = new __WEBPACK_IMPORTED_MODULE_1__keyBusiness__["a" /* KeyBusinessData */]();
     }
@@ -17312,7 +17312,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var ListPricesService = (function () {
     function ListPricesService(http) {
         this.http = http;
-        this.url = 'http://localhost:7070/listPrices';
+        this.url = 'http://45.55.95.110:7070/listPrices';
         this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
         this.listPricesData = new __WEBPACK_IMPORTED_MODULE_1__listPrices__["a" /* ListPricesData */]();
     }
@@ -17420,7 +17420,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var PurseService = (function () {
     function PurseService(http) {
         this.http = http;
-        this.url = 'http://localhost:7070/purse';
+        this.url = 'http://45.55.95.110:7070/purse';
         this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
         this.purseData = new __WEBPACK_IMPORTED_MODULE_1__purse__["a" /* PurseData */]();
     }
@@ -17528,7 +17528,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var RegionalsService = (function () {
     function RegionalsService(http) {
         this.http = http;
-        this.url = 'http://localhost:7070/regionals';
+        this.url = 'http://45.55.95.110:7070/regionals';
         this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
         this.regionalsData = new __WEBPACK_IMPORTED_MODULE_1__regionals__["a" /* RegionalsData */]();
     }
@@ -17636,7 +17636,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var SectorService = (function () {
     function SectorService(http) {
         this.http = http;
-        this.url = 'http://localhost:7070/keyAccount';
+        this.url = 'http://45.55.95.110:7070/keyAccount';
         this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
         this.sectorData = new __WEBPACK_IMPORTED_MODULE_1__sector__["a" /* SectorData */]();
     }
@@ -17744,7 +17744,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var TypeEmployeesService = (function () {
     function TypeEmployeesService(http) {
         this.http = http;
-        this.url = 'http://localhost:7070/typeEmployees';
+        this.url = 'http://45.55.95.110:7070/typeEmployees';
         this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
         this.typeEmployeesData = new __WEBPACK_IMPORTED_MODULE_1__typeEmployees__["a" /* TypeEmployeesData */]();
     }
@@ -17852,7 +17852,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var TypeNegociationService = (function () {
     function TypeNegociationService(http) {
         this.http = http;
-        this.url = 'http://localhost:7070/typeNegociation';
+        this.url = 'http://45.55.95.110:7070/typeNegociation';
         this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
         this.typeNegociationData = new __WEBPACK_IMPORTED_MODULE_1__typeNegociation__["a" /* TypeNegociationData */]();
     }

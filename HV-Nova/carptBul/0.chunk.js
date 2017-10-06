@@ -3992,7 +3992,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var RoleService = (function () {
     function RoleService(http) {
         this.http = http;
-        this.url = 'http://localhost:7070/role/findall';
+        this.url = 'http://45.55.95.110:7070/role/findall';
         this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
     }
     RoleService.prototype.getRole = function () {
@@ -4073,7 +4073,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var ViewUsersService = (function () {
     function ViewUsersService(http) {
         this.http = http;
-        this.url = 'http://localhost:7070/user';
+        this.url = 'http://45.55.95.110:7070/user';
         this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
         this.user = new __WEBPACK_IMPORTED_MODULE_1__users__["a" /* Users */]();
     }
