@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class PurseService {
 
-  private url = 'http://45.55.95.110:7070/purse';
+  private url = 'http://localhost:7070/purse';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private purseData: PurseData = new PurseData();
 

@@ -5,16 +5,19 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/catch';
+import { Utilidades } from '../Utilidades.service';
 
 @Injectable()
 
 export class GeneralDataService {
 
-  private url = 'http://45.55.95.110:7070/clientes';
+  private url: string = '/clientes';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private generalData: GeneralData = new GeneralData();
 
-  constructor(private http: Http) {
+  constructor(private http: Http,
+    private util: Utilidades) {
+      this.url = util.getServidor + this.url;
 
   }
 
@@ -34,7 +37,7 @@ export class GeneralDataService {
       .catch(this.handleError);
   }
 
-  getGeneralData(id: number): Observable<GeneralData> {
+  getGeneralData(id: string): Observable<GeneralData> {
     const url = `${this.url}/find/${id}`;
     return this.http.get(url)
       .map(r => r.json())

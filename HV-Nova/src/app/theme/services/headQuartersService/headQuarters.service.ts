@@ -5,17 +5,18 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/catch';
-
+import { Utilidades } from '../Utilidades.service';
 @Injectable()
 
 export class HeadQuartersService {
 
-  private url = 'http://45.55.95.110:7070/sede';
+  private url = '/sede';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private headQuarters: HeadQuarters = new HeadQuarters();
 
-  constructor(private http: Http) {
-
+  constructor(private http: Http,
+  private util: Utilidades) {
+  this.url = util.getServidor + this.url;
   }
 
 

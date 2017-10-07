@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
@@ -11,7 +11,7 @@ import { SectorData } from '../../../../theme/services/totalService/SectorData';
 import { TypeEmployeesService } from '../../../../theme/services/totalService/typeEmployees.service';
 import { TipoEmpleadoData } from '../../../../theme/services/totalService/TipoEmpleadoData';
 import { IMyDpOptions } from 'mydatepicker';
-import { datosbasicos } from '../../../../theme/services/datosBasicos';
+import { chache } from '../../../../theme/services/chache';
 @Component({
   selector: 'headquarters',
   templateUrl: './headquarters.html',
@@ -20,7 +20,7 @@ import { datosbasicos } from '../../../../theme/services/datosBasicos';
 export class Headquarters {
 
   msgError: string;
-  idCliente: number;
+  @Input() idCliente: number;
   headQuarters: HeadQuarters[];
   headQuarter: HeadQuarters = new HeadQuarters();
   typeEmployeesDatas: TipoEmpleadoData[];
@@ -36,7 +36,7 @@ export class Headquarters {
     private _headQuartersService: HeadQuartersService,
     private _sectorDataService: SectorService,
     private _typeEmployeesDataService: TypeEmployeesService,
-    private datosb: datosbasicos,
+    private chache: chache,
 
 ) {
 
@@ -48,7 +48,7 @@ export class Headquarters {
 
   ngOnitInit() {
 
-      this.idCliente = this.datosb.getid();
+      this.idCliente = this.chache.getid();
   }
 
 
@@ -58,8 +58,8 @@ export class Headquarters {
   }
 
   consultaSectoresCliente() {
-    if( this.datosb.getid() != null) {
-      this._headQuartersService.getSectoresCliente(this.datosb.getid())
+    if( this.chache.getid() != null) {
+      this._headQuartersService.getSectoresCliente(this.chache.getid())
       .subscribe(sectoresClientes => this.sectoresClientes = sectoresClientes, error => this.msgError = <any>error);
     }
 

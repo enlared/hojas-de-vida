@@ -4,7 +4,7 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 
 @Injectable()
 
-export class datosbasicos {
+export class chache {
 
   private  id:number ;
   constructor() {

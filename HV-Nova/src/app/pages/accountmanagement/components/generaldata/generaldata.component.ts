@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import { Component, Input,Output } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
@@ -17,15 +17,16 @@ import { EjecutivoNegocios } from '../../../../theme/services/totalService/Ejecu
 import { TipoCliente } from '../../../../theme/services/totalService/TipoCliente';
 import { TipoClienteService } from '../../../../theme/services/totalService/TipoCliente.service';
 import { IMyDpOptions } from 'mydatepicker';
-import { datosbasicos } from '../../../../theme/services/datosBasicos';
+import { chache } from '../../../../theme/services/chache';
 
 @Component({
   selector: 'generaldata',
   templateUrl: './generaldata.html',
-  styleUrls: ['./generaldata.scss']
+  styleUrls: ['./generaldata.scss'],
 })
 
 export class Generaldata {
+
   msgError: string;
   mostrarDataCliente: boolean= false;
   dataEdicion: boolean= false;
@@ -45,7 +46,7 @@ export class Generaldata {
 
   regionalsData: RegionalsData = new RegionalsData();
   regionalsDatas: RegionalsData[];
-  @Input() idCliente: string;
+  @Output() idCliente: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -56,7 +57,7 @@ export class Generaldata {
     private _headQuartersDataService: HeadQuartersService,
     private _regionalsDataService: RegionalsService,
     private _tipoClienteService: TipoClienteService,
-    private datosb: datosbasicos,
+    private chache: chache,
   ) {
 
 this.loadKeyAccounts();
@@ -66,19 +67,21 @@ this.loadHeadQuarters();
 this.loadTipoCliente();
   }
 
-  public myDatePickerOptions: IMyDpOptions = {
+  myDatePickerOptions: IMyDpOptions = {
     dateFormat: 'yyyy-mm-dd',
   };
 
   ngOnitInit() {
-    this.datosb.setid(this.generalData.id);
-    this.dataEdicion = false;
 
+    if( this.chache!=null){
+      this.dataEdicion = true;
+      this.consultarId();
+         }
   }
 
 
   resetForm() {
-    if (confirm("¿Desea cancelar la acción?") == true) {
+    if (confirm('¿Desea cancelar la acción?')) {
       this.generalData = new GeneralData();
       this.generalData.fechaFinObjeto = null;
       this.generalData.fechaInicioObjeto = null;
@@ -88,11 +91,11 @@ this.loadTipoCliente();
 
   }
   goSedes() {
-    if (confirm("¿Desea guardar y agregar una Sede?") == true) {
-      this.route.snapshot.params['id']
-      this.datosb.setid(this.generalData.id);
+    if (confirm('¿Desea guardar y agregar una Sede?')) {
+      this.route.snapshot.params['id'];
+      this.chache.setid(this.generalData.id);
       //this.saveGeneralData();
-      let link = ['pages/accountmanagement/headquarters'];
+      const link = ['pages/accountmanagement/headquarters'];
       this.router.navigate(link);
     }
 
@@ -127,7 +130,7 @@ this.loadTipoCliente();
 
   saveGeneralData() {
 
-    if (confirm("¿Desea guardar?") == true) {
+    if (confirm('¿Desea guardar?')) {
       this.generalData.fechafin = this.generalData.fechaFinObjeto.formatted;
       this.generalData.fechainicio = this.generalData.fechaInicioObjeto.formatted;
 
@@ -140,7 +143,7 @@ this.loadTipoCliente();
     }
     this.dataEdicion = true;
 
-    alert("Cliente Guardado Con exito");
+    alert('Cliente Guardado Con exito');
   }
 
   cargarConsulta(datos: GeneralData) {
@@ -155,10 +158,10 @@ this.loadTipoCliente();
 
   }
 
-  seleccionarTipoCliente(tipoCliente: TipoCliente){
+  seleccionarTipoCliente(tipoCliente: TipoCliente) {
     let tipoClienteSeleccion;
     this.tipoClientes.forEach(element => {
-      if( tipoCliente.id === element.id ) {
+      if ( tipoCliente.id === element.id ) {
         tipoClienteSeleccion = element;
       }
     });
@@ -166,36 +169,36 @@ this.loadTipoCliente();
   }
 
   crearFechaDate( formater) {
-    var dato= new Date(formater);
+    let dato = new Date(formater);
 
-    var fecha = {
-      "date" : {
-         "year": dato.getFullYear(),
-         "month": dato.getMonth() + 1,
-         "day": dato.getDate(),
+    let fecha = {
+      'date' : {
+         'year': dato.getFullYear(),
+         'month': dato.getMonth() + 1,
+         'day': dato.getDate(),
       },
-      "jsdate": formater + "T05:00:00.000Z",
-      "formatted": formater,
-      "epoc": 1507438800
+      'jsdate': formater + 'T05:00:00.000Z',
+      'formatted': formater,
+      'epoc': 1507438800,
    };
 
    return fecha;
   }
 
-  seleccionarEjecutivoNegocio(ejecutivo: EjecutivoNegocios){
+  seleccionarEjecutivoNegocio(ejecutivo: EjecutivoNegocios) {
     let seleccion;
     this.keyBusinessDatas.forEach(element => {
-      if( ejecutivo.id === element.id ) {
+      if ( ejecutivo.id === element.id ) {
         seleccion = element;
       }
     });
     return seleccion;
   }
 
-  seleccionarEjecutivoCuenta(ejecutivo: EjecutivoCuenta){
+  seleccionarEjecutivoCuenta(ejecutivo: EjecutivoCuenta) {
     let seleccion;
     this.keyAccountDatas.forEach(element => {
-      if( ejecutivo.id === element.id ) {
+      if ( ejecutivo.id === element.id ) {
         seleccion = element;
       }
     });
@@ -205,17 +208,29 @@ this.loadTipoCliente();
   seleccionarRegional(regional: RegionalsData) {
     let seleccion;
     this.regionalsDatas.forEach(element => {
-      if( regional.id === element.id ) {
+      if ( regional.id === element.id ) {
         seleccion = element;
       }
     });
     return seleccion;
   }
 
-  consultarCliente(){
+  consultarCliente() {
     this.mostrarDataCliente = true;
 
     this._generalDataService.consultarClienteCodigoSap(this.generalData)
+    .subscribe(
+    rt =>   this.cargarConsulta(rt),
+    error => this.msgError = <any>error,
+    () => console.log('Terminado'),
+  );
+  }
+
+
+  consultarId() {
+    this.mostrarDataCliente = true;
+
+    this._generalDataService.getGeneralData(this.idCliente)
     .subscribe(
     rt =>   this.cargarConsulta(rt),
     error => this.msgError = <any>error,

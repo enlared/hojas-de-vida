@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class SectorService {
 
-  private url = 'http://45.55.95.110:7070/sector';
+  private url = 'http://localhost:7070/sector';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private sectorData: SectorData = new SectorData();
 

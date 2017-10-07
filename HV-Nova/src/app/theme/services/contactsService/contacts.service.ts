@@ -5,26 +5,29 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/catch';
+import { Utilidades } from '../Utilidades.service';
 
 @Injectable()
 
 export class ContactsService {
 
-  private url = 'http://45.55.95.110:7070/informationContacts';
+  private url = '/informationContacts';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private contacts: ContactsData = new ContactsData();
 
-  constructor(private http: Http) {
+  constructor(private http: Http,
+     private util: Utilidades) {
+    this.url = util.getServidor + this.url;
 
   }
 
-  
+
   deleteContacts(id: number)  {
     let url = `${this.url}/delete/${id}`;
     return this.http.delete(url)
       .map(r => r.json())
       .catch(this.handleError);
-  }  
+  }
 
 
   getContacts(): Observable<ContactsData[]> {
@@ -66,7 +69,7 @@ export class ContactsService {
       let body = error.json() || '';
       let err = body.error || JSON.stringify(body);
       errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-  
+
     } else {
 
       errMsg = error.message ? error.message : error.toString();
