@@ -1,5 +1,8 @@
 package com.nova.MsHv.rest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +53,49 @@ public class NegocioRestController {
 		return negocio;
 	}
 
+	@RequestMapping(value = "negocio/findCliente", method = RequestMethod.POST)
+	@ResponseBody
+
+	public List<Negocio> getnegocioCliente(@RequestBody Negocio data) throws NovaHVDaoException {
+		List<Negocio> datos = new ArrayList<>();
+
+		PropertyConfigurator.configure("log4j.properties");
+		log.info("Log4j for method find one in head Negocio");
+		try {
+			if(data!=null && data.getClienteid()!=null){
+				datos = negocioImpl.consultaNegociosPorCliente(data.getClienteid());
+			}
+
+		} catch (Exception e) {
+			log.error("Log4j Error in Method Find for  Negocio " + e);
+			throw new NovaHVDaoException(e);
+
+		}
+
+		return datos;
+	}
+	
+	/**
+	 * Method for Delete one headquartes
+	 * 
+	 * @param idhqrt
+	 *            ID the headquartes
+	 * @return 
+	 * @throws NovaHVDaoException
+	 */
+	@RequestMapping(value = "negocio/delete", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean getDelete(@RequestBody Negocio negocio) throws NovaHVDaoException {
+
+		PropertyConfigurator.configure("log4j.properties");
+		log.info("Log4j method Delete for head Negocio");
+		try {
+			negocioImpl.eliminar(negocio);
+			return true;
+		} catch (Exception e) {
+			throw new NovaHVDaoException(e);
+		}
+
+	}
 
 }

@@ -17,6 +17,7 @@ import { CategoryService } from '../../../../theme/services/totalService/categor
 import { CategoryData } from '../../../../theme/services/totalService/category';
 import { ListPricesService } from '../../../../theme/services/totalService/listPrices.service';
 import { ListPricesData } from '../../../../theme/services/totalService/listPrices';
+import { chache } from '../../../../theme/services/chache';
 
 @Component({
   selector: 'businessdata',
@@ -38,6 +39,8 @@ export class Businessdata {
   anchorageData: AnchorageData = new AnchorageData();
   typeNegociationDatas: TypeNegociationData[];
   typeNegociationData: TypeNegociationData = new TypeNegociationData();
+  businessLists: BusinessData[];
+  cliente: BusinessData = new BusinessData();
 
   constructor(
     private route: ActivatedRoute,
@@ -48,28 +51,30 @@ export class Businessdata {
     private _listPricesDataService: ListPricesService,
     private _categoryDataService: CategoryService,
     private _anchorageDataService: AnchorageService,
-
+    private cache: chache,
   ) {
 
-this.loadAnchorage();
-this.loadCategory();
-this.loadInformationBusiness();
-this.loadListPrices();
-this.loadTypeMachine();
-this.loadTypeNegociation();
+    this.loadAnchorage();
+    this.loadCategory();
+    this.loadListPrices();
+    this.loadTypeMachine();
+    this.loadTypeNegociation();
+    this.loadInformationBusiness();
 
   }
 
   ngOnitInit() {
-    let id = this.route.snapshot.params['id'];
-    if (!id) return;
-    console.log(id);
+    if (this.cache.getid() === null || this.cache.getid() === undefined) {
+      const link = ['pages/accountmanagement/Generaldata'];
+      this.router.navigate(link);
+    }
+    this.loadInformationBusiness();
   }
 
 
   resetForm() {
     if (confirm("¿Desea cancelar la acción?") == true) {
-      this.businessData= new BusinessData();
+      this.businessData = new BusinessData();
 
     }
 
@@ -81,52 +86,125 @@ this.loadTypeNegociation();
       let link = ['pages/accountmanagement/contacts'];
       this.router.navigate(link);
     }
-
+    this.loadInformationBusiness();
 
   }
 
   loadTypeMachine() {
     this._typeMachineDataService.getTypeMachine()
-    .subscribe(typeMachineDatas => this.typeMachineDatas = typeMachineDatas, error => this.msgError = <any>error);
+      .subscribe(typeMachineDatas => this.typeMachineDatas = typeMachineDatas, error => this.msgError = <any>error);
   }
 
   loadTypeNegociation() {
     this._typeNegociationDataService.getTypeNegociation()
-    .subscribe(typeNegociationDatas =>
-    this.typeNegociationDatas = typeNegociationDatas, error => this.msgError = <any>error);
+      .subscribe(typeNegociationDatas =>
+        this.typeNegociationDatas = typeNegociationDatas, error => this.msgError = <any>error);
   }
 
   loadCategory() {
     this._categoryDataService.getCategory()
-    .subscribe(categoryDatas => this.categoryDatas = categoryDatas, error => this.msgError = <any>error);
+      .subscribe(categoryDatas => this.categoryDatas = categoryDatas, error => this.msgError = <any>error);
   }
 
   loadAnchorage() {
     this._anchorageDataService.getAnchorage()
-    .subscribe(anchorageDatas => this.anchorageDatas = anchorageDatas, error => this.msgError = <any>error);
+      .subscribe(anchorageDatas => this.anchorageDatas = anchorageDatas, error => this.msgError = <any>error);
   }
 
   loadListPrices() {
     this._listPricesDataService.getListPrices()
-    .subscribe(listPricesDatas => this.listPricesDatas = listPricesDatas, error => this.msgError = <any>error);
+      .subscribe(listPricesDatas => this.listPricesDatas = listPricesDatas, error => this.msgError = <any>error);
   }
 
   loadInformationBusiness() {
-    this._businessDataService.getBusinessDatas()
-    .subscribe(businessDatas => this.businessDatas = businessDatas, error => this.msgError = <any>error);
+    this.cliente.clienteid = this.cache.getid();
+    this._businessDataService.getClienteBusinessData(this.cliente)
+      .subscribe(businessLists => this.businessLists = businessLists, error => this.msgError = <any>error);
   }
 
   saveBusinessData() {
     if (confirm("¿Desea guardar un Negocio?") == true) {
-
+      this.businessData.clienteid = this.cache.getid();
       this._businessDataService.addBusinessData(this.businessData)
         .subscribe(
-        rt => console.log(rt),
+        rt => this.actualizar(rt),
+        error => this.msgError = <any>error,
+        () => console.log('Terminado'),
+      );
+    }
+  }
+  actualizar(data) {
+    this.loadInformationBusiness();
+
+  }
+
+  eliminar(data: BusinessData) {
+    if (confirm('¿Desea eliminar la Sede?')) {
+      this._businessDataService.deleteBusinessData( data )
+        .subscribe(
+        rt => this.actualizar(rt),
         error => this.msgError = <any>error,
         () => console.log('Terminado'),
       );
     }
   }
 
+  editar(data: BusinessData) {
+    this.businessData = data;
+    this.businessData.categoria = this.seleccionarCategoria(data.categoria);
+    this.businessData.tipoNegociacion = this.seleccionarTipoNegocio(data.tipoNegociacion);
+    this.businessData.anclaje = this.seleccionarAnclaje(data.anclaje);
+    this.businessData.listaPrecio = this.seleccionarLIstaPrecio(data.listaPrecio);
+    this.businessData.tipoMaquina = this.seleccionarTipoMaquina(data.tipoMaquina);
+  }
 
+  seleccionarTipoMaquina(ejecutivo: TypeMachineData) {
+    let seleccion;
+    this.typeMachineDatas.forEach(element => {
+      if ( ejecutivo.id === element.id ) {
+        seleccion = element;
+      }
+    });
+    return seleccion;
+  }
+
+  seleccionarLIstaPrecio(data: ListPricesData) {
+    let seleccion;
+    this.listPricesDatas.forEach(element => {
+      if ( data.id === element.id ) {
+        seleccion = element;
+      }
+    });
+    return seleccion;
+  }
+
+  seleccionarAnclaje(data: AnchorageData) {
+    let seleccion;
+    this.anchorageDatas.forEach(element => {
+      if ( data.id === element.id ) {
+        seleccion = element;
+      }
+    });
+    return seleccion;
+  }
+
+  seleccionarTipoNegocio(data: TypeNegociationData) {
+    let seleccion;
+    this.typeNegociationDatas.forEach(element => {
+      if ( data.id === element.id ) {
+        seleccion = element;
+      }
+    });
+    return seleccion;
+  }
+
+  seleccionarCategoria(data: CategoryData) {
+    let seleccion;
+    this.categoryDatas.forEach(element => {
+      if ( data.id === element.id ) {
+        seleccion = element;
+      }
+    });
+    return seleccion;
+  }
 }

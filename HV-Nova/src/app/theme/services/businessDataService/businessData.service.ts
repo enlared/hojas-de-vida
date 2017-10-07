@@ -23,24 +23,9 @@ export class BusinessDataService {
   }
 
 
-  deleteBusinessData(id: number)  {
-    let url = `${this.url}/delete/${id}`;
-    return this.http.delete(url)
-      .map(r => r.json())
-      .catch(this.handleError);
-  }
-
-
-  getBusinessDatas(): Observable<BusinessData[]> {
-    let url = `${this.url}/findall`;
-    return this.http.get(url)
-      .map(r => r.json())
-      .catch(this.handleError);
-  }
-
-  getBusinessData(id: number): Observable<BusinessData> {
-    const url = `${this.url}/find/${id}`;
-    return this.http.get(url)
+  deleteBusinessData(data: BusinessData)  {
+    let url = `${this.url}/delete/`;
+    return this.http.post(url, data)
       .map(r => r.json())
       .catch(this.handleError);
   }
@@ -53,11 +38,9 @@ export class BusinessDataService {
       .catch(this.handleError);
   }
 
-  putBusinessData(businessData: BusinessData) {
-
-    let url = `${this.url}/edit/${businessData.id}`;
-    let iJson = JSON.stringify(businessData);
-    return this.http.put(url, iJson, { headers: this.headers })
+  getClienteBusinessData(clienteid: BusinessData): Observable<BusinessData[]> {
+    const url = `${this.url}/findCliente`;
+    return this.http.post(url, clienteid)
       .map(r => r.json())
       .catch(this.handleError);
 

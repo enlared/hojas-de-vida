@@ -1,5 +1,7 @@
 package com.nova.MsHv.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +16,14 @@ public class NegocioImpl {
 	
 	public Negocio save(Negocio data){
 		return negocioDAO.save(data);
+	}
+	
+	public boolean eliminar(Negocio data){
+		 negocioDAO.delete(data);
+		 return true;
+	}
+	
+	public List<Negocio> consultaNegociosPorCliente(int data){
+		return negocioDAO.findByClienteid(data);
 	}
 }

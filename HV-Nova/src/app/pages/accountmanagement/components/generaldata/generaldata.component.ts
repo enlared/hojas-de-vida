@@ -73,7 +73,7 @@ this.loadTipoCliente();
 
   ngOnitInit() {
 
-    if( this.chache!=null){
+    if( this.chache!= null){
       this.dataEdicion = true;
       this.consultarId();
          }
@@ -147,6 +147,7 @@ this.loadTipoCliente();
   }
 
   cargarConsulta(datos: GeneralData) {
+    this.chache.setid(datos.id);
     this.dataEdicion = true;
     this.generalData = datos;
     this.generalData.fechaFinObjeto = this.crearFechaDate ( datos.fechafin);

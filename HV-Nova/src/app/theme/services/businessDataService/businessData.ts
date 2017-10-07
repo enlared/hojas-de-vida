@@ -8,13 +8,13 @@ import { CategoryData } from '../totalService/category';
 export class BusinessData {
 
 id: number;
-clienteId: number;
+clienteid: number;
 numeroMaquina: number;
 tipoVasoId: number;
 totalsale: number;
 anclaje: AnchorageData;
 tipoNegociacion: TypeNegociationData;
-numeromaquina: TypeMachineData;
+tipoMaquina: TypeMachineData;
 listaPrecio: ListPricesData;
 categoria: CategoryData;
 

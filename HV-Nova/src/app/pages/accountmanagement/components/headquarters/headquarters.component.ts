@@ -28,7 +28,6 @@ export class Headquarters {
   sectorData: SectorData = new SectorData();
   sectorDatas: SectorData[];
   sectoresClientes: HeadQuarters[];
-  sectoresCli: HeadQuarters = new HeadQuarters();
 
   constructor(
     private route: ActivatedRoute,
@@ -153,5 +152,3 @@ export class Headquarters {
     this.consultaSectoresCliente();
   }
 }
-
-
