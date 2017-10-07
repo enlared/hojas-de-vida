@@ -110,8 +110,32 @@ export class Headquarters {
 
   }
   editar(data) {
-    this.headQuarter=data;
+    this.headQuarter = data;
+    this.headQuarter.tipoempleado = this.seleccionarTipoEmpleado(data.tipoempleado);
+    this.headQuarter.sector = this.seleccionarSector(data.sector);
+
   }
+
+  seleccionarTipoEmpleado(data: TipoEmpleadoData): TipoEmpleadoData {
+    let seleccion;
+    this.typeEmployeesDatas.forEach(element => {
+      if ( element.id === data.id) {
+        seleccion = element;
+      }
+    });
+  return seleccion;
+  }
+
+  seleccionarSector(data: SectorData): SectorData {
+    let seleccion;
+    this.sectorDatas.forEach(element => {
+      if ( element.id === data.id) {
+        seleccion = element;
+      }
+    });
+  return seleccion;
+  }
+
   eliminar(data) {
 
     if (confirm('¿Desea eliminar la Sede?')) {
