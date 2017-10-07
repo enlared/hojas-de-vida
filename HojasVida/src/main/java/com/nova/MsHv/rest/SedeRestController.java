@@ -112,17 +112,18 @@ public class SedeRestController {
 	 * 
 	 * @param data
 	 *            for the new head quarters
+	 * @return 
 	 * @throws NovaHVRestException
 	 */
 
 	@RequestMapping(value = "sede/save", method = RequestMethod.POST)
 	@ResponseBody
-	public void setHeadQuarters(@RequestBody Sede sede) throws NovaHVRestException {
+	public Sede setHeadQuarters(@RequestBody Sede sede) throws NovaHVRestException {
 
 		PropertyConfigurator.configure("log4j.properties");
 		log.info("Log4j method save for head Sede");
 		try {
-			sedeDAO.save(sede);
+			return sedeDAO.save(sede);
 		} catch (Exception e) {
 			log.error("Log4j Error in method Save for head Sede " + e);
 			throw new NovaHVRestException(e);
@@ -162,17 +163,18 @@ public class SedeRestController {
 	 * 
 	 * @param idhqrt
 	 *            ID the headquartes
+	 * @return 
 	 * @throws NovaHVDaoException
 	 */
-
-	@RequestMapping(method = RequestMethod.DELETE, path = "sede/delete/{id}")
+	@RequestMapping(value = "sede/delete", method = RequestMethod.POST)
 	@ResponseBody
-	public void getDeleteSede(@PathVariable("id") long id) throws NovaHVDaoException {
+	public boolean getDeleteSede(@RequestBody Sede headQuarters) throws NovaHVDaoException {
 
 		PropertyConfigurator.configure("log4j.properties");
 		log.info("Log4j method Delete for head quartes");
 		try {
-			sedeDAO.delete(id);
+			sedeDAO.delete(headQuarters);
+			return true;
 		} catch (Exception e) {
 			throw new NovaHVDaoException(e);
 		}

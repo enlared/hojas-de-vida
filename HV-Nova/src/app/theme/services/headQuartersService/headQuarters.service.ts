@@ -20,9 +20,9 @@ export class HeadQuartersService {
   }
 
 
-  deleteHeadQuartes(id: number)  {
-    let url = `${this.url}/delete/${id}`;
-    return this.http.delete(url)
+  deleteHeadQuartes(id: HeadQuarters)  {
+    let url = `${this.url}/delete`;
+    return this.http.post(url, id)
       .map(r => r.json())
       .catch(this.handleError);
   }

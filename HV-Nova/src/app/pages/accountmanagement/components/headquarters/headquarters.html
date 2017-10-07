@@ -81,7 +81,6 @@
 								<button class="btn btn-primary" name="buttonSave" (click)="goBusiness()">Sedes</button>
 								<button class="btn btn-success" (click)="saveHeadQuarters()">Guardar</button>
                 <button class="btn btn-info" (click)="  consultaSectoresCliente()">Cancelar</button>
-                <button class="btn btn-info" (click)="consultaSectoresCliente()">Actualizar</button>
 
 							</div>
 
@@ -89,7 +88,7 @@
 			</div>
     </div>
     <div class="panel panel-default">
-      <div class="panel-heading">Información de usuarios</div>
+      <div class="panel-heading">Información de sedes</div>
       <table class="table table-striped" >
         <thead>
           <tr>
@@ -102,6 +101,10 @@
             <th style="width: 20%">
               Sector:
             </th>
+
+            <th style="width: 20%">
+              Acción:
+            </th>
           <tr>
          </thead>
         <tbody>
@@ -109,6 +112,11 @@
             <td>{{data.tipoempleado.nombre}}</td>
             <td> {{data.cantidadempleados}}</td>
             <td> {{data.sector.nombre}}</td>
+            <td>
+              <button class="glyphicon .glyphicon-trash btn btn-info" (click)="eliminar(data)" name="eliminarSector"  ><i class="fa fa-eraser" aria-hidden="true"></i></button>
+              <button class=".glyphicon-trash btn btn-info"  (click)="editar(data)" name="editarSector"  ><i class="fa fa-pencil" aria-hidden="true"></i></button>
+
+            </td>
           </tr>
         </tbody>
 

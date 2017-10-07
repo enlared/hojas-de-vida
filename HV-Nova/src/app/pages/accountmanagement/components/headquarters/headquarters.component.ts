@@ -15,7 +15,7 @@ import { chache } from '../../../../theme/services/chache';
 @Component({
   selector: 'headquarters',
   templateUrl: './headquarters.html',
-  styleUrls: ['./headquarters.scss']
+  styleUrls: ['./headquarters.scss'],
 })
 export class Headquarters {
 
@@ -38,50 +38,54 @@ export class Headquarters {
     private _typeEmployeesDataService: TypeEmployeesService,
     private chache: chache,
 
-) {
+  ) {
 
-  this.loadSector();
-  this.loadTypeEmployees();
-  this.ngOnitInit();
-  this.consultaSectoresCliente();
+    this.loadSector();
+    this.loadTypeEmployees();
+    this.ngOnitInit();
+    this.consultaSectoresCliente();
   }
 
   ngOnitInit() {
 
-      this.idCliente = this.chache.getid();
+    this.idCliente = this.chache.getid();
+    if (this.chache.getid() == null || this.chache.getid() == undefined) {
+      const link = ['pages/accountmanagement/Generaldata'];
+      this.router.navigate(link);
+    }
   }
 
 
   loadTypeEmployees() {
     this._typeEmployeesDataService.getTypeEmployees()
-    .subscribe(typeEmployeesDatas => this.typeEmployeesDatas = typeEmployeesDatas, error => this.msgError = <any>error);
+      .subscribe(typeEmployeesDatas => this.typeEmployeesDatas = typeEmployeesDatas, error => this.msgError = <any>error);
   }
 
   consultaSectoresCliente() {
-    if( this.chache.getid() != null) {
+    if (this.chache.getid() != null) {
       this._headQuartersService.getSectoresCliente(this.chache.getid())
-      .subscribe(sectoresClientes => this.sectoresClientes = sectoresClientes, error => this.msgError = <any>error);
+        .subscribe(sectoresClientes => this.sectoresClientes = sectoresClientes, error => this.msgError = <any>error);
     }
 
   }
 
   loadSector() {
     this._sectorDataService.getSector()
-    .subscribe(sectorDatas => this.sectorDatas = sectorDatas, error => this.msgError = <any>error);
+      .subscribe(sectorDatas => this.sectorDatas = sectorDatas, error => this.msgError = <any>error);
   }
 
   resetForm() {
-    if(confirm("¿Desea cancelar la acción?")==true){
-      this.headQuarter=new HeadQuarters();
+    if (confirm('¿Desea cancelar la acción?')) {
+      this.headQuarter = new HeadQuarters();
 
     }
 
   }
   goBusiness() {
-    if(confirm("¿Desea guardar y agregar un Negocio?")==true){
+    if (confirm('¿Desea guardar y agregar un Negocio?')) {
 
       //this.saveHeadQuarters();
-      let link = ['pages/accountmanagement/businessdata'];
+      const link = ['pages/accountmanagement/businessdata'];
       this.router.navigate(link);
     }
 
@@ -90,20 +94,40 @@ export class Headquarters {
 
   saveHeadQuarters() {
 
-    if(this.idCliente===null || this.idCliente===undefined){
-      alert("Es necesario buscar el cliente");
+    if (this.idCliente === null || this.idCliente === undefined) {
+      alert('Es necesario buscar el cliente');
       return;
     }
-    if(confirm("¿Desea guardar una Sede?")==true){
-      this.headQuarter.clienteid= this.idCliente;
-     this._headQuartersService.addHeadQuarter(this.headQuarter)
-       .subscribe(
-       rt => console.log(rt),
-       error => this.msgError = <any>error,
-       () => console.log('Terminado'),
-       );
+    if (confirm('¿Desea guardar una Sede?')) {
+      this.headQuarter.clienteid = this.idCliente;
+      this._headQuartersService.addHeadQuarter(this.headQuarter)
+        .subscribe(
+        rt => this.actualizar(rt),
+        error => this.msgError = <any>error,
+        () => console.log('Terminado'),
+      );
     }
-    ;
+
+  }
+  editar(data) {
+    this.headQuarter=data;
+  }
+  eliminar(data) {
+
+    if (confirm('¿Desea eliminar la Sede?')) {
+      this._headQuartersService.deleteHeadQuartes(data)
+        .subscribe(
+        rt => this.actualizar(rt),
+        error => this.msgError = <any>error,
+        () => console.log('Terminado'),
+      );
+    }
+
   }
 
+  actualizar(rt) {
+    this.consultaSectoresCliente();
+  }
 }
+
+
