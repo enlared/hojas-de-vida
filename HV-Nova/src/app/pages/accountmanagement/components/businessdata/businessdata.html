@@ -26,7 +26,7 @@
         <div class="form-group col-md-6">
           <label for="numberMachine" class="control-label col-md-12">No Máquinas:</label>
           <div class="col-md-12">
-            <input type="number" class="form-control" name="numberMachine" id="numberMachine" placeholder="No Máquinas" [(ngModel)]="businessData.numeroMaquina"
+            <input type="number" class="form-control" name="numberMachine" id="numberMachine" placeholder="No Máquinas" [(ngModel)]="businessData.numeromaquina"
               #numbermachine="ngModel" required maxlength="200" minlength="3">
             <div *ngIf="numbermachine.errors">
               <div *ngIf="numbermachine.touched && !numbermachine.valid" class="alert alert-danger">
@@ -146,11 +146,6 @@
       </div>
       <div class="box-shadow-border"></div>
       <br>
-      <h4>Agregar otro tipo de máquina</h4>
-      <div>
-        <button class="btn btn-primary" (click)="saveBusinessData()">Agregar</button>
-
-      </div>
 
       <div class="form-group row">
         <div class="col-md-4">

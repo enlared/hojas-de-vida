@@ -10,6 +10,7 @@ import { PurseService } from '../../../../theme/services/totalService/purse.serv
 import { PurseData } from '../../../../theme/services/totalService/purse';
 import { ContactHseqService } from '../../../../theme/services/totalService/contactHseq.service';
 import { ContactHseqData } from '../../../../theme/services/totalService/contactHseq';
+import { cache } from '../../../../theme/services/cache';
 
 import { IMyDpOptions } from 'mydatepicker';
 
@@ -29,13 +30,12 @@ export class Contacts {
   contactHseqDatas: ContactHseqData[];
 
   constructor(
-
-
     private route: ActivatedRoute,
     private router: Router,
     private _contactsDataService: ContactsService,
     private _purseDataService: PurseService,
     private _contactHseqService: ContactHseqService,
+    private cache: cache,
   ) {
 
     this.loadContacts();
@@ -43,9 +43,10 @@ export class Contacts {
   }
 
   ngOnitInit() {
-    let id = this.route.snapshot.params['id'];
-    if (!id) return;
-    console.log(id);
+    if (this.cache.getid() === null || this.cache.getid() === undefined) {
+      const link = ['pages/accountmanagement/Generaldata'];
+      this.router.navigate(link);
+    }
   }
 
   loadContacts() {
@@ -55,7 +56,7 @@ export class Contacts {
 
   resetForm() {
     if (confirm("¿Desea cancelar la acción?") === true) {
- 
+
 
     }
 
@@ -83,5 +84,5 @@ export class Contacts {
       );
     }
   }
- 
+
 }

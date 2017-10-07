@@ -9,7 +9,7 @@ export class BusinessData {
 
 id: number;
 clienteid: number;
-numeroMaquina: number;
+numeromaquina: number;
 tipoVasoId: number;
 totalsale: number;
 anclaje: AnchorageData;

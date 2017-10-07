@@ -11,7 +11,7 @@ import { SectorData } from '../../../../theme/services/totalService/SectorData';
 import { TypeEmployeesService } from '../../../../theme/services/totalService/typeEmployees.service';
 import { TipoEmpleadoData } from '../../../../theme/services/totalService/TipoEmpleadoData';
 import { IMyDpOptions } from 'mydatepicker';
-import { chache } from '../../../../theme/services/chache';
+import { cache } from '../../../../theme/services/cache';
 @Component({
   selector: 'headquarters',
   templateUrl: './headquarters.html',
@@ -35,7 +35,7 @@ export class Headquarters {
     private _headQuartersService: HeadQuartersService,
     private _sectorDataService: SectorService,
     private _typeEmployeesDataService: TypeEmployeesService,
-    private chache: chache,
+    private cache: cache,
 
   ) {
 
@@ -47,8 +47,8 @@ export class Headquarters {
 
   ngOnitInit() {
 
-    this.idCliente = this.chache.getid();
-    if (this.chache.getid() == null || this.chache.getid() == undefined) {
+    this.idCliente = this.cache.getid();
+    if (this.cache.getid() == null || this.cache.getid() == undefined) {
       const link = ['pages/accountmanagement/Generaldata'];
       this.router.navigate(link);
     }
@@ -61,8 +61,8 @@ export class Headquarters {
   }
 
   consultaSectoresCliente() {
-    if (this.chache.getid() != null) {
-      this._headQuartersService.getSectoresCliente(this.chache.getid())
+    if (this.cache.getid() != null) {
+      this._headQuartersService.getSectoresCliente(this.cache.getid())
         .subscribe(sectoresClientes => this.sectoresClientes = sectoresClientes, error => this.msgError = <any>error);
     }
 
@@ -82,8 +82,6 @@ export class Headquarters {
   }
   goBusiness() {
     if (confirm('¿Desea guardar y agregar un Negocio?')) {
-
-      //this.saveHeadQuarters();
       const link = ['pages/accountmanagement/businessdata'];
       this.router.navigate(link);
     }

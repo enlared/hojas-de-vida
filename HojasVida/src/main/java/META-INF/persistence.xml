@@ -16,5 +16,10 @@
 		<class>com.nova.MsHv.entidad.TipoVaso</class>
 		<class>com.nova.MsHv.entidad.ListaPrecio</class>
 		<class>com.nova.MsHv.entidad.Negocio</class>
+		<class>com.nova.MsHv.entidad.Contacto</class>
+		<class>com.nova.MsHv.entidad.GradoInfluencia</class>
+		<class>com.nova.MsHv.entidad.InfluenciaCompra</class>
+		<class>com.nova.MsHv.entidad.Modo</class>
+		<class>com.nova.MsHv.entidad.Regionale</class>
 	</persistence-unit>
 </persistence>

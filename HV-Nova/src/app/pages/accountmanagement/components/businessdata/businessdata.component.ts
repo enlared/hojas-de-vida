@@ -17,7 +17,7 @@ import { CategoryService } from '../../../../theme/services/totalService/categor
 import { CategoryData } from '../../../../theme/services/totalService/category';
 import { ListPricesService } from '../../../../theme/services/totalService/listPrices.service';
 import { ListPricesData } from '../../../../theme/services/totalService/listPrices';
-import { chache } from '../../../../theme/services/chache';
+import { cache } from '../../../../theme/services/cache';
 
 @Component({
   selector: 'businessdata',
@@ -51,7 +51,7 @@ export class Businessdata {
     private _listPricesDataService: ListPricesService,
     private _categoryDataService: CategoryService,
     private _anchorageDataService: AnchorageService,
-    private cache: chache,
+    private cache: cache,
   ) {
 
     this.loadAnchorage();

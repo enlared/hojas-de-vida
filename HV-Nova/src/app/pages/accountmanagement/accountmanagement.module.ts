@@ -51,7 +51,7 @@ import { BillingData } from '../../theme/services/totalService/billing';
 import { DateEspecialsService } from '../../theme/services/totalService/dateEspecials.service';
 import { DateEspecialsData } from '../../theme/services/totalService/dateEspecials';
 import { TipoClienteService } from '../../theme/services/totalService/TipoCliente.service';
-import { chache } from '../../theme/services/chache';
+import { cache } from '../../theme/services/cache';
 import { Utilidades } from '../../theme/services/Utilidades.service';
 
 import { MyDatePickerModule } from 'mydatepicker';
@@ -104,7 +104,7 @@ import { MyDatePickerModule } from 'mydatepicker';
     BillingService,
     DateEspecialsService,
     TipoClienteService,
-    chache,
+    cache,
     Utilidades,
   ],
 })

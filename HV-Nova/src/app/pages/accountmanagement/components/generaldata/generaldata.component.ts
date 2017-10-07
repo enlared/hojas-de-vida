@@ -17,7 +17,7 @@ import { EjecutivoNegocios } from '../../../../theme/services/totalService/Ejecu
 import { TipoCliente } from '../../../../theme/services/totalService/TipoCliente';
 import { TipoClienteService } from '../../../../theme/services/totalService/TipoCliente.service';
 import { IMyDpOptions } from 'mydatepicker';
-import { chache } from '../../../../theme/services/chache';
+import { cache } from '../../../../theme/services/cache';
 
 @Component({
   selector: 'generaldata',
@@ -57,7 +57,7 @@ export class Generaldata {
     private _headQuartersDataService: HeadQuartersService,
     private _regionalsDataService: RegionalsService,
     private _tipoClienteService: TipoClienteService,
-    private chache: chache,
+    private cache: cache,
   ) {
 
 this.loadKeyAccounts();
@@ -73,7 +73,7 @@ this.loadTipoCliente();
 
   ngOnitInit() {
 
-    if( this.chache!= null){
+    if( this.cache!= null){
       this.dataEdicion = true;
       this.consultarId();
          }
@@ -92,9 +92,7 @@ this.loadTipoCliente();
   }
   goSedes() {
     if (confirm('¿Desea guardar y agregar una Sede?')) {
-      this.route.snapshot.params['id'];
-      this.chache.setid(this.generalData.id);
-      //this.saveGeneralData();
+      this.cache.setid(this.generalData.id);
       const link = ['pages/accountmanagement/headquarters'];
       this.router.navigate(link);
     }
@@ -147,7 +145,7 @@ this.loadTipoCliente();
   }
 
   cargarConsulta(datos: GeneralData) {
-    this.chache.setid(datos.id);
+    this.cache.setid(datos.id);
     this.dataEdicion = true;
     this.generalData = datos;
     this.generalData.fechaFinObjeto = this.crearFechaDate ( datos.fechafin);
