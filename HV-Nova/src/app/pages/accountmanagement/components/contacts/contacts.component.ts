@@ -11,13 +11,15 @@ import { PurseData } from '../../../../theme/services/totalService/purse';
 import { ContactHseqService } from '../../../../theme/services/totalService/contactHseq.service';
 import { ContactHseqData } from '../../../../theme/services/totalService/contactHseq';
 import { cache } from '../../../../theme/services/cache';
+import { ModoService } from '../../../../theme/services/totalService/Modo.service';
+import { ParametroGenerico } from '../../../../theme/services/totalService/genericoParametro';
 
 import { IMyDpOptions } from 'mydatepicker';
 
 @Component({
   selector: 'contacts',
   styleUrls: ['./contacts.scss'],
-  templateUrl: './contacts.html'
+  templateUrl: './contacts.html',
 })
 export class Contacts {
 
@@ -28,6 +30,8 @@ export class Contacts {
   purseData: PurseData = new PurseData();
   contactHseqData: ContactHseqData = new ContactHseqData();
   contactHseqDatas: ContactHseqData[];
+  modos: ParametroGenerico[];
+  modo: ParametroGenerico = new ParametroGenerico();
 
   constructor(
     private route: ActivatedRoute,
@@ -36,10 +40,11 @@ export class Contacts {
     private _purseDataService: PurseService,
     private _contactHseqService: ContactHseqService,
     private cache: cache,
+    private modoService: ModoService,
   ) {
 
     this.loadContacts();
-
+    this.loadModo();
   }
 
   ngOnitInit() {
@@ -53,6 +58,18 @@ export class Contacts {
     this._contactsDataService.getContacts()
     .subscribe(contactDatas => this.contactDatas = contactDatas, error => this.msgError = <any>error);
   }
+
+
+  loadModo() {
+    this.modoService.getModo()
+    .subscribe(modos => this.modos = modos, error => this.msgError = <any>error);
+  }
+
+  load() {
+    this.modoService.getModo()
+    .subscribe(modos => this.modos = modos, error => this.msgError = <any>error);
+  }
+
 
   resetForm() {
     if (confirm("¿Desea cancelar la acción?") === true) {

@@ -53,6 +53,7 @@ import { DateEspecialsData } from '../../theme/services/totalService/dateEspecia
 import { TipoClienteService } from '../../theme/services/totalService/TipoCliente.service';
 import { cache } from '../../theme/services/cache';
 import { Utilidades } from '../../theme/services/Utilidades.service';
+import { ModoService } from '../../theme/services/totalService/Modo.service';
 
 import { MyDatePickerModule } from 'mydatepicker';
 
@@ -106,6 +107,7 @@ import { MyDatePickerModule } from 'mydatepicker';
     TipoClienteService,
     cache,
     Utilidades,
+    ModoService,
   ],
 })
 export class AccountmanagementModule {

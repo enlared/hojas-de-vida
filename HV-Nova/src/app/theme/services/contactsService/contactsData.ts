@@ -1,3 +1,5 @@
+import {Modo} from '../totalService/Modo';
+
 export class ContactsData {
 
     idinfcnt: number;
@@ -8,7 +10,7 @@ export class ContactsData {
     birthdaydate: any;
     idinfshp: number;
     idpurse: number;
-    modecontact: string;
+    modo: Modo;
     influence: string;
     gradeinfluence: number;
 
