@@ -56,6 +56,7 @@ import { Utilidades } from '../../theme/services/Utilidades.service';
 import { ModoService } from '../../theme/services/totalService/Modo.service';
 import { InfluenciaCompra } from '../../theme/services/totalService/InfluenciaCompra.service';
 import { GradoInfluencia } from '../../theme/services/totalService/GradoInfluencia.service';
+import { Calendar } from '../../../app/pages/dashboard/calendar/calendar.component';
 
 import { MyDatePickerModule } from 'mydatepicker';
 
@@ -113,6 +114,7 @@ import { MyDatePickerModule } from 'mydatepicker';
     GradoInfluencia,
     contactoCarteraService,
     ContactoHseqService,
+    Calendar,
   ],
 })
 export class AccountmanagementModule {

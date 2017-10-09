@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
-import { Validators, PatternValidator } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ContactsService } from '../../../../theme/services/contactsService/contacts.service';
 import { ContactoHseqService } from '../../../../theme/services/contactsService/contactoHseq.service';
@@ -25,8 +25,7 @@ import { IMyDpOptions } from 'mydatepicker';
 @Component({
   selector: 'contacts',
   styleUrls: ['./contacts.scss'],
-  templateUrl: './contacts.html',
-  providers: [PatternValidator],
+  templateUrl: './contacts.html'
 
 })
 export class Contacts {

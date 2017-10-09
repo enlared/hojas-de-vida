@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class TipoClienteService {
 
-  private url = 'http://localhost:7070/tipoCliente';
+  private url = 'http://45.55.95.110:7070/tipoCliente';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private tipoCliente: TipoCliente = new TipoCliente();
 

@@ -133,7 +133,7 @@
         <div class="form-group col-md-6 ">
           <label for="email" class="control-label col-md-12">Correo:</label>
           <div class="col-md-12">
-            <input type="email" class="form-control" pattern="^[a-zA-Z0–9_.+-]+@[a-zA-Z0–9-]+.[a-zA-Z0–9-.]+$"
+            <input type="email" class="form-control"
              name="email" id="email" placeholder="Email" [(ngModel)]="contactsData.email" #email="ngModel"
               required maxlength="200" minlength="3">
             <div *ngIf="email.errors">
