@@ -1,8 +1,14 @@
 package com.nova.MsHv.entidad;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 
 
 /**
@@ -15,32 +21,20 @@ public class Contacto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 
 	private String celular;
 
-	@Column(name="celular_cartera")
-	private String celularCartera;
-
 	private String email;
 
-	@Column(name="email_cartera")
-	private String emailCartera;
-
-	@Temporal(TemporalType.DATE)
-	private Date fechacumpleaños;
+	private String fechacumpleanos;
 
 	private String nombre;
 
-	@Column(name="nombre_cartera")
-	private String nombreCartera;
-
 	private String telefono;
 
-	@Column(name="telefono_cartera")
-	private String telefonoCartera;
-
-	private int clienteid;
+	private Long clienteid;
 
 	//bi-directional many-to-one association to GradoInfluencia
 	@ManyToOne
@@ -76,14 +70,6 @@ public class Contacto implements Serializable {
 		this.celular = celular;
 	}
 
-	public String getCelularCartera() {
-		return this.celularCartera;
-	}
-
-	public void setCelularCartera(String celularCartera) {
-		this.celularCartera = celularCartera;
-	}
-
 	public String getEmail() {
 		return this.email;
 	}
@@ -92,20 +78,12 @@ public class Contacto implements Serializable {
 		this.email = email;
 	}
 
-	public String getEmailCartera() {
-		return this.emailCartera;
+	public String getFechacumpleanos() {
+		return this.fechacumpleanos;
 	}
 
-	public void setEmailCartera(String emailCartera) {
-		this.emailCartera = emailCartera;
-	}
-
-	public Date getFechacumpleaños() {
-		return this.fechacumpleaños;
-	}
-
-	public void setFechacumpleaños(Date fechacumpleaños) {
-		this.fechacumpleaños = fechacumpleaños;
+	public void setFechacumpleanos(String fechacumpleanos) {
+		this.fechacumpleanos = fechacumpleanos;
 	}
 
 	public String getNombre() {
@@ -116,14 +94,6 @@ public class Contacto implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public String getNombreCartera() {
-		return this.nombreCartera;
-	}
-
-	public void setNombreCartera(String nombreCartera) {
-		this.nombreCartera = nombreCartera;
-	}
-
 	public String getTelefono() {
 		return this.telefono;
 	}
@@ -131,15 +101,6 @@ public class Contacto implements Serializable {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-
-	public String getTelefonoCartera() {
-		return this.telefonoCartera;
-	}
-
-	public void setTelefonoCartera(String telefonoCartera) {
-		this.telefonoCartera = telefonoCartera;
-	}
-
 
 	public GradoInfluencia getGradoInfluencia() {
 		return this.gradoInfluencia;
@@ -165,11 +126,11 @@ public class Contacto implements Serializable {
 		this.modo = modo;
 	}
 
-	public int getClienteid() {
+	public Long getClienteid() {
 		return clienteid;
 	}
 
-	public void setClienteid(int clienteid) {
+	public void setClienteid(Long clienteid) {
 		this.clienteid = clienteid;
 	}
 

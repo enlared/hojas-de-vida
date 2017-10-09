@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.nova.MsHv.entidad.ContactoHseq;
-import com.nova.MsHv.impl.ContactoHseqImpl;
+import com.nova.MsHv.entidad.ContactoCartera;
+import com.nova.MsHv.impl.ContactoCarteraImpl;
 import com.nova.MsHvExcepciones.NovaHVDaoException;
 import com.nova.MsHvExcepciones.NovaHVRestException;
 
@@ -27,17 +27,17 @@ import com.nova.MsHvExcepciones.NovaHVRestException;
  * @contactHseq enlaRed.co
  * @version 1.0
  */
-public class ContactHseqRestController {
-	static final Logger log = Logger.getLogger(ContactHseqRestController.class);
+public class ContactCarteraRestController {
+	static final Logger log = Logger.getLogger(ContactCarteraRestController.class);
 	@Autowired
-	ContactoHseqImpl contactHseqDAO;
+	ContactoCarteraImpl contactHseqDAO;
 
 
 
-	@RequestMapping(value = "contactoHseq/find", method = RequestMethod.POST)
+	@RequestMapping(value = "contactoCartera/find", method = RequestMethod.POST)
 	@ResponseBody	
-	public List<ContactoHseq> getContactosCliente(@RequestBody ContactoHseq contacto) throws NovaHVDaoException {
-		List<ContactoHseq> contactHseq= new ArrayList<>();
+	public List<ContactoCartera> getContactosCliente(@RequestBody ContactoCartera contacto) throws NovaHVDaoException {
+		List<ContactoCartera> contactHseq= new ArrayList<>();
 
 		PropertyConfigurator.configure("log4j.properties");
 		log.info("Log4j for method find one in ContactHseq");
@@ -69,9 +69,9 @@ public class ContactHseqRestController {
 	 * @throws NovaHVRestException
 	 */
 
-	@RequestMapping(value = "contactoHseq/save", method = RequestMethod.POST)
+	@RequestMapping(value = "contactoCartera/save", method = RequestMethod.POST)
 	@ResponseBody
-	public ContactoHseq setContactHseq(@RequestBody ContactoHseq contactHseq) throws NovaHVRestException {
+	public ContactoCartera setContactoCartera(@RequestBody ContactoCartera contactHseq) throws NovaHVRestException {
 
 		PropertyConfigurator.configure("log4j.properties");
 		log.info("Log4j method save for contactHseq");
@@ -87,9 +87,9 @@ public class ContactHseqRestController {
 
 	}
 
-	@RequestMapping(value = "contactoHseq/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "contactoCartera/delete", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean remove(@RequestBody ContactoHseq contactHseq) throws NovaHVRestException {
+	public boolean remove(@RequestBody ContactoCartera contactHseq) throws NovaHVRestException {
 
 		PropertyConfigurator.configure("log4j.properties");
 		log.info("Log4j method remove for contactHseq");

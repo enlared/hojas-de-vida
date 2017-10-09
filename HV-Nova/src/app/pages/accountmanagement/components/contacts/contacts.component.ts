@@ -2,17 +2,23 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
-import { Validators } from '@angular/forms';
+import { Validators, PatternValidator } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ContactsService } from '../../../../theme/services/contactsService/contacts.service';
+import { ContactoHseqService } from '../../../../theme/services/contactsService/contactoHseq.service';
+import { contactoCarteraService } from '../../../../theme/services/contactsService/contactoCartera.service';
 import { ContactsData } from '../../../../theme/services/contactsService/contactsData';
+import { ContactsHseqData } from '../../../../theme/services/contactsService/contactsHseqData';
+import { ContactsCarteraData } from '../../../../theme/services/contactsService/contactsCarteraData';
+
 import { PurseService } from '../../../../theme/services/totalService/purse.service';
 import { PurseData } from '../../../../theme/services/totalService/purse';
-import { ContactHseqService } from '../../../../theme/services/totalService/contactHseq.service';
-import { ContactHseqData } from '../../../../theme/services/totalService/contactHseq';
 import { cache } from '../../../../theme/services/cache';
 import { ModoService } from '../../../../theme/services/totalService/Modo.service';
 import { ParametroGenerico } from '../../../../theme/services/totalService/genericoParametro';
+import { InfluenciaCompra } from '../../../../theme/services/totalService/InfluenciaCompra.service';
+import { GradoInfluencia } from '../../../../theme/services/totalService/GradoInfluencia.service';
+import { Utilidades } from '../../../../theme/services/Utilidades.service';
 
 import { IMyDpOptions } from 'mydatepicker';
 
@@ -20,31 +26,51 @@ import { IMyDpOptions } from 'mydatepicker';
   selector: 'contacts',
   styleUrls: ['./contacts.scss'],
   templateUrl: './contacts.html',
+  providers: [PatternValidator],
+
 })
 export class Contacts {
 
-   msgError: string;
+  msgError: string;
   contactDatas: ContactsData[];
   contactsData: ContactsData = new ContactsData();
+  contactsHseq: ContactsHseqData = new ContactsHseqData();
+  contactsCartera: ContactsCarteraData = new ContactsCarteraData();
+  dato: ContactsData = new ContactsData();
+  contactoCartera: ContactsCarteraData[];
+  contactoHseq: ContactsHseqData[];
+
+
   purseDatas: PurseData[];
   purseData: PurseData = new PurseData();
-  contactHseqData: ContactHseqData = new ContactHseqData();
-  contactHseqDatas: ContactHseqData[];
   modos: ParametroGenerico[];
-  modo: ParametroGenerico = new ParametroGenerico();
+  influenciaCompra: ParametroGenerico[];
+  gradoInfluencia: ParametroGenerico[];
+  regexTest: string;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private _contactsDataService: ContactsService,
     private _purseDataService: PurseService,
-    private _contactHseqService: ContactHseqService,
     private cache: cache,
     private modoService: ModoService,
+    private influenciaC: InfluenciaCompra,
+    private gradoInflu: GradoInfluencia,
+    private contactoHseqService: ContactoHseqService,
+    private contactoCarteraService: contactoCarteraService,
+    private utilidades: Utilidades,
   ) {
 
     this.loadContacts();
     this.loadModo();
+    this.loadFrecuenciaCompra();
+
+    this.loadGradoInfluencia();
+    this.loadContactsCartera();
+    this.loadcontactoHseq();
+    this.regexTest = this.utilidades.getRegexLetras;
+
   }
 
   ngOnitInit() {
@@ -55,34 +81,61 @@ export class Contacts {
   }
 
   loadContacts() {
-    this._contactsDataService.getContacts()
-    .subscribe(contactDatas => this.contactDatas = contactDatas, error => this.msgError = <any>error);
+    if (this.cache.getid() != null && this.cache.getid() != undefined) {
+      this.dato.clienteid = this.cache.getid();
+      this._contactsDataService.getContact(this.dato)
+        .subscribe(contactData => this.contactDatas = contactData, error => this.msgError = <any>error);
+    }
   }
 
+  loadContactsCartera() {
+    if (this.cache.getid() != null && this.cache.getid() != undefined) {
+      this.dato.clienteid = this.cache.getid();
+      this.contactoCarteraService.getContact(this.dato)
+        .subscribe(contactsCartera => this.contactoCartera = contactsCartera, error => this.msgError = <any>error);
+    }
+
+  }
+
+
+  loadcontactoHseq() {
+    if (this.cache.getid() != null && this.cache.getid() != undefined) {
+      this.dato.clienteid = this.cache.getid();
+      this.contactoHseqService.getContact(this.dato)
+        .subscribe(contactoHseq => this.contactoHseq = contactoHseq, error => this.msgError = <any>error);
+    }
+
+  }
 
   loadModo() {
     this.modoService.getModo()
-    .subscribe(modos => this.modos = modos, error => this.msgError = <any>error);
+      .subscribe(modos => this.modos = modos, error => this.msgError = <any>error);
   }
 
-  load() {
-    this.modoService.getModo()
-    .subscribe(modos => this.modos = modos, error => this.msgError = <any>error);
+
+  loadFrecuenciaCompra() {
+    this.influenciaC.getAll()
+      .subscribe(influenciaCompra => this.influenciaCompra = influenciaCompra, error => this.msgError = <any>error);
+  }
+
+  loadGradoInfluencia() {
+    this.gradoInflu.getAll()
+      .subscribe(gradoInfluencia => this.gradoInfluencia = gradoInfluencia, error => this.msgError = <any>error);
   }
 
 
   resetForm() {
-    if (confirm("¿Desea cancelar la acción?") === true) {
+    if (confirm('¿Desea cancelar la acción?')) {
 
 
     }
 
   }
   goSLA() {
-    if (confirm("¿Desea guardar y agregar un SLA?") === true) {
+    if (confirm('¿Desea guardar y agregar un SLA?')) {
 
       //this.saveBusinessData();
-      let link = ['pages/accountmanagement/servicelevelagreement'];
+      const link = ['pages/accountmanagement/servicelevelagreement'];
       this.router.navigate(link);
     }
 
@@ -91,15 +144,119 @@ export class Contacts {
 
 
   saveContactsData() {
-    if (confirm("¿Desea guardar un Contacto?") === true) {
-
+    if (confirm('¿Desea guardar un Contacto?')) {
+      this.contactsData.fechacumpleanos = this.convertirFecha(this.contactsData);
+      this.contactsData.clienteid = this.cache.getid();
       this._contactsDataService.addContacts(this.contactsData)
         .subscribe(
-        rt => console.log(rt),
+        rt => this.actualizar(rt),
+        error => this.msgError = <any>error,
+        () => this.limpiar(),
+      );
+    }
+  }
+
+  actualizar(datos) {
+    this.loadContacts();
+    this.loadContactsCartera();
+    this.loadcontactoHseq();
+
+  }
+  limpiar() {
+    this.contactsData = new ContactsData();
+  }
+
+  convertirFecha(datos: any) {
+    return datos.fechacumpleanos.jsdate;
+  }
+  saveContactsCateraData() {
+    if (confirm('¿Desea guardar un Contacto de cartera?')) {
+      this.contactsCartera.clienteid = this.cache.getid();
+      this.contactoCarteraService.addContacts(this.contactsCartera)
+        .subscribe(
+        rt => this.actualizar(rt),
         error => this.msgError = <any>error,
         () => console.log('Terminado'),
       );
     }
+  }
+
+  saveContactsHseqData() {
+    if (confirm('¿Desea guardar un Contacto de Hseq?')) {
+      this.contactsHseq.clienteid = this.cache.getid();
+      this.contactoHseqService.addContacts(this.contactsHseq)
+        .subscribe(
+        rt => this.actualizar(rt),
+        error => this.msgError = <any>error,
+        () => console.log('Terminado'),
+      );
+    }
+  }
+
+  removeContactsCatera(data) {
+    if (confirm('¿Desea eliminar un Contacto de cartera?')) {
+      this.contactoCarteraService.deleteContacts(data)
+        .subscribe(
+        rt => this.actualizar(rt),
+        error => this.msgError = <any>error,
+        () => console.log('Terminado'),
+      );
+    }
+  }
+
+  removeContactsHseq(data) {
+    if (confirm('¿Desea eliminar un Contacto de Hseq?')) {
+      this.contactoHseqService.deleteContacts(data)
+        .subscribe(
+        rt => this.actualizar(rt),
+        error => this.msgError = <any>error,
+        () => console.log('Terminado'),
+      );
+    }
+  }
+
+  removeContact(data) {
+    if (confirm('¿Desea eliminar un Contacto?')) {
+      this._contactsDataService.deleteContacts(data)
+        .subscribe(
+        rt => this.actualizar(rt),
+        error => this.msgError = <any>error,
+        () => console.log('Terminado'),
+      );
+    }
+  }
+
+  editarContacto(dato: ContactsData) {
+    this.contactsData.influenciaCompra = this.cargarDatoLista(dato.influenciaCompra, this.influenciaCompra);
+    this.contactsData.gradoInfluencia = this.cargarDatoLista(dato.gradoInfluencia, this.gradoInfluencia);
+    this.contactsData.modo = this.cargarDatoLista(dato.modo, this.modos);
+    this.contactsData.fechacumpleanos = this.crearFechaDate(dato.fechacumpleanos);
+
+    this.contactsData = dato;
+  }
+
+  editarContactoCartera(dato) {
+        this.contactsCartera = dato;
+  }
+
+
+  editarContactoHseq(dato) {
+    this.contactsHseq = dato;
+  }
+
+  cargarDatoLista(data: ParametroGenerico, lista) {
+    let res;
+    lista.forEach(element => {
+      if (data.id === element.id) {
+        res = element;
+      }
+    });
+    return res;
+  }
+
+  crearFechaDate( formater) {
+    const dato = new Date(formater);
+    return dato;
   }
 
 }

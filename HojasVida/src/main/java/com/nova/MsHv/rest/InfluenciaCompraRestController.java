@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.nova.MsHv.entidad.GradoInfluencia;
-import com.nova.MsHv.impl.GradoInfluenciaImpl;
+import com.nova.MsHv.entidad.InfluenciaCompra;
+import com.nova.MsHv.impl.InfluenciaCompraImpl;
 import com.nova.MsHvExcepciones.NovaHVDaoException;
 
 @CrossOrigin
@@ -23,15 +23,16 @@ import com.nova.MsHvExcepciones.NovaHVDaoException;
  * @author enlaRed.co
  * @version 1.0
  */
-public class GradoInfluenciaController {
-	static final Logger log = Logger.getLogger(GradoInfluenciaController.class);
-	@Autowired 	GradoInfluenciaImpl modoImpl;
+public class InfluenciaCompraRestController {
+	static final Logger log = Logger.getLogger(InfluenciaCompraRestController.class);
+	@Autowired 	InfluenciaCompraImpl impl;
 
-	@RequestMapping("gradoInfluencia/findAll")
+	@RequestMapping("influenciaCompra/findAll")
 	@ResponseBody
 
-	public List<GradoInfluencia> getConsulta() throws NovaHVDaoException {
-		return modoImpl.consultarAll();
+	public List<InfluenciaCompra> getConsulta() throws NovaHVDaoException {
+
+		return impl.consultarAll();
 	}
 
 	

@@ -1,59 +1,50 @@
 import { Injectable } from '@angular/core';
-import { ContactsData } from './contactsData';
+import { ParametroGenerico } from './genericoParametro';
+import { Utilidades } from '../Utilidades.service';
+
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
+
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/catch';
-import { Utilidades } from '../Utilidades.service';
 
 @Injectable()
 
-export class ContactsService {
+export class InfluenciaCompra {
 
-  private url = '/contacto';
+  private url = '/influenciaCompra';
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private contacts: ContactsData = new ContactsData();
 
   constructor(private http: Http,
-     private util: Utilidades) {
+      private util: Utilidades,
+    ) {
     this.url = util.getServidor + this.url;
 
+
   }
 
 
-  deleteContacts(id: ContactsData)  {
-    let url = `${this.url}/delete`;
-    return this.http.post(url, id)
+  delete(id: number)  {
+    let url = `${this.url}/delete/${id}`;
+    return this.http.delete(url)
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-
-
-  getContact(id: ContactsData): Observable<ContactsData[]> {
-    const url = `${this.url}/find`;
-    return this.http.post(url, id)
+  getAll(): Observable<ParametroGenerico[]> {
+    let url = `${this.url}/findAll`;
+    return this.http.get(url)
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-  addContacts(contactsData: ContactsData) {
+  addModo(contactHseqData: ParametroGenerico) {
     let url = `${this.url}/save`;
-    let iJson = JSON.stringify(contactsData);
+    let iJson = JSON.stringify(contactHseqData);
     return this.http.post(url, iJson, { headers: this.headers })
       .map(r => r.json())
       .catch(this.handleError);
-  }
-
-  putContacts(contactsData: ContactsData) {
-
-    let url = `${this.url}/edit/${contactsData.id}`;
-    let iJson = JSON.stringify(contactsData);
-    return this.http.put(url, iJson, { headers: this.headers })
-      .map(r => r.json())
-      .catch(this.handleError);
-
   }
 
   private handleError(error: Response | any) {

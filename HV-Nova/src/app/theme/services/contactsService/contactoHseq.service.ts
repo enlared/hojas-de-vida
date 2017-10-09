@@ -1,50 +1,61 @@
 import { Injectable } from '@angular/core';
-import { ParametroGenerico } from './genericoParametro';
-import { Utilidades } from '../Utilidades.service';
-
+import { ContactsHseqData } from './contactsHseqData';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/catch';
+import { Utilidades } from '../Utilidades.service';
+import { ContactsData } from './contactsData';
+
 
 @Injectable()
 
-export class ModoService {
+export class ContactoHseqService {
 
-  private url = '/modo';
+  private url = '/contactoHseq';
   private headers = new Headers({ 'Content-Type': 'application/json' });
+  private contacts: ContactsHseqData = new ContactsHseqData();
 
   constructor(private http: Http,
-      private util: Utilidades,
-    ) {
+     private util: Utilidades) {
     this.url = util.getServidor + this.url;
 
-
   }
 
 
-  delete(id: number)  {
-    let url = `${this.url}/delete/${id}`;
-    return this.http.delete(url)
+  deleteContacts(id: ContactsHseqData)  {
+    let url = `${this.url}/delete`;
+    return this.http.post(url, id)
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-  getModo(): Observable<ParametroGenerico[]> {
-    let url = `${this.url}/findAll`;
-    return this.http.get(url)
+
+  getContact(id: ContactsData): Observable<ContactsHseqData[]> {
+    const url = `${this.url}/find`;
+    return this.http.post(url, id)
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-  addModo(contactHseqData: ParametroGenerico) {
+
+  addContacts(contactsData: ContactsHseqData) {
     let url = `${this.url}/save`;
-    let iJson = JSON.stringify(contactHseqData);
+    let iJson = JSON.stringify(contactsData);
     return this.http.post(url, iJson, { headers: this.headers })
       .map(r => r.json())
       .catch(this.handleError);
+  }
+
+  putContacts(contactsData: ContactsHseqData) {
+
+    let url = `${this.url}/edit/${contactsData.id}`;
+    let iJson = JSON.stringify(contactsData);
+    return this.http.put(url, iJson, { headers: this.headers })
+      .map(r => r.json())
+      .catch(this.handleError);
+
   }
 
   private handleError(error: Response | any) {

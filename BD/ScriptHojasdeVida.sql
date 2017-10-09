@@ -142,11 +142,26 @@ CREATE TABLE CONTACTO(
    nombre TEXT,
    Telefono TEXT,
    celular TEXT,
-   fechaCumpleaños date,
-   email TEXT,
-    nombre_cartera TEXT,
-   Telefono_cartera TEXT,
-   celular_cartera TEXT,
-   email_cartera TEXT
+   fechaCumpleanos TEXT,
+   email TEXT
 );
 
+
+
+CREATE TABLE CONTACTO_CARTERA(
+   ID  SERIAL PRIMARY KEY,
+   clienteid INTEGER REFERENCES cliente (ID) , 
+   nombre TEXT,
+   Telefono TEXT,
+   celular TEXT,
+   email TEXT,
+
+);
+
+
+CREATE TABLE CONTACTO_HSEQ(
+   ID  SERIAL PRIMARY KEY,
+   clienteid INTEGER REFERENCES cliente (ID) , 
+   nombre TEXT,
+   Telefono TEXT  
+);

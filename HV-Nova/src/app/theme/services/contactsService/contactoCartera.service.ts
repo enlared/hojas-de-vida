@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { ContactsCarteraData } from './contactsCarteraData';
 import { ContactsData } from './contactsData';
+
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -9,11 +11,11 @@ import { Utilidades } from '../Utilidades.service';
 
 @Injectable()
 
-export class ContactsService {
+export class contactoCarteraService {
 
-  private url = '/contacto';
+  private url = '/contactoCartera';
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private contacts: ContactsData = new ContactsData();
+  private contacts: ContactsCarteraData = new ContactsCarteraData();
 
   constructor(private http: Http,
      private util: Utilidades) {
@@ -22,23 +24,22 @@ export class ContactsService {
   }
 
 
-  deleteContacts(id: ContactsData)  {
+  deleteContacts(id: ContactsCarteraData)  {
     let url = `${this.url}/delete`;
     return this.http.post(url, id)
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-
-
-  getContact(id: ContactsData): Observable<ContactsData[]> {
+  getContact(id: ContactsData): Observable<ContactsCarteraData[]> {
     const url = `${this.url}/find`;
     return this.http.post(url, id)
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-  addContacts(contactsData: ContactsData) {
+
+  addContacts(contactsData: ContactsCarteraData) {
     let url = `${this.url}/save`;
     let iJson = JSON.stringify(contactsData);
     return this.http.post(url, iJson, { headers: this.headers })
@@ -46,7 +47,7 @@ export class ContactsService {
       .catch(this.handleError);
   }
 
-  putContacts(contactsData: ContactsData) {
+  putContacts(contactsData: ContactsCarteraData) {
 
     let url = `${this.url}/edit/${contactsData.id}`;
     let iJson = JSON.stringify(contactsData);

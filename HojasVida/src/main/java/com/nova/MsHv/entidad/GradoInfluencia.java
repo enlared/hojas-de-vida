@@ -1,8 +1,11 @@
 package com.nova.MsHv.entidad;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 
 /**
@@ -20,9 +23,6 @@ public class GradoInfluencia implements Serializable {
 
 	private String nombre;
 
-	//bi-directional many-to-one association to Contacto
-	@OneToMany(mappedBy="gradoInfluencia")
-	private List<Contacto> contactos;
 
 	public GradoInfluencia() {
 	}
@@ -42,27 +42,4 @@ public class GradoInfluencia implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-	public List<Contacto> getContactos() {
-		return this.contactos;
-	}
-
-	public void setContactos(List<Contacto> contactos) {
-		this.contactos = contactos;
-	}
-
-	public Contacto addContacto(Contacto contacto) {
-		getContactos().add(contacto);
-		contacto.setGradoInfluencia(this);
-
-		return contacto;
-	}
-
-	public Contacto removeContacto(Contacto contacto) {
-		getContactos().remove(contacto);
-		contacto.setGradoInfluencia(null);
-
-		return contacto;
-	}
-
 }

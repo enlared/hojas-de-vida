@@ -18,6 +18,7 @@ import { TipoCliente } from '../../../../theme/services/totalService/TipoCliente
 import { TipoClienteService } from '../../../../theme/services/totalService/TipoCliente.service';
 import { IMyDpOptions } from 'mydatepicker';
 import { cache } from '../../../../theme/services/cache';
+import { Utilidades } from '../../../../theme/services/Utilidades.service';
 
 @Component({
   selector: 'generaldata',
@@ -46,7 +47,8 @@ export class Generaldata {
 
   regionalsData: RegionalsData = new RegionalsData();
   regionalsDatas: RegionalsData[];
-  @Output() idCliente: string;
+  idCliente: string;
+  regexTest: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -58,6 +60,7 @@ export class Generaldata {
     private _regionalsDataService: RegionalsService,
     private _tipoClienteService: TipoClienteService,
     private cache: cache,
+    private utilidades: Utilidades,
   ) {
 
 this.loadKeyAccounts();
@@ -65,6 +68,8 @@ this.loadKeyBusiness();
 this.loadRegionals();
 this.loadHeadQuarters();
 this.loadTipoCliente();
+this.regexTest = this.utilidades.getRegexLetras;
+
   }
 
   myDatePickerOptions: IMyDpOptions = {
@@ -77,6 +82,7 @@ this.loadTipoCliente();
       this.dataEdicion = true;
       this.consultarId();
          }
+
   }
 
 
@@ -223,6 +229,11 @@ this.loadTipoCliente();
     error => this.msgError = <any>error,
     () => console.log('Terminado'),
   );
+  }
+
+clienteNuevoCliente() {
+    this.mostrarDataCliente = true;
+    this.generalData = new GeneralData();
   }
 
 

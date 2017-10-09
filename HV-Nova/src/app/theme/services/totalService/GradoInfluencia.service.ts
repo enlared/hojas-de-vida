@@ -1,61 +1,50 @@
 import { Injectable } from '@angular/core';
-import { ContactHseqData } from './contactHseq';
+import { ParametroGenerico } from './genericoParametro';
+import { Utilidades } from '../Utilidades.service';
+
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
+
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/catch';
 
 @Injectable()
 
-export class ContactHseqService {
+export class GradoInfluencia {
 
-  private url = 'http://localhost:7070/contactHseq';
+  private url = '/gradoInfluencia';
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private contactHseqData: ContactHseqData = new ContactHseqData();
 
-  constructor(private http: Http) {
+  constructor(private http: Http,
+      private util: Utilidades,
+    ) {
+    this.url = util.getServidor + this.url;
+
 
   }
 
 
-  deleteContactHseq(id: number)  {
+  delete(id: number)  {
     let url = `${this.url}/delete/${id}`;
     return this.http.delete(url)
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-  getContactHseq(): Observable<ContactHseqData[]> {
-    let url = `${this.url}/findall`;
+  getAll(): Observable<ParametroGenerico[]> {
+    let url = `${this.url}/findAll`;
     return this.http.get(url)
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-  getContactHseqData(id: number): Observable<ContactHseqData> {
-    const url = `${this.url}/find/${id}`;
-    return this.http.get(url)
-      .map(r => r.json())
-      .catch(this.handleError);
-  }
-
-  addContactHseq(contactHseqData: ContactHseqData) {
+  addModo(contactHseqData: ParametroGenerico) {
     let url = `${this.url}/save`;
     let iJson = JSON.stringify(contactHseqData);
     return this.http.post(url, iJson, { headers: this.headers })
       .map(r => r.json())
       .catch(this.handleError);
-  }
-
-  putContactHseq(contactHseqData: ContactHseqData) {
-
-    let url = `${this.url}/edit/${contactHseqData.idcnthseq}`;
-    let iJson = JSON.stringify(contactHseqData);
-    return this.http.put(url, iJson, { headers: this.headers })
-      .map(r => r.json())
-      .catch(this.handleError);
-
   }
 
   private handleError(error: Response | any) {

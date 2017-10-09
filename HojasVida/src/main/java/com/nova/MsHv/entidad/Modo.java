@@ -19,9 +19,6 @@ public class Modo implements Serializable {
 
 	private String nombre;
 
-	//bi-directional many-to-one association to Contacto
-	@OneToMany(mappedBy="modo")
-	private List<Contacto> contactos;
 
 	public Modo() {
 	}
@@ -42,26 +39,5 @@ public class Modo implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public List<Contacto> getContactos() {
-		return this.contactos;
-	}
-
-	public void setContactos(List<Contacto> contactos) {
-		this.contactos = contactos;
-	}
-
-	public Contacto addContacto(Contacto contacto) {
-		getContactos().add(contacto);
-		contacto.setModo(this);
-
-		return contacto;
-	}
-
-	public Contacto removeContacto(Contacto contacto) {
-		getContactos().remove(contacto);
-		contacto.setModo(null);
-
-		return contacto;
-	}
 
 }

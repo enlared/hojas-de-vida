@@ -16,10 +16,13 @@
 		<class>com.nova.MsHv.entidad.TipoVaso</class>
 		<class>com.nova.MsHv.entidad.ListaPrecio</class>
 		<class>com.nova.MsHv.entidad.Negocio</class>
-		<class>com.nova.MsHv.entidad.Contacto</class>
 		<class>com.nova.MsHv.entidad.GradoInfluencia</class>
 		<class>com.nova.MsHv.entidad.InfluenciaCompra</class>
 		<class>com.nova.MsHv.entidad.Modo</class>
 		<class>com.nova.MsHv.entidad.Regionale</class>
+		<class>com.nova.MsHv.entidad.ContactoCartera</class>
+		<class>com.nova.MsHv.entidad.ContactoHseq</class>
+		<class>com.nova.MsHv.entidad.Cliente</class>
+		<class>com.nova.MsHv.entidad.Contacto</class>
 	</persistence-unit>
 </persistence>

@@ -29,6 +29,8 @@ import { HeadQuartersService } from '../../theme/services/headQuartersService/he
 import { BusinessDataService } from '../../theme/services/businessDataService/businessData.service';
 import { GeneralDataService } from '../../theme/services/generalDataService/generalData.service';
 import { ContactsService } from '../../theme/services/contactsService/contacts.service';
+import { contactoCarteraService } from '../../theme/services/contactsService/contactoCartera.service';
+import { ContactoHseqService } from '../../theme/services/contactsService/contactoHseq.service';
 import { ContactsData } from '../../theme/services/contactsService/contactsData';
 import { ServiceLevelsService } from '../../theme/services/serviceLevelsService/serviceLevels.service';
 import { OppositionService } from '../../theme/services/oppositionService/opposition.service';
@@ -42,8 +44,6 @@ import { TypeNegociationService } from '../../theme/services/totalService/typeNe
 import { TypeNegociationData } from '../../theme/services/totalService/typeNegociation';
 import { AnchorageService } from '../../theme/services/totalService/anchorage.service';
 import { AnchorageData } from '../../theme/services/totalService/anchorage';
-import { ContactHseqService } from '../../theme/services/totalService/contactHseq.service';
-import { ContactHseqData } from '../../theme/services/totalService/contactHseq';
 import { PurseService } from '../../theme/services/totalService/purse.service';
 import { PurseData } from '../../theme/services/totalService/purse';
 import { BillingService } from '../../theme/services/totalService/billing.service';
@@ -54,6 +54,8 @@ import { TipoClienteService } from '../../theme/services/totalService/TipoClient
 import { cache } from '../../theme/services/cache';
 import { Utilidades } from '../../theme/services/Utilidades.service';
 import { ModoService } from '../../theme/services/totalService/Modo.service';
+import { InfluenciaCompra } from '../../theme/services/totalService/InfluenciaCompra.service';
+import { GradoInfluencia } from '../../theme/services/totalService/GradoInfluencia.service';
 
 import { MyDatePickerModule } from 'mydatepicker';
 
@@ -100,7 +102,6 @@ import { MyDatePickerModule } from 'mydatepicker';
     TypeNegociationService,
     TypeMachineService,
     CategoryService,
-    ContactHseqService,
     PurseService,
     BillingService,
     DateEspecialsService,
@@ -108,6 +109,10 @@ import { MyDatePickerModule } from 'mydatepicker';
     cache,
     Utilidades,
     ModoService,
+    InfluenciaCompra,
+    GradoInfluencia,
+    contactoCarteraService,
+    ContactoHseqService,
   ],
 })
 export class AccountmanagementModule {
