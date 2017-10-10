@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 
 export class Utilidades {
 
-  private servidor = 'http://45.55.95.110:7070';
+  private servidor = 'http://localhost:7070';
   private regexTelefono = "";
   private regexNumeros = "/^[0-9]*$/";
   private regexEmail = "";

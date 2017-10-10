@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class AnchorageService {
 
-  private url = 'http://45.55.95.110:7070/anchorage';
+  private url = 'http://localhost:7070/anchorage';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private anchorageData: AnchorageData = new AnchorageData();
 

@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class ServiceLevelsService {
 
-  private url = 'http://45.55.95.110:7070/serviceLevelAgreement';
+  private url = 'http://localhost:7070/serviceLevelAgreement';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private serviceLevels: ServiceLevelsData = new ServiceLevelsData();
 
