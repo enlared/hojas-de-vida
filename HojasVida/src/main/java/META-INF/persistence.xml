@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="MSNovaHV">
+		<class>com.nova.MsHv.entidad.EjecutivoCuenta</class>
+		<class>com.nova.MsHv.entidad.EjecutivoNegocio</class>
+		<class>com.nova.MsHv.entidad.TipoCliente</class>
+		<class>com.nova.MsHv.entidad.Cliente</class>
+		<class>com.nova.MsHv.entidad.Regional</class>
+		<class>com.nova.MsHv.entidad.TipoEmpleado</class>
+		<class>com.nova.MsHv.entidad.Sector</class>
+		<class>com.nova.MsHv.entidad.Sede</class>
+		<class>com.nova.MsHv.entidad.Anclaje</class>
+		<class>com.nova.MsHv.entidad.Categoria</class>
+		<class>com.nova.MsHv.entidad.TipoMaquina</class>
+		<class>com.nova.MsHv.entidad.TipoNegociacion</class>
+		<class>com.nova.MsHv.entidad.TipoVaso</class>
+		<class>com.nova.MsHv.entidad.ListaPrecio</class>
+		<class>com.nova.MsHv.entidad.Negocio</class>
+		<class>com.nova.MsHv.entidad.GradoInfluencia</class>
+		<class>com.nova.MsHv.entidad.InfluenciaCompra</class>
+		<class>com.nova.MsHv.entidad.Modo</class>
+		<class>com.nova.MsHv.entidad.Regionale</class>
+		<class>com.nova.MsHv.entidad.ContactoCartera</class>
+		<class>com.nova.MsHv.entidad.ContactoHseq</class>
+		<class>com.nova.MsHv.entidad.Cliente</class>
+		<class>com.nova.MsHv.entidad.Contacto</class>
+	</persistence-unit>
+</persistence>
