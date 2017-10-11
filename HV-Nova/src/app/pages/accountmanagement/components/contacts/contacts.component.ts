@@ -19,13 +19,15 @@ import { ParametroGenerico } from '../../../../theme/services/totalService/gener
 import { InfluenciaCompra } from '../../../../theme/services/totalService/InfluenciaCompra.service';
 import { GradoInfluencia } from '../../../../theme/services/totalService/GradoInfluencia.service';
 import { Utilidades } from '../../../../theme/services/Utilidades.service';
+import { ValidarTexto } from '../../../../theme/pipes/validaciones/validarTexto.pipe';
 
 import { IMyDpOptions } from 'mydatepicker';
 
 @Component({
   selector: 'contacts',
   styleUrls: ['./contacts.scss'],
-  templateUrl: './contacts.html'
+  templateUrl: './contacts.html',
+  providers: [ValidarTexto],
 
 })
 export class Contacts {

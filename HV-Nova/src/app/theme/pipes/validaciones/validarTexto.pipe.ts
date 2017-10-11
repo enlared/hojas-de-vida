@@ -1,29 +1,25 @@
-import {Pipe, PipeTransform} from '@angular/core';
-import {layoutPaths} from '../../../theme';
+import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({name: 'baAppPicture'})
-export class VAlidarTexto implements PipeTransform {
-  transform(value: any, args?: any): any {
-    let valor;
-    if (value.length > 0) {
-      for (let index = 0; index < value.length; index++) {
-         if ((/^[a-zA-Z ]/.test(value[index].toString()))) {
-          valor = this.validarIndefinido(valor) + (value[index].toString());
+@Pipe({
+  name: 'validarTexto'
+})
+export class ValidarTexto implements PipeTransform {
+  transform(value: any, args?: any): string {
+    let retorno='';
+    if (!value) {
+      retorno = '';
+    } else {
+      const lista = value.replace(/[^a-zA-Z .]/g, '').split('');
+      lista.forEach(element => {
+        retorno = retorno + element;
+      });
 
-        }
-
-      }
     }
-    console.log(valor.toString());
-    return this.validarIndefinido(valor).toString(); ;
+
+    value = '';
+    return retorno;
+
   }
 
-  validarIndefinido(dato) {
-    let valor='';
-    if (dato !== undefined) {
-      valor = dato;
-    }
-      return valor;
 
-  }
 }

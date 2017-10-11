@@ -57,6 +57,7 @@ import { ModoService } from '../../theme/services/totalService/Modo.service';
 import { InfluenciaCompra } from '../../theme/services/totalService/InfluenciaCompra.service';
 import { GradoInfluencia } from '../../theme/services/totalService/GradoInfluencia.service';
 import { Calendar } from '../../../app/pages/dashboard/calendar/calendar.component';
+import { ValidarTexto } from '../../theme/pipes/validaciones/validarTexto.pipe';
 
 import { MyDatePickerModule } from 'mydatepicker';
 
@@ -73,7 +74,7 @@ import { MyDatePickerModule } from 'mydatepicker';
   ],
   declarations: [
     Headquarters,
-
+    ValidarTexto,
     Businessdata,
     Contacts,
     Servicelevels,
