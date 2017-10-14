@@ -5,6 +5,7 @@ import { NgaModule } from '../../theme/nga.module';
 import { FormsModule } from '@angular/forms';
 
 import { NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { MomentModule } from 'angular2-moment';
 
 import { routing } from './accountmanagement.routing';
 import { Accountmanagement } from './accountmanagement.component';
@@ -72,6 +73,8 @@ import { MyDatePickerModule } from 'mydatepicker';
     HttpModule,
     routing,
     MyDatePickerModule,
+    MomentModule
+,
   ],
   declarations: [
     Headquarters,

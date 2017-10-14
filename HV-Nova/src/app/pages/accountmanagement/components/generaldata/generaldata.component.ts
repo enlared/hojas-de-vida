@@ -1,4 +1,4 @@
-import { Component, Input,Output } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
@@ -29,8 +29,8 @@ import { Utilidades } from '../../../../theme/services/Utilidades.service';
 export class Generaldata {
 
   msgError: string;
-  mostrarDataCliente: boolean= false;
-  dataEdicion: boolean= false;
+  mostrarDataCliente: boolean = false;
+  dataEdicion: boolean = false;
 
   generalDatas: GeneralData[];
   generalData: GeneralData = new GeneralData();
@@ -63,12 +63,12 @@ export class Generaldata {
     private utilidades: Utilidades,
   ) {
 
-this.loadKeyAccounts();
-this.loadKeyBusiness();
-this.loadRegionals();
-this.loadHeadQuarters();
-this.loadTipoCliente();
-this.regexTest = this.utilidades.getRegexLetras;
+    this.loadKeyAccounts();
+    this.loadKeyBusiness();
+    this.loadRegionals();
+    this.loadHeadQuarters();
+    this.loadTipoCliente();
+    this.regexTest = this.utilidades.getRegexLetras;
 
   }
 
@@ -78,10 +78,10 @@ this.regexTest = this.utilidades.getRegexLetras;
 
   ngOnitInit() {
 
-    if( this.cache!= null){
+    if (this.cache != null) {
       this.dataEdicion = true;
       this.consultarId();
-         }
+    }
 
   }
 
@@ -98,37 +98,42 @@ this.regexTest = this.utilidades.getRegexLetras;
   }
   goSedes() {
     if (confirm('¿Desea guardar y agregar una Sede?')) {
-      this.cache.setid(this.generalData.id);
-      const link = ['pages/accountmanagement/headquarters'];
-      this.router.navigate(link);
+      if (this.validarFormulario()) {
+        this.cache.setid(this.generalData.id);
+        const link = ['pages/accountmanagement/headquarters'];
+        this.router.navigate(link);
+      }
+
     }
+  }
 
-
+  validarFormulario(): boolean {
+    return this.validarVigenciaContrato();
   }
 
   loadKeyAccounts() {
     this._keyAccountDataService.getKeyAccount()
-    .subscribe(keyAccountDatas => this.keyAccountDatas = keyAccountDatas, error => this.msgError = <any>error);
+      .subscribe(keyAccountDatas => this.keyAccountDatas = keyAccountDatas, error => this.msgError = <any>error);
   }
 
   loadKeyBusiness() {
     this._keyBusinessDataService.getKeyBusiness()
-    .subscribe(keyBusinessDatas => this.keyBusinessDatas = keyBusinessDatas, error => this.msgError = <any>error);
+      .subscribe(keyBusinessDatas => this.keyBusinessDatas = keyBusinessDatas, error => this.msgError = <any>error);
   }
 
   loadRegionals() {
     this._regionalsDataService.getRegionals()
-    .subscribe(regionalsDatas => this.regionalsDatas = regionalsDatas, error => this.msgError = <any>error);
+      .subscribe(regionalsDatas => this.regionalsDatas = regionalsDatas, error => this.msgError = <any>error);
   }
 
   loadHeadQuarters() {
     this._headQuartersDataService.getHeadQuarters()
-    .subscribe(headQuartersData => this.headQuartersDatas = headQuartersData, error => this.msgError = <any>error);
+      .subscribe(headQuartersData => this.headQuartersDatas = headQuartersData, error => this.msgError = <any>error);
   }
 
   loadTipoCliente() {
     this._tipoClienteService.getTipoClienteAll()
-    .subscribe(tipoCliente => this.tipoClientes = tipoCliente, error => this.msgError = <any>error);
+      .subscribe(tipoCliente => this.tipoClientes = tipoCliente, error => this.msgError = <any>error);
 
   }
 
@@ -137,25 +142,28 @@ this.regexTest = this.utilidades.getRegexLetras;
     if (confirm('¿Desea guardar?')) {
       this.generalData.fechafin = this.generalData.fechaFinObjeto.formatted;
       this.generalData.fechainicio = this.generalData.fechaInicioObjeto.formatted;
+      if (this.validarFormulario()) {
+        this._generalDataService.addGeneralData(this.generalData)
+          .subscribe(
+          rt => console.log(rt),
+          error => this.msgError = <any>error,
+          () => console.log('Terminado'),
+        );
+        alert('Cliente Guardado Con exito');
 
-      this._generalDataService.addGeneralData(this.generalData)
-        .subscribe(
-        rt => console.log(rt),
-        error => this.msgError = <any>error,
-        () => console.log('Terminado'),
-      );
+      }
+
     }
     this.dataEdicion = true;
 
-    alert('Cliente Guardado Con exito');
   }
 
   cargarConsulta(datos: GeneralData) {
     this.cache.setid(datos.id);
     this.dataEdicion = true;
     this.generalData = datos;
-    this.generalData.fechaFinObjeto = this.crearFechaDate ( datos.fechafin);
-    this.generalData.fechaInicioObjeto = this.crearFechaDate ( datos.fechainicio);
+    this.generalData.fechaFinObjeto = this.crearFechaDate(datos.fechafin);
+    this.generalData.fechaInicioObjeto = this.crearFechaDate(datos.fechainicio);
     this.generalData.tipoCliente = this.seleccionarTipoCliente(this.generalData.tipoCliente);
     this.generalData.ejecutivoNegocio = this.seleccionarEjecutivoNegocio(this.generalData.ejecutivoNegocio);
     this.generalData.ejecutivoCuenta = this.seleccionarEjecutivoCuenta(this.generalData.ejecutivoCuenta);
@@ -166,34 +174,34 @@ this.regexTest = this.utilidades.getRegexLetras;
   seleccionarTipoCliente(tipoCliente: TipoCliente) {
     let tipoClienteSeleccion;
     this.tipoClientes.forEach(element => {
-      if ( tipoCliente.id === element.id ) {
+      if (tipoCliente.id === element.id) {
         tipoClienteSeleccion = element;
       }
     });
     return tipoClienteSeleccion;
   }
 
-  crearFechaDate( formater) {
+  crearFechaDate(formater) {
     let dato = new Date(formater);
 
     let fecha = {
-      'date' : {
-         'year': dato.getFullYear(),
-         'month': dato.getMonth() + 1,
-         'day': dato.getDate(),
+      'date': {
+        'year': dato.getFullYear(),
+        'month': dato.getMonth() + 1,
+        'day': dato.getDate(),
       },
       'jsdate': formater + 'T05:00:00.000Z',
       'formatted': formater,
       'epoc': 1507438800,
-   };
+    };
 
-   return fecha;
+    return fecha;
   }
 
   seleccionarEjecutivoNegocio(ejecutivo: EjecutivoNegocios) {
     let seleccion;
     this.keyBusinessDatas.forEach(element => {
-      if ( ejecutivo.id === element.id ) {
+      if (ejecutivo.id === element.id) {
         seleccion = element;
       }
     });
@@ -203,7 +211,7 @@ this.regexTest = this.utilidades.getRegexLetras;
   seleccionarEjecutivoCuenta(ejecutivo: EjecutivoCuenta) {
     let seleccion;
     this.keyAccountDatas.forEach(element => {
-      if ( ejecutivo.id === element.id ) {
+      if (ejecutivo.id === element.id) {
         seleccion = element;
       }
     });
@@ -213,7 +221,7 @@ this.regexTest = this.utilidades.getRegexLetras;
   seleccionarRegional(regional: RegionalsData) {
     let seleccion;
     this.regionalsDatas.forEach(element => {
-      if ( regional.id === element.id ) {
+      if (regional.id === element.id) {
         seleccion = element;
       }
     });
@@ -224,14 +232,14 @@ this.regexTest = this.utilidades.getRegexLetras;
     this.mostrarDataCliente = true;
 
     this._generalDataService.consultarClienteCodigoSap(this.generalData)
-    .subscribe(
-    rt =>   this.cargarConsulta(rt),
-    error => this.msgError = <any>error,
-    () => console.log('Terminado'),
-  );
+      .subscribe(
+      rt => this.cargarConsulta(rt),
+      error => this.msgError = <any>error,
+      () => console.log('Terminado'),
+    );
   }
 
-clienteNuevoCliente() {
+  clienteNuevoCliente() {
     this.mostrarDataCliente = true;
     this.generalData = new GeneralData();
   }
@@ -241,11 +249,11 @@ clienteNuevoCliente() {
     this.mostrarDataCliente = true;
 
     this._generalDataService.getGeneralData(this.idCliente)
-    .subscribe(
-    rt =>   this.cargarConsulta(rt),
-    error => this.msgError = <any>error,
-    () => console.log('Terminado'),
-  );
+      .subscribe(
+      rt => this.cargarConsulta(rt),
+      error => this.msgError = <any>error,
+      () => console.log('Terminado'),
+    );
   }
 
   validarNombre() {
@@ -277,8 +285,27 @@ clienteNuevoCliente() {
   }
 
   validarEmail(valor) {
-    if(this.utilidades.validarEmail(valor)){
+    if (this.utilidades.validarEmail(valor)) {
       alert('Email: Campo requerido');
     }
+  }
+
+  validarVigenciaContrato(): boolean {
+    if (this.generalData.fechaFinObjeto === null || this.generalData.fechaFinObjeto === undefined) {
+      alert('La fecha de inicio debe ser ingresada');
+      return false;
+    }
+    if (this.generalData.fechaFinObjeto === null || this.generalData.fechaFinObjeto === undefined) {
+      alert('La fecha de fin debe ser ingresada');
+      return false;
+    }
+    const dateObj = new Date(this.generalData.fechaInicioObjeto.formatted);
+    const dateFin = new Date(this.generalData.fechaFinObjeto.formatted);
+
+    if (dateObj > dateFin) {
+      alert('La fecha de inicio no puede ser mayor, que la fecha fin del contrato');
+      return false;
+    }
+    return true;
   }
 }

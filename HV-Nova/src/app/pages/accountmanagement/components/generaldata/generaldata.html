@@ -255,7 +255,7 @@
             <label for="contractStart" class="control-label col-md-12">Fecha Inicio:</label>
             <div class="col-md-12">
               <div class="input-group date">
-                <my-date-picker name="contractStart" [options]="myDatePickerOptions" [(ngModel)]="generalData.fechaInicioObjeto" #contractStart="ngModel"
+                <my-date-picker name="contractStart"  [options]="myDatePickerOptions" [(ngModel)]="generalData.fechaInicioObjeto" #contractStart="ngModel"
                   required></my-date-picker>
               </div>
               <div *ngIf="contractStart.errors">
