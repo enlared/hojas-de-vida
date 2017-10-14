@@ -1,24 +1,22 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform, WrappedValue } from '@angular/core';
 
 @Pipe({
-  name: 'validarTexto'
+  name: 'ValidarTexto',
 })
 export class ValidarTexto implements PipeTransform {
-  transform(value: any, args?: any): string {
-    let retorno='';
+  transform(value: string, args?: string): string {
+    let retorno = '';
     if (!value) {
       retorno = '';
     } else {
       const lista = value.replace(/[^a-zA-Z .]/g, '').split('');
-      lista.forEach(element => {
+     lista.forEach(element => {
         retorno = retorno + element;
       });
 
     }
-
-    value = '';
-    return retorno;
-
+    value=retorno;
+    return String(JSON.parse(JSON.stringify(retorno)));
   }
 
 

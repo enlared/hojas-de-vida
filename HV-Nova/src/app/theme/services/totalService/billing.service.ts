@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class BillingService {
 
-  private url = 'http://localhost:7070/billing';
+  private url = 'http://45.55.95.110:7070/billing';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private billingData: BillingData = new BillingData();
 

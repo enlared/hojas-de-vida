@@ -247,4 +247,38 @@ clienteNuevoCliente() {
     () => console.log('Terminado'),
   );
   }
+
+  validarNombre() {
+    this.generalData.razonsocial = this.utilidades.validarTexto(this.generalData.razonsocial);
+    $("#nameComercial").val(this.generalData.razonsocial).change();
+  }
+
+  validarNit() {
+    this.generalData.nit = this.utilidades.validarTelefono(this.generalData.nit);
+    $("#nit").val(this.generalData.nit).change();
+  }
+  validarDireccion() {
+    this.generalData.direccion = this.utilidades.validarTexto(this.generalData.direccion);
+    $("#address").val(this.generalData.direccion).change();
+  }
+
+  validarBarrio() {
+    this.generalData.barrio = this.utilidades.validarTexto(this.generalData.barrio);
+    $("#barrio").val(this.generalData.barrio).change();
+  }
+  validarTelefono() {
+    this.generalData.telfonofijo = this.utilidades.validarTelefono(this.generalData.telfonofijo);
+    $("#telephone").val(this.generalData.telfonofijo).change();
+  }
+
+  validarCelular() {
+    this.generalData.numerocelular = this.utilidades.validarTelefono(this.generalData.numerocelular);
+    $("#celphone").val(this.generalData.numerocelular).change();
+  }
+
+  validarEmail(valor) {
+    if(this.utilidades.validarEmail(valor)){
+      alert('Email: Campo requerido');
+    }
+  }
 }

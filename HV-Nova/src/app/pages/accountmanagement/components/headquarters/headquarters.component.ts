@@ -12,6 +12,8 @@ import { TypeEmployeesService } from '../../../../theme/services/totalService/ty
 import { TipoEmpleadoData } from '../../../../theme/services/totalService/TipoEmpleadoData';
 import { IMyDpOptions } from 'mydatepicker';
 import { cache } from '../../../../theme/services/cache';
+import { Utilidades } from '../../../../theme/services/Utilidades.service';
+
 @Component({
   selector: 'headquarters',
   templateUrl: './headquarters.html',
@@ -36,7 +38,7 @@ export class Headquarters {
     private _sectorDataService: SectorService,
     private _typeEmployeesDataService: TypeEmployeesService,
     private cache: cache,
-
+    private utilidades:Utilidades,
   ) {
 
     this.loadSector();
@@ -148,5 +150,10 @@ export class Headquarters {
 
   actualizar(rt) {
     this.consultaSectoresCliente();
+  }
+
+  validarNumero() {
+    this.headQuarter.cantidadempleados= this.utilidades.validarTelefono(this.headQuarter.cantidadempleados);
+    $("#numberEmployees").val(this.headQuarter.cantidadempleados).change();
   }
 }

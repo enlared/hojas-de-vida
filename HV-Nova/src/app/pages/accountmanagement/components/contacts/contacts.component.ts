@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
@@ -19,7 +19,6 @@ import { ParametroGenerico } from '../../../../theme/services/totalService/gener
 import { InfluenciaCompra } from '../../../../theme/services/totalService/InfluenciaCompra.service';
 import { GradoInfluencia } from '../../../../theme/services/totalService/GradoInfluencia.service';
 import { Utilidades } from '../../../../theme/services/Utilidades.service';
-import { ValidarTexto } from '../../../../theme/pipes/validaciones/validarTexto.pipe';
 
 import { IMyDpOptions } from 'mydatepicker';
 
@@ -27,20 +26,20 @@ import { IMyDpOptions } from 'mydatepicker';
   selector: 'contacts',
   styleUrls: ['./contacts.scss'],
   templateUrl: './contacts.html',
-  providers: [ValidarTexto],
+  changeDetection: ChangeDetectionStrategy.OnPush
 
 })
 export class Contacts {
 
   msgError: string;
   contactDatas: ContactsData[];
-  contactsData: ContactsData = new ContactsData();
+  @Input() contactsData: ContactsData = new ContactsData();
   contactsHseq: ContactsHseqData = new ContactsHseqData();
   contactsCartera: ContactsCarteraData = new ContactsCarteraData();
   dato: ContactsData = new ContactsData();
   contactoCartera: ContactsCarteraData[];
   contactoHseq: ContactsHseqData[];
-
+  emailObligatorio:boolean=false;
 
   purseDatas: PurseData[];
   purseData: PurseData = new PurseData();
@@ -99,6 +98,56 @@ export class Contacts {
   }
 
 
+  validarNombre() {
+    this.contactsData.nombre = this.utilidades.validarTexto(this.contactsData.nombre);
+    $("#contactsName").val(this.contactsData.nombre).change();
+  }
+
+  validarTelefono() {
+    this.contactsData.telefono = this.utilidades.validarTelefono(this.contactsData.telefono);
+    $("#telephone").val(this.contactsData.telefono).change();
+  }
+
+  validarCelular() {
+    this.contactsData.celular = this.utilidades.validarTelefono(this.contactsData.celular);
+    $("#telephone").val(this.contactsData.celular).change();
+  }
+
+  validarEmail(valor) {
+    if(this.utilidades.validarEmail(valor)){
+      alert('Email: Campo requerido');
+    }
+  }
+
+  /* Informacion cartera */
+  validarNombreCartera() {
+    this.contactsCartera.nombre = this.utilidades.validarTexto(this.contactsCartera.nombre);
+    $("#financialContact").val(this.contactsCartera.nombre).change();
+  }
+
+  validarTelefonoCartera() {
+    this.contactsCartera.telefono = this.utilidades.validarTelefono(this.contactsCartera.telefono);
+    $("#financialTelephone").val(this.contactsCartera.telefono).change();
+  }
+
+  validarCelularCartera() {
+    this.contactsData.celular = this.utilidades.validarTelefono(this.contactsData.celular);
+    $("#financialCelphone").val(this.contactsData.celular).change();
+  }
+
+
+  /* ************************* */
+
+  validarNombreHSEQ() {
+    this.contactsHseq.nombre = this.utilidades.validarTexto(this.contactsHseq.nombre);
+    $("#hseqName").val(this.contactsHseq.nombre).change();
+  }
+
+  validarTelefonoHseq() {
+    this.contactsHseq.telefono = this.utilidades.validarTelefono(this.contactsHseq.telefono);
+    $("#hseqTelephone").val(this.contactsHseq.telefono).change();
+  }
+  /* */
   loadcontactoHseq() {
     if (this.cache.getid() != null && this.cache.getid() != undefined) {
       this.dato.clienteid = this.cache.getid();
@@ -134,8 +183,6 @@ export class Contacts {
   }
   goSLA() {
     if (confirm('¿Desea guardar y agregar un SLA?')) {
-
-      //this.saveBusinessData();
       const link = ['pages/accountmanagement/servicelevelagreement'];
       this.router.navigate(link);
     }
@@ -237,7 +284,7 @@ export class Contacts {
   }
 
   editarContactoCartera(dato) {
-        this.contactsCartera = dato;
+    this.contactsCartera = dato;
   }
 
 
@@ -255,7 +302,7 @@ export class Contacts {
     return res;
   }
 
-  crearFechaDate( formater) {
+  crearFechaDate(formater) {
     const dato = new Date(formater);
     return dato;
   }

@@ -6,7 +6,7 @@
       </div>
       <div class="form-group row">
         <div class="form-group col-md-6">
-          <label for="codsap" class="control-label col-md-12">Código cliente SAP o nit:</label>
+          <label for="codsap" class="control-label col-md-12">Código cliente SAP o Nit:</label>
           <div class="col-md-12">
             <input type="text" class="form-control" name="codsap2" id="codsap2"
             placeholder="Cod Sap" [(ngModel)]="generalData.codigosap"
@@ -132,7 +132,7 @@
             <label for="nameComercial" class="control-label col-md-12">Razón Social:</label>
             <div class="col-md-12">
               <input type="text" class="form-control" name="nameComercial" id="nameComercial" placeholder="Razón Social" [(ngModel)]="generalData.razonsocial"
-                #nameComercial="ngModel" required maxlength="200" minlength="3">
+                #nameComercial="ngModel" (input)="validarNombre()" required maxlength="200" minlength="3" pattern="[a-zA-Z ]*">
               <div *ngIf="nameComercial.errors">
                 <div *ngIf="nameComercial.touched && !nameCommercial.valid" class="alert alert-danger">
                   <strong>Warning!</strong>Campo requerido.
@@ -146,8 +146,8 @@
           <div class="form-group col-md-6">
             <label for="nit" class="control-label col-md-12">NIT:</label>
             <div class="col-md-12">
-              <input type="text" class="form-control" name="nit" id="nit" [disabled]="dataEdicion" placeholder="Nit" [(ngModel)]="generalData.nit"
-                #nit="ngModel" required maxlength="200" minlength="3">
+              <input type="text" class="form-control" name="nit" id="nit" pattern="[0-9]*" [disabled]="dataEdicion" placeholder="Nit" [(ngModel)]="generalData.nit"
+                #nit="ngModel" required maxlength="200" minlength="3" (input)="validarNit()">
               <div *ngIf="nit.errors">
                 <div *ngIf="nit.touched && !nit.valid" class="alert alert-danger">
                   <strong>Warning!</strong>Campo requerido.
@@ -159,8 +159,8 @@
           <div class="form-group col-md-6 ">
             <label for="address" class="control-label col-md-12">Dirección:</label>
             <div class="col-md-12">
-              <input type="text" class="form-control" name="address" id="address" placeholder="Dirección" [(ngModel)]="generalData.direccion"
-                #address="ngModel" required maxlength="200" minlength="3">
+              <input type="text"  (input)="validarDireccion()" class="form-control" name="address" id="address" placeholder="Dirección" [(ngModel)]="generalData.direccion"
+                #address="ngModel" required maxlength="200" minlength="3" pattern="[a-zA-Z ]*">
               <div *ngIf="address.errors">
                 <div *ngIf="address.touched && !address.valid" class="alert alert-danger">
                   <strong>Warning!</strong>Campo requerido.
@@ -174,7 +174,8 @@
           <div class="form-group col-md-6">
             <label for="barrio" class="control-label col-md-12">Barrio:</label>
             <div class="col-md-12">
-              <input type="text" class="form-control" name="barrio" id="barrio" placeholder="Barrio" [(ngModel)]="generalData.barrio" #barrio="ngModel"
+              <input type="text" class="form-control" (input)="validarBarrio()" pattern="[a-zA-Z ]*"
+              name="barrio" id="barrio" placeholder="Barrio" [(ngModel)]="generalData.barrio" #barrio="ngModel"
                 maxlength="200" minlength="3">
               <div *ngIf="barrio.errors">
                 <div *ngIf="barrio.touched && !barrio.valid" class="alert alert-danger">
@@ -187,7 +188,8 @@
           <div class="form-group col-md-6 ">
             <label for="email" class="control-label col-md-12">Correo:</label>
             <div class="col-md-12">
-              <input type="email" class="form-control" name="email" id="email" placeholder="Email" [(ngModel)]="generalData.email" #email="ngModel"
+              <input type="email" class="form-control" name="email" id="email" placeholder="Email" [(ngModel)]="generalData.email"
+              #email="ngModel" (change)="validarEmail(generalData.email)"
                 required maxlength="200" minlength="3">
               <div *ngIf="email.errors">
                 <div *ngIf="email.touched && !emailvalid" class="alert alert-danger">
@@ -202,7 +204,8 @@
           <div class="form-group col-md-6">
             <label for="telephone" class="control-label col-md-12">Teléfono Fijo:</label>
             <div class="col-md-12">
-              <input type="text" class="form-control" name="telephone" id="telephone" placeholder="Teléfono" [(ngModel)]="generalData.telfonofijo"
+              <input type="text" class="form-control" pattern="[0-9]*" name="telephone" id="telephone"
+              placeholder="Teléfono" [(ngModel)]="generalData.telfonofijo" (input)="validarTelefono()"
                 #telephone="ngModel" maxlength="200" minlength="3">
               <div *ngIf="telephone.errors">
                 <div *ngIf="telephone.touched && !telephone.valid" class="alert alert-danger">
@@ -215,7 +218,7 @@
           <div class="form-group col-md-6 ">
             <label for="numberSedes" class="control-label col-md-12">No Sedes:</label>
             <div class="col-md-12">
-              <input type="number" class="form-control" name="sedes" id="sedes" placeholder="sedes" [(ngModel)]="generalData.numbersedes"
+              <input type="number" class="form-control" pattern="[0-9]*" name="sedes" id="sedes" placeholder="sedes" [(ngModel)]="generalData.numbersedes"
                 #numberSedes="ngModel" required maxlength="200" minlength="3">
               <div *ngIf="numberSedes.errors">
                 <div *ngIf="numberSedes.touched && !numberSedes.valid" class="alert alert-danger">
@@ -230,8 +233,8 @@
           <div class="form-group col-md-6">
             <label for="celphone" class="control-label col-md-12">Celular:</label>
             <div class="col-md-12">
-              <input type="text" class="form-control" name="celphone" id="celphone" placeholder="Celular" [(ngModel)]="generalData.numerocelular"
-                #celphone="ngModel" required maxlength="200" minlength="3">
+              <input type="text" class="form-control" pattern="[0-9]*" name="celphone" id="celphone" placeholder="Celular" [(ngModel)]="generalData.numerocelular"
+                #celphone="ngModel" required maxlength="200" minlength="3" (input)="validarCelular()">
               <div *ngIf="celphone.errors">
                 <div *ngIf="celphone.touched && !celphone.valid" class="alert alert-danger">
                   <strong>Warning!</strong>Campo requerido.
@@ -284,7 +287,7 @@
           <div class="form-group col-md-6">
             <label for="objetiveyear" class="control-label col-md-12">Anual:</label>
             <div class="col-md-12">
-              <input type="number" class="form-control" name="objetiveyear" id="objetiveyear" placeholder="Objetivo anual" [(ngModel)]="generalData.objetivoanual"
+              <input type="number" class="form-control" name="objetiveyear" pattern="[0-9]*" id="objetiveyear" placeholder="Objetivo anual" [(ngModel)]="generalData.objetivoanual"
                 #objetiveyear="ngModel" required maxlength="200" minlength="3">
               <div *ngIf="objetiveyear.errors">
                 <div *ngIf="objetiveyear.touched && !objetiveyear.valid" class="alert alert-danger">
@@ -297,7 +300,7 @@
           <div class="form-group col-md-6 ">
             <label for="objetivemonth" class="control-label col-md-12">Mensual:</label>
             <div class="col-md-12">
-              <input type="number" class="form-control" name="objetivemonth" id="objetivemonth" placeholder="Objetivo Mensual" [(ngModel)]="generalData.objetivomensual"
+              <input type="number" class="form-control" pattern="[0-9]*" name="objetivemonth" id="objetivemonth" placeholder="Objetivo Mensual" [(ngModel)]="generalData.objetivomensual"
                 #objetivemonth="ngModel" required maxlength="200" minlength="3">
               <div *ngIf="objetivemonth.errors">
                 <div *ngIf="objetivemonth.touched && !objetivemonth.valid" class="alert alert-danger">
@@ -321,7 +324,7 @@
             <div *ngIf="kBName.errors || kAName.errors || codsap.errors || typecustomer.errors || nameComercial.errors || regionals.errors
 						|| nit.errors || address.errors || barrio.errors || email.errors || telephone.errors || numberSedes.errors || celphone.errors
 						 || objetiveyear.errors || objetivemonth.errors || contractStart.errors || contractEnd.errors">
-              <button class="btn btn-primary" name="buttonSave" (click)="goSedes()" disabled>Negocio</button>
+              <button class="btn btn-primary" name="buttonSave" (click)="goSedes()" disabled>Sedes</button>
               <button class="btn btn-success" (click)="saveGeneralData()" disabled="">Guardar</button>
               <button class="btn btn-info" (click)="resetForm()">Cancelar</button>
             </div>

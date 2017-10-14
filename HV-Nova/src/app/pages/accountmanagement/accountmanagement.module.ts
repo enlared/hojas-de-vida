@@ -58,6 +58,7 @@ import { InfluenciaCompra } from '../../theme/services/totalService/InfluenciaCo
 import { GradoInfluencia } from '../../theme/services/totalService/GradoInfluencia.service';
 import { Calendar } from '../../../app/pages/dashboard/calendar/calendar.component';
 import { ValidarTexto } from '../../theme/pipes/validaciones/validarTexto.pipe';
+import { ValidarNumero } from '../../theme/pipes/validaciones/validarNumero.pipe';
 
 import { MyDatePickerModule } from 'mydatepicker';
 
@@ -75,6 +76,7 @@ import { MyDatePickerModule } from 'mydatepicker';
   declarations: [
     Headquarters,
     ValidarTexto,
+    ValidarNumero,
     Businessdata,
     Contacts,
     Servicelevels,
@@ -116,6 +118,9 @@ import { MyDatePickerModule } from 'mydatepicker';
     contactoCarteraService,
     ContactoHseqService,
     Calendar,
+  ],
+  exports: [
+
   ],
 })
 export class AccountmanagementModule {

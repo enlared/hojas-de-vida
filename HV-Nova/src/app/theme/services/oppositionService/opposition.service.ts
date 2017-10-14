@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class OppositionService {
 
-  private url = 'http://localhost:7070/competition';
+  private url = 'http://45.55.95.110:7070/competition';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private opposition: OppositionData = new OppositionData();
 

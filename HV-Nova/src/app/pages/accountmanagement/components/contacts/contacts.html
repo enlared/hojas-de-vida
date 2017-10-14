@@ -9,8 +9,9 @@
         <div class="form-group col-md-6">
           <label for="contactname" class="control-label col-md-12">Nombres:</label>
           <div class="col-md-12">
-            <input type="text" class="form-control" pattern="[a-zA-Z ]*" id="contactname" placeholder="Nombres" name="contactsName" [(ngModel)]="contactsData.nombre"
-              #contactsName="ngModel" required maxlength="200" minlength="3"pattern="[a-zA-Z ]*">
+            <input type="text" class="form-control" id="contactsName" placeholder="Nombres" name="contactsName"
+             [(ngModel)]="contactsData.nombre" (input)="validarNombre()" pattern="[a-zA-Z ]*"
+              #contactsName="ngModel" required maxlength="200" minlength="3">
             <div *ngIf="contactsName.errors">
               <div *ngIf="contactsName.touched && !contactsName.valid" class="alert alert-danger">
                 <strong>Warning!</strong>Campo requerido.
@@ -19,7 +20,6 @@
                 <strong>Warning!</strong>Se Requieren mínimo 3 caracteres
               </div>
             </div>
-
           </div>
         </div>
         <div class="form-group col-md-6">
@@ -59,9 +59,10 @@
           </div>
         </div>
         <div class="form-group col-md-6 ">
-          <label for="telephone" class="control-label col-md-12" pattern="[0-9]*">Teléfono:</label>
+          <label for="telephone" class="control-label col-md-12">Teléfono:</label>
           <div class="col-md-12">
-            <input type="text" class="form-control" id="telephone" placeholder="Teléfono" name="telephone" [(ngModel)]="contactsData.telefono"
+            <input type="text" class="form-control" id="telephone" (input)="validarTelefono()"
+            placeholder="Teléfono" name="telephone"   pattern="[0-9]*" [(ngModel)]="contactsData.telefono"
               #contactsTelephone="ngModel" required maxlength="200" minlength="3">
             <div *ngIf="contactsTelephone.errors">
               <div *ngIf="contactsTelephone.touched && !contactsTelephone.valid" class="alert alert-danger">
@@ -77,9 +78,10 @@
 
       <div class="form-group row ">
         <div class="form-group col-md-6">
-          <label for="celphone" class="control-label col-md-12"pattern="[0-9]*">Celular:</label>
+          <label for="celphone" class="control-label col-md-12">Celular:</label>
           <div class="col-md-12">
-            <input type="text" class="form-control" id="celphone" placeholder="Celular" name="contactsCelphone" [(ngModel)]="contactsData.celular"
+            <input type="text" class="form-control" id="celphone" placeholder="Celular" name="contactsCelphone"
+            [(ngModel)]="contactsData.celular"  pattern="[0-9]*"
               #contactsCelphone="ngModel" required maxlength="200" minlength="3">
             <div *ngIf="contactsCelphone.errors">
               <div *ngIf="contactsCelphone.touched && !contactsCelphone.valid" class="alert alert-danger">
@@ -135,9 +137,9 @@
           <div class="col-md-12">
             <input type="email" class="form-control"
              name="email" id="email" placeholder="Email" [(ngModel)]="contactsData.email" #email="ngModel"
-              required maxlength="200" minlength="3">
+              ng-required="emailObligatorio" maxlength="200" minlength="3"  (change)="validarEmail(contactsData.email)">
             <div *ngIf="email.errors">
-              <div *ngIf="email.touched && !email.valid" class="alert alert-danger">
+              <div *ngIf="emailObligatorio" class="alert alert-danger">
                 <strong>Warning!</strong>Campo requerido.
               </div>
               <div *ngIf="!email.validator.minlength && email.touched" class="alert alert-danger ">
@@ -211,8 +213,8 @@
         <div class="form-group col-md-6">
           <label for="financialContact" class="control-label col-md-12">Contacto Tesoreria:</label>
           <div class="col-md-12">
-            <input type="text" class="form-control" placeholder="Contacto Tesoreria" pattern="[a-zA-Z ]*" name="financialContact" id="financialContact" [(ngModel)]="contactsCartera.nombre"
-              #financialName="ngModel" required maxlength="200" minlength="3">
+            <input type="text" class="form-control" placeholder="Contacto Tesoreria" name="financialContact" id="financialContact" (input)="validarNombreCartera()" [(ngModel)]="contactsCartera.nombre"
+              #financialName="ngModel" required maxlength="200" minlength="3"pattern="[a-zA-Z ]*">
             <div *ngIf="financialName.errors">
               <div *ngIf="financialName.touched && !financialName.valid" class="alert alert-danger">
                 <strong>Warning!</strong>Campo requerido.
@@ -227,8 +229,8 @@
         <div class="form-group col-md-6 ">
           <label for="financialTelephone" class="control-label col-md-12">Teléfono:</label>
           <div class="col-md-12">
-            <input type="text" class="form-control" id="financialTelephone"pattern="[0-9]*"  placeholder="Teléfono" name="financialTelephone" [(ngModel)]="contactsCartera.telefono"
-              #financialTelephone="ngModel" required maxlength="200" minlength="3">
+            <input type="text" class="form-control" id="financialTelephone"  placeholder="Teléfono" name="financialTelephone" [(ngModel)]="contactsCartera.telefono"
+              #financialTelephone="ngModel"  pattern="[0-9]*"  required maxlength="200" minlength="3" (input)="validarTelefonoCartera()">
             <div *ngIf="financialTelephone.errors">
               <div *ngIf="financialTelephone.touched && !financialTelephone.valid" class="alert alert-danger">
                 <strong>Warning!</strong>Campo requerido.
@@ -244,7 +246,8 @@
         <div class="form-group col-md-6">
           <label for="financialCelphone" class="control-label col-md-12">Celular:</label>
           <div class="col-md-12">
-            <input type="text" class="form-control" id="financialCelphone" placeholder="Celular"pattern="[0-9]*" name="financialCelphone" [(ngModel)]="contactsCartera.celular"
+            <input type="text" class="form-control" id="financialCelphone" placeholder="Celular"
+             name="financialCelphone"  pattern="[0-9]*" [(ngModel)]="contactsCartera.celular" (input)="validarCelularCartera()"
               #financialCelphone="ngModel" required maxlength="200" minlength="3">
             <div *ngIf="financialCelphone.errors">
               <div *ngIf="financialCelphone.touched && !financialCelphone.valid" class="alert alert-danger">
@@ -260,7 +263,7 @@
           <label for="financialEmail" class="control-label col-md-12">Correo:</label>
           <div class="col-md-12">
             <input type="email" class="form-control" id="financialEmail" placeholder="Correo" name="financialEmail" [(ngModel)]="contactsCartera.email"
-              #financialEmail="ngModel" required maxlength="200" minlength="3">
+              #financialEmail="ngModel" required maxlength="200" minlength="3" (change)="validarEmail(contactsCartera.email)">
             <div *ngIf="financialEmail.errors">
               <div *ngIf="financialEmail.touched && !financialEmail.valid" class="alert alert-danger">
                 <strong>Warning!</strong>Campo requerido.
@@ -271,6 +274,7 @@
             </div>
           </div>
         </div>
+        <div class="box-shadow-border"></div>
 
         <div class="form-group col-md-6 ">
           <br>
@@ -327,7 +331,7 @@
         <div class="form-group col-md-6">
           <label for="hseqName" class="control-label col-md-12">Nombres:</label>
           <div class="col-md-12">
-            <input type="text" class="form-control" id="hseqName" placeholder="Nombres" pattern="[a-zA-Z ]*" name="hseqName" [(ngModel)]="contactsHseq.nombre"
+            <input type="text" class="form-control" id="hseqName" placeholder="Nombres" pattern="[a-zA-Z ]*" name="hseqName" [(ngModel)]="contactsHseq.nombre" (input)="validarNombreHSEQ()"
               #hseqName="ngModel" required maxlength="200" minlength="3">
             <div *ngIf="hseqName.errors">
               <div *ngIf="hseqName.touched && !hseqName.valid" class="alert alert-danger">
