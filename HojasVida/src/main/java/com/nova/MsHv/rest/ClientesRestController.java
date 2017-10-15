@@ -22,12 +22,7 @@ import com.nova.MsHvExcepciones.NovaHVRestException;
 @CrossOrigin
 @Controller
 
-/**
- * Class for rest service http for CRUD
- * 
- * @customers enlaRed.co
- * @version 1.0
- */
+
 public class ClientesRestController {
 	static final Logger log = Logger.getLogger(ClientesRestController.class);
 	@Autowired
@@ -54,6 +49,24 @@ public class ClientesRestController {
 		return customers;
 	}
 
+	
+
+	@RequestMapping(value="clientes/find", method = RequestMethod.POST)
+	@ResponseBody
+	public Cliente getCustomersAll(@RequestBody Cliente cli) throws NovaHVDaoException {
+
+		PropertyConfigurator.configure("log4j.properties");
+		log.info("Log4j method find All for Cliente");
+		try {
+
+			return clienteDAO.findById(cli.getId());
+		} catch (Exception e) {
+			log.error("Log4j Error in method Find All for Cliente" + e);
+			throw new NovaHVDaoException(e);
+
+		}
+	}
+	
 	@RequestMapping(value = "clientes/consultarSap", method = RequestMethod.POST)
 	@ResponseBody
 	public Cliente consultarSap(@RequestBody Cliente cliente) throws NovaHVRestException {

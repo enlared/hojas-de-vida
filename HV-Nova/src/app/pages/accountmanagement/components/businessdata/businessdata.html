@@ -1,0 +1,230 @@
+<ba-card cardTitle="Bienvenido al sistema de Gestión de Cuentas" baCardClass="with-scroll">
+  <form class="form-horizontal">
+    <div class="container-fluid">
+      <div class="form-group row">
+        <h4>Información General del Negocio </h4>
+      </div>
+
+      <div class="form-group row">
+        <div class="form-group col-md-6">
+          <label for="typeMachine" class="control-label col-md-12">Tipo Máquina:</label>
+          <div class="col-md-12">
+            <div class="form-group">
+              <select class="form-control" id="typeMachine" name="typeMachine" [(ngModel)]="businessData.tipoMaquina" #typemachine="ngModel"
+                required>
+											  <option *ngFor = "let typeMachineData of typeMachineDatas" [ngValue]=  "typeMachineData">{{typeMachineData.nombre}}</option>
+									</select>
+              <div *ngIf="typemachine.errors">
+                <div *ngIf="typemachine.touched && !typemachine.valid" class="alert alert-danger">
+                  <strong>Warning!</strong>Campo requerido.
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="numberMachine" class="control-label col-md-12">No Máquinas:</label>
+          <div class="col-md-12">
+            <input type="number" class="form-control" name="numberMachine" id="numberMachine" placeholder="No Máquinas" [(ngModel)]="businessData.numeromaquina"
+              #numbermachine="ngModel" required maxlength="200" minlength="3">
+            <div *ngIf="numbermachine.errors">
+              <div *ngIf="numbermachine.touched && !numbermachine.valid" class="alert alert-danger">
+                <strong>Warning!</strong>Campo requerido.
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="form-group col-md-6">
+          <label for="typeGlass" class="control-label col-md-12">Tipo de Vaso:</label>
+          <div class="col-md-12">
+            <div class="form-group">
+              <select class="form-control" id="typeGlass" name="typeGlass" [(ngModel)]="businessData.tipoVasoId" #typeglass="ngModel" required>
+											  <option value = "1">Cartón</option>
+											  <option value = "2">Plástico</option>
+									</select>
+              <div *ngIf="typeglass.errors">
+                <div *ngIf="typeglass.touched && !typeglass.valid" class="alert alert-danger">
+                  <strong>Warning!</strong>Campo requerido.
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6 ">
+          <label for="anclaje" class="control-label col-md-12">Anclaje:</label>
+          <div class="col-md-12">
+
+            <div class="form-group">
+              <select class="form-control" id="anclaje" name="anclaje" [(ngModel)]="businessData.anclaje" #anchorage="ngModel" required>
+												  <option *ngFor = "let anchorageData of anchorageDatas" [ngValue]=  "anchorageData">{{anchorageData.nombre}}</option>
+										</select>
+              <div *ngIf="anchorage.errors">
+                <div *ngIf="anchorage.touched && !anchorage.valid" class="alert alert-danger">
+                  <strong>Warning!</strong>Campo requerido.
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row ">
+        <div class="form-group col-md-6">
+          <label for="listPrecies" class="control-label col-md-12">Lista de Precios:</label>
+          <div class="col-md-12">
+            <div class="form-group">
+              <select class="form-control" id="listPrecies" name="lastPrecies" [(ngModel)]="businessData.listaPrecio" #listprices="ngModel"
+                required>
+											  <option *ngFor = "let listPricesData of listPricesDatas" [ngValue] = "listPricesData">{{listPricesData.descripcion}}</option>
+									</select>
+              <div *ngIf="listprices.errors">
+                <div *ngIf="listprices.touched && !listprecies.valid" class="alert alert-danger">
+                  <strong>Warning!</strong>Campo requerido.
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="typenegociation" class="control-label col-md-12">Tipo Negociación:</label>
+          <div class="col-md-12">
+            <div class="form-group">
+              <select class="form-control" id="typenegociation" name="typenegociation" [(ngModel)]="businessData.tipoNegociacion" #typenegociation="ngModel"
+                required>
+											  <option *ngFor = "let typeNegociationData of typeNegociationDatas" [ngValue]= "typeNegociationData">{{typeNegociationData.nombre}}</option>
+									</select>
+              <div *ngIf="typenegociation.errors">
+                <div *ngIf="typenegociation.touched && !typenegociation.valid" class="alert alert-danger">
+                  <strong>Warning!</strong>Campo requerido.
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="form-group col-md-6">
+          <label for="category" class="control-label col-md-12">Categoría:</label>
+          <div class="col-md-12">
+            <div class="form-group">
+              <select class="form-control" id="category" name="category" [(ngModel)]="businessData.categoria" #category="ngModel" required>
+											  <option *ngFor = "let categoryData of categoryDatas" [ngValue]= "categoryData">{{categoryData.nombre}}</option>
+									</select>
+              <div *ngIf="category.errors">
+                <div *ngIf="category.touched && !category.valid" class="alert alert-danger">
+                  <strong>Warning!</strong>Campo requerido.
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6 ">
+          <label for="totalsale" class="control-label col-md-12">Venta Total:</label>
+          <div class="col-md-12">
+            <input type="number" class="form-control" name="totalsale" id="totalsale" placeholder="Venta total" [(ngModel)]="businessData.totalsale"
+              #totalsale="ngModel" required maxlength="200" minlength="3">
+            <div *ngIf="totalsale.errors">
+              <div *ngIf="totalsale.touched && !totalsale.valid" class="alert alert-danger">
+                <strong>Warning!</strong>Campo requerido.
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="box-shadow-border"></div>
+      <br>
+
+      <div class="form-group row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+
+          <div *ngIf="typemachine.errors || numbermachine.errors || typeglass.errors || anchorage.errors || listprices.errors || typenegociation.errors
+						|| category.errors || totalsale.errors ">
+            <button class="btn btn-primary" name="buttonSave" (click)="goContacts()" disabled>Contactos</button>
+            <button class="btn btn-success" (click)="saveBusinessData()" disabled="">Guardar</button>
+            <button class="btn btn-info" (click)="resetForm()">Cancelar</button>
+          </div>
+          <div *ngIf="!typemachine.errors && !numbermachine.errors && !typeglass.errors && !anchorage.errors && !listprices.errors && !typenegociation.errors
+							&& !category.errors && !totalsale.errors ">
+            <button class="btn btn-primary" name="buttonSave" (click)="goContacts()">Contactos</button>
+            <button class="btn btn-success" (click)="saveBusinessData()">Guardar</button>
+            <button class="btn btn-info" (click)="resetForm()">Cancelar</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">Información de Negocios</div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>
+              Tipo Maquina:
+            </th>
+            <th>
+              No Maquinas:
+            </th>
+            <th >
+              Tipo vaso:
+            </th>
+            <th >
+              Anclaje:
+            </th>
+            <th >
+              Precio:
+            </th>
+            <th >
+              Tipo Negociación:
+            </th>
+            <th >
+              Categoría:
+            </th>
+            <th >
+              Venta Total:
+            </th>
+            <th >
+              Acción:
+            </th>
+            <tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of businessLists">
+            <td>{{data.tipoMaquina.nombre}}</td>
+            <td> {{data.numeroMaquina}}</td>
+            <td> {{data.tipoVasoId}}</td>
+            <td> {{data.anclaje.nombre}}</td>
+            <td> {{data.listaPrecio.descripcion}}</td>
+            <td> {{data.tipoNegociacion.nombre}}</td>
+            <td> {{data.categoria.nombre}}</td>
+            <td> {{data.totalsale}}</td>
+
+            <td>
+              <button class="glyphicon .glyphicon-trash btn btn-info" (click)="eliminar(data)" name="eliminarNegocio"><i class="fa fa-eraser" aria-hidden="true"></i></button>
+              <button class=".glyphicon-trash btn btn-info" (click)="editar(data)" name="editarNegocio"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+  </form>
+</ba-card>

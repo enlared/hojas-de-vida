@@ -1,0 +1,127 @@
+<ba-card cardTitle="Bienvenido al sistema de Gestión de Cuentas" baCardClass="with-scroll">
+	<form class="form-horizontal">
+		<div class="container-fluid">
+			<div class="form-group row">
+				<h4>Información de Sedes </h4>
+			</div>
+
+			<div class="form-group row">
+					<div class="form-group col-md-6">
+						<label for="typeemployees" class="control-label col-md-12">Tipo Empleados:</label>
+						<div class="col-md-12">
+								<div class="form-group">
+										<select class="form-control" id="typeemployees" name="typeemployees"
+										[(ngModel)]="headQuarter.tipoempleado" #typeEmployees="ngModel"
+										 required>
+											  <option *ngFor = "let typeEmployeesData of typeEmployeesDatas" [ngValue]= "typeEmployeesData">{{typeEmployeesData.nombre}}</option>
+										</select>
+										<div *ngIf="typeEmployees.errors">
+											<div *ngIf="typeEmployees.touched && !typeEmployees.valid" class="alert alert-danger">
+												<strong>Warning!</strong>Campo requerido.
+											</div>
+										</div>
+									</div>
+						</div>
+					</div>
+				<div class="form-group col-md-6">
+					<label for="numberEmployees" class="control-label col-md-12">No Empleados:</label>
+					<div class="col-md-12">
+						<input type="number"class="form-control" id="numberEmployees" name="numberEmployees"
+						[(ngModel)]="headQuarter.cantidadempleados" #numberEmployees="ngModel"
+						 required>
+						 <div *ngIf="numberEmployees.errors">
+							<div *ngIf="numberEmployees.touched && !numberEmployees.valid" class="alert alert-danger">
+								<strong>Warning!</strong>Campo requerido.
+							</div>
+						</div>
+				</div>
+
+			</div>
+			</div>
+			<div class="form-group row">
+				<div class="form-group col-md-6">
+					<label for="sectorName" class="control-label col-md-12">Sector:</label>
+					<div class="col-md-12">
+
+                <select class="form-control" id="sectorName" name="sectorName"
+                [(ngModel)]="headQuarter.sector" #sectorName="ngModel"
+                 required>
+                    <option *ngFor = "let sector of sectorDatas" [ngValue]= "sector">{{sector.nombre}}</option>
+                </select>
+
+							<div *ngIf="sectorName.errors">
+								<div *ngIf="sectorName.touched && !sectorName.valid" class="alert alert-danger">
+									<strong>Warning!</strong>Campo requerido.
+								</div>
+
+							</div>
+					</div>
+				</div>
+				<div class="form-group col-md-6">
+
+				</div>
+			</div>
+
+
+			<div class="form-group row">
+				<div class="col-md-4">
+				</div>
+				<div class="col-md-4">
+				</div>
+				<div class="col-md-4">
+
+						<div *ngIf="typeEmployees.errors || numberEmployees.errors || sectorName.errors ">
+								<button class="btn btn-primary" name="buttonSave" (click)="goBusiness()" disabled>Sedes</button>
+								<button class="btn btn-success" (click)="saveHeadQuarters()" disabled="">Guardar</button>
+                <button class="btn btn-info" (click)="resetForm()">Cancelar</button>
+                <button class="btn btn-info" (click)="consultaSectoresCliente()">Actualizar</button>
+
+							</div>
+							<div *ngIf="!typeEmployees.errors && !numberEmployees.errors && !sectorName.errors ">
+								<button class="btn btn-primary" name="buttonSave" (click)="goBusiness()">Sedes</button>
+								<button class="btn btn-success" (click)="saveHeadQuarters()">Guardar</button>
+                <button class="btn btn-info" (click)="  consultaSectoresCliente()">Cancelar</button>
+
+							</div>
+
+				</div>
+			</div>
+    </div>
+    <div class="panel panel-default" *ngIf="sectoresClientes">
+      <div class="panel-heading">Información de sedes</div>
+      <table class="table table-striped" >
+        <thead>
+          <tr>
+            <th style="width: 20%">
+              Tipo Empleados:
+            </th>
+            <th style="width: 20%">
+              No Empleados:
+            </th>
+            <th style="width: 20%">
+              Sector:
+            </th>
+
+            <th style="width: 20%">
+              Acción:
+            </th>
+          <tr>
+         </thead>
+        <tbody>
+          <tr *ngFor="let data of sectoresClientes">
+            <td>{{data.tipoempleado.nombre}}</td>
+            <td> {{data.cantidadempleados}}</td>
+            <td> {{data.sector.nombre}}</td>
+            <td>
+              <button class="glyphicon .glyphicon-trash btn btn-info" (click)="eliminar(data)" name="eliminarSector"  ><i class="fa fa-eraser" aria-hidden="true"></i></button>
+              <button class=".glyphicon-trash btn btn-info"  (click)="editar(data)" name="editarSector"  ><i class="fa fa-pencil" aria-hidden="true"></i></button>
+
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+	</form>
+</ba-card>

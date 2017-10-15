@@ -16,6 +16,7 @@ public interface ClienteDAO extends CrudRepository<Cliente, Long> {
 
 	public List<Cliente> findByCodigosap(String codsap);
 	public List<Cliente> findByNit(String nit);
+	public Cliente findById(Integer integer);
 
 
 	@Override

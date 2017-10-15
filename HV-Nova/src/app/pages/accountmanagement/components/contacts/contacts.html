@@ -1,0 +1,425 @@
+<ba-card cardTitle="Bienvenido al sistema de Gestión de Cuentas" baCardClass="with-scroll">
+  <form class="form-horizontal">
+    <div class="container-fluid">
+      <div class="form-group row">
+        <h4>Información de contacto 1 </h4>
+      </div>
+
+      <div class="form-group row">
+        <div class="form-group col-md-6">
+          <label for="contactname" class="control-label col-md-12">Nombres:</label>
+          <div class="col-md-12">
+            <input type="text" class="form-control" id="contactsName" placeholder="Nombres" name="contactsName"
+             [(ngModel)]="contactsData.nombre" (input)="validarNombre()" pattern="[a-zA-Z ]*"
+              #contactsName="ngModel" required maxlength="200" minlength="3">
+            <div *ngIf="contactsName.errors">
+              <div *ngIf="contactsName.touched && !contactsName.valid" class="alert alert-danger">
+                <strong>Warning!</strong>Campo requerido.
+              </div>
+              <div *ngIf="!contactsName.validator.minlength && contactsName.touched" class="alert alert-danger ">
+                <strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="influence" class="control-label col-md-12">Influencia Compradora:</label>
+          <div class="col-md-12">
+            <div class="form-group">
+              <select class="form-control" id="influence" name="influence" [(ngModel)]="contactsData.influenciaCompra" #influence="ngModel"
+                required>
+                <option *ngFor = "let modo of influenciaCompra" [ngValue]= "modo">{{modo.nombre}}</option>
+							</select>
+              <div *ngIf="influence.errors">
+                <div *ngIf="influence.touched && !influence.valid" class="alert alert-danger">
+                  <strong>Warning!</strong>Campo requerido.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="form-group col-md-6">
+          <label for="gradeinfluence" class="control-label col-md-12">Grado Influencia:</label>
+          <div class="col-md-12">
+            <div class="form-group">
+              <select class="form-control" id="gradeInfluence" name="gradeInfluence" [(ngModel)]="contactsData.gradoInfluencia" #gradeInfluence="ngModel"
+                required>
+                <option *ngFor = "let grado of gradoInfluencia" [ngValue]= "grado">{{grado.nombre}}</option>
+
+							</select>
+              <div *ngIf="gradeInfluence.errors">
+                <div *ngIf="gradeInfluence.touched && !gradeInfluence.valid" class="alert alert-danger">
+                  <strong>Warning!</strong>Campo requerido.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6 ">
+          <label for="telephone" class="control-label col-md-12">Teléfono:</label>
+          <div class="col-md-12">
+            <input type="text" class="form-control" id="telephone" (input)="validarTelefono()"
+            placeholder="Teléfono" name="telephone"   pattern="[0-9]*" [(ngModel)]="contactsData.telefono"
+              #contactsTelephone="ngModel" required maxlength="200" minlength="3">
+            <div *ngIf="contactsTelephone.errors">
+              <div *ngIf="contactsTelephone.touched && !contactsTelephone.valid" class="alert alert-danger">
+                <strong>Warning!</strong>Campo requerido.
+              </div>
+              <div *ngIf="!contactsTelephone.validator.minlength && contactsTelephone.touched" class="alert alert-danger ">
+                <strong>Warning!</strong>Se Requieren mínimo 3 caracteres y debe ser númerico
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row ">
+        <div class="form-group col-md-6">
+          <label for="celphone" class="control-label col-md-12">Celular:</label>
+          <div class="col-md-12">
+            <input type="text" class="form-control" id="celphone" placeholder="Celular" name="contactsCelphone"
+            [(ngModel)]="contactsData.celular"  pattern="[0-9]*"
+              #contactsCelphone="ngModel" required maxlength="200" minlength="3">
+            <div *ngIf="contactsCelphone.errors">
+              <div *ngIf="contactsCelphone.touched && !contactsCelphone.valid" class="alert alert-danger">
+                <strong>Warning!</strong>Campo requerido.
+              </div>
+              <div *ngIf="!contactsCelphone.validator.minlength && contactsCelphone.touched" class="alert alert-danger ">
+                <strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="contactsMode" class="control-label col-md-12">Modo:</label>
+          <div class="col-md-12">
+            <div class="form-group">
+              <select class="form-control" id="contactsMode" name="contactsMode" [(ngModel)]="contactsData.modo" #contactsMode="ngModel"
+                required>
+                <option *ngFor = "let modo of modos" [ngValue]= "modo">{{modo.nombre}}</option>
+							</select>
+              <div *ngIf="contactsMode.errors">
+                <div *ngIf="contactsMode.touched && !contactsMode.valid" class="alert alert-danger">
+                  <strong>Warning!</strong>Campo requerido.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+
+
+        <div class="form-group col-md-6">
+          <label for="birthday" class="control-label col-md-12">Fecha Cumpleaños:</label>
+          <div class="container col-md-12">
+              <div class="row">
+                  <div class='col-sm-6'>
+                      <input type="date" class="form-control" name="birthday" [(ngModel)]="contactsData.fechacumpleanos" #birthday="ngModel" size="50" required />
+
+                  </div>
+                  <div *ngIf="birthday.errors">
+                      <div *ngIf="birthday.touched && !birthday.valid" class="alert alert-danger">
+                        <strong>Warning!</strong>Campo requerido.
+                      </div>
+                    </div>
+
+              </div>
+          </div>
+
+        </div>
+        <div class="form-group col-md-6 ">
+          <label for="email" class="control-label col-md-12">Correo:</label>
+          <div class="col-md-12">
+            <input type="email" class="form-control"
+             name="email" id="email" placeholder="Email" [(ngModel)]="contactsData.email" #email="ngModel"
+              ng-required="emailObligatorio" maxlength="200" minlength="3"  (change)="validarEmail(contactsData.email)">
+            <div *ngIf="email.errors">
+              <div *ngIf="emailObligatorio" class="alert alert-danger">
+                <strong>Warning!</strong>Campo requerido.
+              </div>
+              <div *ngIf="!email.validator.minlength && email.touched" class="alert alert-danger ">
+                <strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <h4>Agregar contacto</h4>
+        <br>
+        <div>
+          <button class="btn btn-primary" (click)="  saveContactsData()">Agregar</button>
+        </div>
+
+      </div>
+      <div class="panel panel-default" *ngIf="contactDatas!=null && contactDatas.length>0">
+        <div class="panel-heading">Información de Contactos</div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>
+                Nombre:
+              </th>
+              <th>
+                Influencia Compradora:
+              </th>
+              <th>
+                Grado influencia:
+              </th>
+
+              <th>
+                Teléfono:
+              </th>
+              <th>
+                Celular:
+              </th>
+              <th>
+                Modo:
+              </th>
+              <th>
+                Fecha Cumpleaños::
+              </th>
+              <th>
+                Correo:
+              </th>
+              <tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of contactDatas">
+              <td>{{data.nombre}}</td>
+              <td> {{data.influenciaCompra.nombre}}</td>
+              <td> {{data.gradoInfluencia.nombre}}%</td>
+              <td> {{data.telefono}}</td>
+              <td> {{data.celular}}</td>
+              <td> {{data.modo.nombre}}</td>
+              <td> {{data.fechacumpleanos}}</td>
+              <td> {{data.email}}</td>
+              <td>
+                <button class="glyphicon .glyphicon-trash btn btn-info" (click)="removeContact(data)" name="eliminarSector"><i class="fa fa-eraser" aria-hidden="true"></i></button>
+                <button class=".glyphicon-trash btn btn-info" (click)="editarContacto(data)" name="editarSector"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="box-shadow-border"></div>
+      <br>
+      <h4>Información Cartera</h4>
+      <div class="form-group row">
+        <div class="form-group col-md-6">
+          <label for="financialContact" class="control-label col-md-12">Contacto Tesoreria:</label>
+          <div class="col-md-12">
+            <input type="text" class="form-control" placeholder="Contacto Tesoreria" name="financialContact" id="financialContact" (input)="validarNombreCartera()" [(ngModel)]="contactsCartera.nombre"
+              #financialName="ngModel" required maxlength="200" minlength="3"pattern="[a-zA-Z ]*">
+            <div *ngIf="financialName.errors">
+              <div *ngIf="financialName.touched && !financialName.valid" class="alert alert-danger">
+                <strong>Warning!</strong>Campo requerido.
+              </div>
+              <div *ngIf="!financialName.validator.minlength && financialName.touched" class="alert alert-danger ">
+                <strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-6 ">
+          <label for="financialTelephone" class="control-label col-md-12">Teléfono:</label>
+          <div class="col-md-12">
+            <input type="text" class="form-control" id="financialTelephone"  placeholder="Teléfono" name="financialTelephone" [(ngModel)]="contactsCartera.telefono"
+              #financialTelephone="ngModel"  pattern="[0-9]*"  required maxlength="200" minlength="3" (input)="validarTelefonoCartera()">
+            <div *ngIf="financialTelephone.errors">
+              <div *ngIf="financialTelephone.touched && !financialTelephone.valid" class="alert alert-danger">
+                <strong>Warning!</strong>Campo requerido.
+              </div>
+              <div *ngIf="!financialTelephone.validator.minlength && financialTelephone.touched" class="alert alert-danger ">
+                <strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="form-group col-md-6">
+          <label for="financialCelphone" class="control-label col-md-12">Celular:</label>
+          <div class="col-md-12">
+            <input type="text" class="form-control" id="financialCelphone" placeholder="Celular"
+             name="financialCelphone"  pattern="[0-9]*" [(ngModel)]="contactsCartera.celular" (input)="validarCelularCartera()"
+              #financialCelphone="ngModel" required maxlength="200" minlength="3">
+            <div *ngIf="financialCelphone.errors">
+              <div *ngIf="financialCelphone.touched && !financialCelphone.valid" class="alert alert-danger">
+                <strong>Warning!</strong>Campo requerido.
+              </div>
+              <div *ngIf="!financialCelphone.validator.minlength && financialCelphone.touched" class="alert alert-danger ">
+                <strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6 ">
+          <label for="financialEmail" class="control-label col-md-12">Correo:</label>
+          <div class="col-md-12">
+            <input type="email" class="form-control" id="financialEmail" placeholder="Correo" name="financialEmail" [(ngModel)]="contactsCartera.email"
+              #financialEmail="ngModel" required maxlength="200" minlength="3" (change)="validarEmail(contactsCartera.email)">
+            <div *ngIf="financialEmail.errors">
+              <div *ngIf="financialEmail.touched && !financialEmail.valid" class="alert alert-danger">
+                <strong>Warning!</strong>Campo requerido.
+              </div>
+              <div *ngIf="!financialEmail.validator.minlength && financialEmail.touched" class="alert alert-danger ">
+                <strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="box-shadow-border"></div>
+
+        <div class="form-group col-md-6 ">
+          <br>
+          <h4>Agregar contacto cartera</h4>
+          <br>
+          <div>
+            <button class="btn btn-primary" (click)="saveContactsCateraData()">Agregar</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="panel panel-default" *ngIf="contactoCartera!=null && contactoCartera.length>0">
+        <div class="panel-heading">Información de contactos Cartera</div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>
+                Nombre:
+              </th>
+              <th>
+                Teléfono:
+              </th>
+              <th>
+                Celular:
+              </th>
+              <th>
+                Correo:
+              </th>
+              <tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of contactoCartera">
+              <td>{{data.nombre}}</td>
+              <td> {{data.telefono}}</td>
+              <td> {{data.celular}}</td>
+              <td> {{data.email}}</td>
+              <td>
+                <button class="glyphicon .glyphicon-trash btn btn-info" (click)="removeContactsCatera(data)" name="eliminarSector"><i class="fa fa-eraser" aria-hidden="true"></i></button>
+                <button class=".glyphicon-trash btn btn-info" (click)="editarContactoCartera(data)" name="editarSector"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+
+      </div>
+      <br>
+      <div class="box-shadow-border"></div>
+      <br>
+      <h4>Información Contacto HSEQ</h4>
+      <div class="form-group row">
+        <div class="form-group col-md-6">
+          <label for="hseqName" class="control-label col-md-12">Nombres:</label>
+          <div class="col-md-12">
+            <input type="text" class="form-control" id="hseqName" placeholder="Nombres" pattern="[a-zA-Z ]*" name="hseqName" [(ngModel)]="contactsHseq.nombre" (input)="validarNombreHSEQ()"
+              #hseqName="ngModel" required maxlength="200" minlength="3">
+            <div *ngIf="hseqName.errors">
+              <div *ngIf="hseqName.touched && !hseqName.valid" class="alert alert-danger">
+                <strong>Warning!</strong>Campo requerido.
+              </div>
+              <div *ngIf="!hseqName.validator.minlength && hseqName.touched" class="alert alert-danger ">
+                <strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6 ">
+          <label for="hseqTelephone" class="control-label col-md-12">Teléfono:</label>
+          <div class="col-md-12">
+            <input type="text" class="form-control" id="hseqTelephone" placeholder="Teléfono" pattern="[0-9]*" name="hseqTelephone" [(ngModel)]="contactsHseq.telefono"
+              #hseqTelephone="ngModel" required maxlength="200" minlength="3">
+            <div *ngIf="hseqTelephone.errors">
+              <div *ngIf="hseqTelephone.touched && !hseqTelephone.valid" class="alert alert-danger">
+                <strong>Warning!</strong>Campo requerido.
+              </div>
+              <div *ngIf="!hseqTelephone.validator.minlength && hseqTelephone.touched" class="alert alert-danger ">
+                <strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="box-shadow-border"></div>
+        <br>
+        <h4>Agregar otro contacto Hseq</h4>
+        <br>
+        <div>
+        </div>
+
+        <button class="btn btn-primary" (click)="saveContactsHseqData()">Agregar</button>
+      </div>
+      <div class="panel panel-default" *ngIf="contactoHseq!=null && contactoHseq.length>0">
+        <div class="panel-heading">Información de contactos Hseq</div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>
+                Nombre:
+              </th>
+              <th>
+                Teléfono:
+              </th>
+              <tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of contactoHseq">
+              <td>{{data.nombre}}</td>
+              <td> {{data.telefono}}</td>
+              <td>
+                <button class="glyphicon .glyphicon-trash btn btn-info" (click)="removeContactsHseq(data)" name="eliminarSector"><i class="fa fa-eraser" aria-hidden="true"></i></button>
+                <button class=".glyphicon-trash btn btn-info" (click)="editarContactoHseq(data)" name="editarSector"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+
+
+          <div *ngIf="contactsName.errors || influence.errors || gradeInfluence.errors || contactsTelephone.errors ||contactsCelphone.errors || contactsMode.errors
+					|| birthday.errors || email.errors  || email.errors || financialName.errors || financialTelephone.errors || financialCelphone.errors
+					 || financialEmail.errors || hseqName.errors || hseqTelephone.errors ">
+            <button class="btn btn-primary" name="buttonSave" (click)="goSLA()" disabled>Negocio</button>
+            <!--<button class="btn btn-success" (click)="saveContactsData()" disabled="">Guardar</button>-->
+            <button class="btn btn-info" (click)="resetForm()">Cancelar</button>
+          </div>
+          <div *ngIf="!contactsName.errors && !influence.errors && !gradeInfluence.errors && !contactsTelephone.errors && !contactsCelphone.errors && !contactsMode.errors
+						&& !birthday.errors && !email.errors  && !email.errors && !financialName.errors && !financialTelephone.errors && !financialCelphone.errors
+						&& !financialEmail.errors && !hseqName.errors && !hseqTelephone.errors ">
+            <button class="btn btn-primary" name="buttonSave" (click)="goSLA()">Negocio</button>
+           <!-- <button class="btn btn-success" (click)="saveContactsData()">Guardar</button>-->
+            <button class="btn btn-info" (click)="resetForm()">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</ba-card>

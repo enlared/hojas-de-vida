@@ -1,0 +1,128 @@
+<ba-card cardTitle="Bienvenido al sistema de Gestión de Cuentas" baCardClass="with-scroll">
+  <form class="form-horizontal">
+    <div class="container-fluid">
+      <div class="form-group row">
+        <h4>Análisis de la Competencia </h4>
+      </div>
+
+      <div class="form-group row">
+        <div class="form-group col-md-6">
+          <label for="nameCompetence" class="control-label col-md-12">Nombre de la competencia:</label>
+          <div class="col-md-12">
+            <input class="form-control" pattern="[a-zA-Z ]*" (input)="validarNombre()" id="nameCompetence" type="text" placeholder="Competencia"
+              name="nameCompetence" [(ngModel)]="oppositionData.nombre" #nameCompetence="ngModel" required maxlength="200"
+              minlength="3">
+            <div *ngIf="nameCompetence.errors">
+              <div *ngIf="nameCompetence.touched && !nameCompetence.valid" class="alert alert-danger">
+                <strong>Warning!</strong>Campo requerido.
+              </div>
+              <div *ngIf="!nameCompetence.validator.minlength && nameCompetence.touched" class="alert alert-danger ">
+                <strong>Warning!</strong>Se Requieren mínimo 3 caracteres
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="category" class="control-label col-md-12">Categoría competencia:</label>
+          <div class="col-md-12">
+            <div class="form-group">
+              <select class="form-control" id="oc" name="oc" [(ngModel)]="oppositionData.categoriaCompetencia" #category="ngModel" required>
+                <option *ngFor="let categoryData of categoryDatas" [ngValue]="categoryData">{{categoryData.nombre}}</option>
+              </select>
+              <div *ngIf="category.errors">
+                <div *ngIf="category.touched && !category.valid" class="alert alert-danger">
+                  <strong>Warning!</strong>Campo requerido.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="form-group col-md-6">
+          <label for="typeMac" class="control-label col-md-12">Tipo Máquina:</label>
+          <div class="col-md-12">
+            <div class="form-group">
+              <select class="form-control" id="typeMac" name="typeMac" [(ngModel)]="oppositionData.tipoMaquina" #typeMac="ngModel" required>
+                <option *ngFor="let typeMachineData of typeMachineDatas" [ngValue]="typeMachineData">{{typeMachineData.nombre}}</option>
+              </select>
+              <div *ngIf="typeMac.errors">
+                <div *ngIf="typeMac.touched && !typeMac.valid" class="alert alert-danger">
+                  <strong>Warning!</strong>Campo requerido.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="form-group row">
+        <div class="col-md-5">
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-3">
+
+          <div *ngIf="nameCompetence.errors || category.errors || typeMac.errors">
+
+            <button class="btn btn-success" (click)="saveOpposition()" disabled>Guardar</button>
+            <button class="btn btn-info" (click)="resetForm()">Cancelar</button>
+          </div>
+          <div *ngIf="!nameCompetence.errors && !category.errors && !typeMac.errors ">
+
+            <button class="btn btn-success" (click)="saveOpposition()">Guardar</button>
+            <button class="btn btn-info" (click)="resetForm()">Cancelar</button>
+          </div>
+
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <div class="form-group col-md-6" *ngIf="oppositionList">
+          <div class="panel panel-default">
+            <div class="panel-heading">Información de la Competencia
+            </div>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th style="width: 40%">
+                    Nombre:
+                  </th >
+                  <th style="width: 40%">
+                    Categoria:
+                  </th>
+                  <th style="width: 40%">
+                    Maquina:
+                  </th>
+                  <th style="width: 40%">
+                      Acciones:
+                    </th>
+                  <tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of oppositionList">
+                  <td>{{data.nombre}}</td>
+                  <td> {{data.categoriaCompetencia.nombre}}</td>
+                  <td> {{data.tipoMaquina.nombre}}</td>
+
+                  <td>
+                    <button class="glyphicon .glyphicon-trash btn btn-info" (click)="remove(data)" name="eliminarSector">
+                      <i class="fa fa-eraser" aria-hidden="true"></i>
+                    </button>
+                    <button class=".glyphicon-trash btn btn-info" (click)="editar(data)" name="editarSector">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </button>
+
+                  </td>
+                </tr>
+              </tbody>
+
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</ba-card>

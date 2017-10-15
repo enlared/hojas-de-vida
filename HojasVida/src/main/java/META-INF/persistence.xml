@@ -24,5 +24,9 @@
 		<class>com.nova.MsHv.entidad.ContactoHseq</class>
 		<class>com.nova.MsHv.entidad.Cliente</class>
 		<class>com.nova.MsHv.entidad.Contacto</class>
+		<class>com.nova.MsHv.entidad.CategoriaCompetencia</class>
+		<class>com.nova.MsHv.entidad.Competencia</class>
+		<class>com.nova.MsHv.entidad.Competencia</class>
+		<class>model.Competencia</class>
 	</persistence-unit>
 </persistence>
