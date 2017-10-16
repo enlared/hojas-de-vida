@@ -11,7 +11,7 @@ import 'rxjs/add/operator/catch';
 
 export class RoleService {
 
-  private url = 'http://localhost:7070/role/findall';
+  private url = 'http://45.55.95.110:7070/role/findall';
   private headers = new Headers({ 'Content-Type': 'application/json' });
 
 constructor(private http: Http) {
