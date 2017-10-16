@@ -24,5 +24,18 @@
 		<class>com.nova.MsHv.entidad.ContactoHseq</class>
 		<class>com.nova.MsHv.entidad.Cliente</class>
 		<class>com.nova.MsHv.entidad.Contacto</class>
+		<class>com.nova.MsHv.entidad.CategoriaCompetencia</class>
+		<class>com.nova.MsHv.entidad.Competencia</class>
+		<class>com.nova.MsHv.entidad.Competencia</class>
+		<class>model.Competencia</class>
+		<class>com.nova.MsHv.entidad.Correctivo</class>
+		<class>com.nova.MsHv.entidad.CruceCartera</class>
+		<class>com.nova.MsHv.entidad.Fumigacione</class>
+		<class>com.nova.MsHv.entidad.NivelServicio</class>
+		<class>com.nova.MsHv.entidad.PlazosArriendo</class>
+		<class>com.nova.MsHv.entidad.PlazosCartera</class>
+		<class>com.nova.MsHv.entidad.Preventivo</class>
+		<class>com.nova.MsHv.entidad.RequiereCompra</class>
+		<class>com.nova.MsHv.entidad.TipoVenta</class>
 	</persistence-unit>
 </persistence>

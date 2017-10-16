@@ -170,7 +170,7 @@
         </div>
       </div>
     </div>
-    <div class="panel panel-default">
+    <div class="panel panel-default" *ngIf="businessLists!=null && businessLists.length>0">
       <div class="panel-heading">Información de Negocios</div>
       <table class="table table-striped">
         <thead>
@@ -207,7 +207,7 @@
         <tbody>
           <tr *ngFor="let data of businessLists">
             <td>{{data.tipoMaquina.nombre}}</td>
-            <td> {{data.numeroMaquina}}</td>
+            <td> {{data.numeromaquina}}</td>
             <td> {{data.tipoVasoId}}</td>
             <td> {{data.anclaje.nombre}}</td>
             <td> {{data.listaPrecio.descripcion}}</td>

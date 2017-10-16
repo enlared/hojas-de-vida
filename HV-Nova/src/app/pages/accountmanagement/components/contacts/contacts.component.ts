@@ -26,7 +26,6 @@ import { IMyDpOptions } from 'mydatepicker';
   selector: 'contacts',
   styleUrls: ['./contacts.scss'],
   templateUrl: './contacts.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
 
 })
 export class Contacts {
@@ -39,14 +38,13 @@ export class Contacts {
   dato: ContactsData = new ContactsData();
   contactoCartera: ContactsCarteraData[];
   contactoHseq: ContactsHseqData[];
-  emailObligatorio:boolean=false;
+  emailObligatorio: boolean = false;
 
   purseDatas: PurseData[];
   purseData: PurseData = new PurseData();
   modos: ParametroGenerico[];
   influenciaCompra: ParametroGenerico[];
   gradoInfluencia: ParametroGenerico[];
-  regexTest: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -61,7 +59,7 @@ export class Contacts {
     private contactoCarteraService: contactoCarteraService,
     private utilidades: Utilidades,
   ) {
-
+    this.ngOnitInit();
     this.loadContacts();
     this.loadModo();
     this.loadFrecuenciaCompra();
@@ -69,12 +67,12 @@ export class Contacts {
     this.loadGradoInfluencia();
     this.loadContactsCartera();
     this.loadcontactoHseq();
-    this.regexTest = this.utilidades.getRegexLetras;
-
   }
 
   ngOnitInit() {
     if (this.cache.getid() === null || this.cache.getid() === undefined) {
+      alert('Es necesario buscar el cliente');
+
       const link = ['pages/accountmanagement/Generaldata'];
       this.router.navigate(link);
     }
@@ -114,7 +112,7 @@ export class Contacts {
   }
 
   validarEmail(valor) {
-    if(this.utilidades.validarEmail(valor)){
+    if (this.utilidades.validarEmail(valor)) {
       alert('Email: Campo requerido');
     }
   }

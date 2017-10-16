@@ -36,21 +36,25 @@ import { ContactsData } from '../../theme/services/contactsService/contactsData'
 import { ServiceLevelsService } from '../../theme/services/serviceLevelsService/serviceLevels.service';
 import { OppositionService } from '../../theme/services/oppositionService/opposition.service';
 import { CategoryService } from '../../theme/services/totalService/category.service';
-import { CategoryData } from '../../theme/services/totalService/category';
+import { CategoryOppositionService } from '../../theme/services/totalService/categoryOpposition.service';
 import { ListPricesService } from '../../theme/services/totalService/listPrices.service';
 import { ListPricesData } from '../../theme/services/totalService/listPrices';
 import { TypeMachineService } from '../../theme/services/totalService/typeMachine.service';
-import { TypeMachineData } from '../../theme/services/totalService/typeMachine';
 import { TypeNegociationService } from '../../theme/services/totalService/typeNegociation.service';
 import { TypeNegociationData } from '../../theme/services/totalService/typeNegociation';
 import { AnchorageService } from '../../theme/services/totalService/anchorage.service';
 import { AnchorageData } from '../../theme/services/totalService/anchorage';
 import { PurseService } from '../../theme/services/totalService/purse.service';
 import { PurseData } from '../../theme/services/totalService/purse';
-import { BillingService } from '../../theme/services/totalService/billing.service';
-import { BillingData } from '../../theme/services/totalService/billing';
-import { DateEspecialsService } from '../../theme/services/totalService/dateEspecials.service';
-import { DateEspecialsData } from '../../theme/services/totalService/dateEspecials';
+import { CorrectivosService } from '../../theme/services/totalService/correctivos.service';
+import { FumigacionesService } from '../../theme/services/totalService/fumigaciones.service';
+import { PreventivosService } from '../../theme/services/totalService/preventivos.service';
+import { TipoVentaService } from '../../theme/services/totalService/tipoVenta.service';
+import { PlazoCarteraService } from '../../theme/services/totalService/plazoCartera.service';
+import { PlazoArriendoService } from '../../theme/services/totalService/plazoArriendo.service';
+import { CruceCarteraService } from '../../theme/services/totalService/cruceCartera.service';
+import { RequiereCompraService } from '../../theme/services/totalService/requiereCompra.service';
+
 import { TipoClienteService } from '../../theme/services/totalService/TipoCliente.service';
 import { cache } from '../../theme/services/cache';
 import { Utilidades } from '../../theme/services/Utilidades.service';
@@ -109,9 +113,9 @@ import { MyDatePickerModule } from 'mydatepicker';
     TypeNegociationService,
     TypeMachineService,
     CategoryService,
+    CategoryOppositionService,
     PurseService,
-    BillingService,
-    DateEspecialsService,
+    CorrectivosService,
     TipoClienteService,
     cache,
     Utilidades,
@@ -121,6 +125,13 @@ import { MyDatePickerModule } from 'mydatepicker';
     contactoCarteraService,
     ContactoHseqService,
     Calendar,
+    FumigacionesService,
+    PreventivosService,
+    TipoVentaService,
+    PlazoCarteraService,
+    PlazoArriendoService,
+    CruceCarteraService,
+    RequiereCompraService,
   ],
   exports: [
 

@@ -10,11 +10,10 @@ import { IMyDpOptions } from 'mydatepicker';
 import { TypeNegociationService } from '../../../../theme/services/totalService/typeNegociation.service';
 import { TypeNegociationData } from '../../../../theme/services/totalService/typeNegociation';
 import { TypeMachineService } from '../../../../theme/services/totalService/typeMachine.service';
-import { TypeMachineData } from '../../../../theme/services/totalService/typeMachine';
+import { ParametroGenerico } from '../../../../theme/services/totalService/genericoParametro';
 import { AnchorageService } from '../../../../theme/services/totalService/anchorage.service';
 import { AnchorageData } from '../../../../theme/services/totalService/anchorage';
 import { CategoryService } from '../../../../theme/services/totalService/category.service';
-import { CategoryData } from '../../../../theme/services/totalService/category';
 import { ListPricesService } from '../../../../theme/services/totalService/listPrices.service';
 import { ListPricesData } from '../../../../theme/services/totalService/listPrices';
 import { cache } from '../../../../theme/services/cache';
@@ -29,12 +28,12 @@ export class Businessdata {
   msgError: string;
   businessDatas: BusinessData[];
   businessData: BusinessData = new BusinessData();
-  typeMachineDatas: TypeMachineData[];
-  typeMachineData: TypeMachineData = new TypeMachineData();
+  typeMachineDatas: ParametroGenerico[];
+  typeMachineData: ParametroGenerico = new ParametroGenerico();
   listPricesDatas: ListPricesData[];
   listPricesData: ListPricesData = new ListPricesData();
-  categoryDatas: CategoryData[];
-  categoryData: CategoryData = new CategoryData();
+  categoryDatas: ParametroGenerico[];
+  categoryData: ParametroGenerico = new ParametroGenerico();
   anchorageDatas: AnchorageData[];
   anchorageData: AnchorageData = new AnchorageData();
   typeNegociationDatas: TypeNegociationData[];
@@ -53,7 +52,7 @@ export class Businessdata {
     private _anchorageDataService: AnchorageService,
     private cache: cache,
   ) {
-
+    this. ngOnitInit();
     this.loadAnchorage();
     this.loadCategory();
     this.loadListPrices();
@@ -65,7 +64,9 @@ export class Businessdata {
 
   ngOnitInit() {
     if (this.cache.getid() === null || this.cache.getid() === undefined) {
-      const link = ['pages/accountmanagement/Generaldata'];
+      alert('Es necesario buscar el cliente');
+
+      const link = ['pages/accountmanagement/generaldata'];
       this.router.navigate(link);
     }
     this.loadInformationBusiness();
@@ -158,7 +159,7 @@ export class Businessdata {
     this.businessData.tipoMaquina = this.seleccionarTipoMaquina(data.tipoMaquina);
   }
 
-  seleccionarTipoMaquina(ejecutivo: TypeMachineData) {
+  seleccionarTipoMaquina(ejecutivo: ParametroGenerico) {
     let seleccion;
     this.typeMachineDatas.forEach(element => {
       if ( ejecutivo.id === element.id ) {
@@ -198,7 +199,7 @@ export class Businessdata {
     return seleccion;
   }
 
-  seleccionarCategoria(data: CategoryData) {
+  seleccionarCategoria(data: ParametroGenerico) {
     let seleccion;
     this.categoryDatas.forEach(element => {
       if ( data.id === element.id ) {

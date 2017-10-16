@@ -1,15 +1,25 @@
+import { ParametroGenerico } from '../../../theme/services/totalService/genericoParametro';
+
 export class ServiceLevelsData {
 
-idsla: number;
-tecniquecurses: string;
-brigadeclear: string;
-others: string;
-timeszones: string;
-operationcurses: string;
-especificclient: string;
-idbilling: number;
-typessla: string;
-preventive: string;
-corrective: string;
-fumigations: string;
+id: number;
+correctivo: ParametroGenerico;
+fumigacione: ParametroGenerico;
+preventivo: ParametroGenerico;
+plazosCartera: ParametroGenerico;
+plazosArriendo: ParametroGenerico;
+cruceCartera: ParametroGenerico;
+requiereCompra: ParametroGenerico;
+tipoVenta: ParametroGenerico;
+clienteid: number;
+especificos: string;
+tecnicoscursos: string;
+tecnicosbrigadalimpieza: string;
+tecnicosotros: string;
+operacionescursos: string;
+operacionesfranjashorarias: string;
+facturacionlugarradicacion: string;
+facturacionfechamaximaradicacion: Date;
+facturacionfechasespeciales: Date;
+facturacionmotivo: string;
 }

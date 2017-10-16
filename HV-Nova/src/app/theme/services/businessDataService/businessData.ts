@@ -1,9 +1,8 @@
 import { typeGlass } from '../totalService/typeGlass';
 import { AnchorageData } from '../totalService/anchorage';
 import { TypeNegociationData } from '../totalService/typeNegociation';
-import { TypeMachineData } from '../totalService/typeMachine';
+import { ParametroGenerico } from '../totalService/genericoParametro';
 import { ListPricesData } from '../totalService/listPrices';
-import { CategoryData } from '../totalService/category';
 
 export class BusinessData {
 
@@ -14,8 +13,8 @@ tipoVasoId: number;
 totalsale: number;
 anclaje: AnchorageData;
 tipoNegociacion: TypeNegociationData;
-tipoMaquina: TypeMachineData;
+tipoMaquina: ParametroGenerico;
 listaPrecio: ListPricesData;
-categoria: CategoryData;
+categoria: ParametroGenerico;
 
 }

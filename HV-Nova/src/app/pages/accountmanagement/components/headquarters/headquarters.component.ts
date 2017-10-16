@@ -40,7 +40,6 @@ export class Headquarters {
     private cache: cache,
     private utilidades:Utilidades,
   ) {
-
     this.loadSector();
     this.loadTypeEmployees();
     this.ngOnitInit();
@@ -50,7 +49,9 @@ export class Headquarters {
   ngOnitInit() {
 
     this.idCliente = this.cache.getid();
-    if (this.cache.getid() == null || this.cache.getid() == undefined) {
+    if (this.cache.getid() === null || this.cache.getid() === undefined) {
+      alert('Es necesario buscar el cliente');
+
       const link = ['pages/accountmanagement/Generaldata'];
       this.router.navigate(link);
     }

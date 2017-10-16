@@ -68,8 +68,7 @@ export class Generaldata {
     this.loadRegionals();
     this.loadHeadQuarters();
     this.loadTipoCliente();
-    this.regexTest = this.utilidades.getRegexLetras;
-
+    this.ngOnitInit();
   }
 
   myDatePickerOptions: IMyDpOptions = {
@@ -77,8 +76,7 @@ export class Generaldata {
   };
 
   ngOnitInit() {
-
-    if (this.cache != null) {
+    if (this.cache.getid()) {
       this.dataEdicion = true;
       this.consultarId();
     }
@@ -248,7 +246,7 @@ export class Generaldata {
   consultarId() {
     this.mostrarDataCliente = true;
 
-    this._generalDataService.getGeneralData(this.idCliente)
+    this._generalDataService.getGeneralData(this.cache.getid())
       .subscribe(
       rt => this.cargarConsulta(rt),
       error => this.msgError = <any>error,

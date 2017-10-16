@@ -37,9 +37,12 @@ export class GeneralDataService {
       .catch(this.handleError);
   }
 
-  getGeneralData(id: string): Observable<GeneralData> {
-    const url = `${this.url}/find/${id}`;
-    return this.http.get(url)
+  getGeneralData(ids: number): Observable<GeneralData> {
+    const dato = {
+      id: ids,
+    };
+    const url = `${this.url}/find/`;
+    return this.http.post(url, dato)
       .map(r => r.json())
       .catch(this.handleError);
   }

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { TypeMachineData } from './typeMachine';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
+import { Utilidades } from '../Utilidades.service';
+import { ParametroGenerico } from '../../../theme/services/totalService/genericoParametro';
+
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/catch';
@@ -10,11 +12,13 @@ import 'rxjs/add/operator/catch';
 
 export class TypeMachineService {
 
-  private url = 'http://45.55.95.110:7070/typeMachine';
+  private url = '/typeMachine';
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private typeMachineData: TypeMachineData = new TypeMachineData();
+  private typeMachineData: ParametroGenerico = new ParametroGenerico();
 
-  constructor(private http: Http) {
+  constructor(private http: Http,
+  private util: Utilidades) {
+    this.url = util.getServidor + this.url;
 
   }
 
@@ -26,21 +30,21 @@ export class TypeMachineService {
       .catch(this.handleError);
   }
 
-  getTypeMachine(): Observable<TypeMachineData[]> {
+  getTypeMachine(): Observable<ParametroGenerico[]> {
     let url = `${this.url}/findall`;
     return this.http.get(url)
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-  getTypeMachineData(id: number): Observable<TypeMachineData> {
+  getTypeMachineData(id: number): Observable<ParametroGenerico> {
     const url = `${this.url}/find/${id}`;
     return this.http.get(url)
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-  addTypeMachine(typeMachineData: TypeMachineData) {
+  addTypeMachine(typeMachineData: ParametroGenerico) {
     let url = `${this.url}/save`;
     let iJson = JSON.stringify(typeMachineData);
     return this.http.post(url, iJson, { headers: this.headers })
@@ -48,7 +52,7 @@ export class TypeMachineService {
       .catch(this.handleError);
   }
 
-  putTypeMachine(typeMachineData: TypeMachineData) {
+  putTypeMachine(typeMachineData: ParametroGenerico) {
 
     let url = `${this.url}/edit/${typeMachineData.id}`;
     let iJson = JSON.stringify(typeMachineData);

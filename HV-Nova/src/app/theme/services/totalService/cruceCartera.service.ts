@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BillingData } from './billing';
+import { ParametroGenerico } from './genericoParametro';
+import { Utilidades } from '../Utilidades.service';
+
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -8,39 +10,40 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 
-export class BillingService {
+export class CruceCarteraService {
 
-  private url = 'http://45.55.95.110:7070/billing';
+  private url = '/cruceCartera';
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private billingData: BillingData = new BillingData();
+  private billingData: ParametroGenerico = new ParametroGenerico();
 
-  constructor(private http: Http) {
-
+  constructor(private http: Http,
+        private util: Utilidades) {
+    this.url = util.getServidor + this.url;
   }
 
-  
-  deleteBilling(id: number)  {
+
+  delete(id: number)  {
     let url = `${this.url}/delete/${id}`;
     return this.http.delete(url)
       .map(r => r.json())
       .catch(this.handleError);
-  }  
+  }
 
-  getBilling(): Observable<BillingData[]> {
+  getAll(): Observable<ParametroGenerico[]> {
     let url = `${this.url}/findall`;
     return this.http.get(url)
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-  getBillingData(id: number): Observable<BillingData> {
+  getId(id: number): Observable<ParametroGenerico> {
     const url = `${this.url}/find/${id}`;
     return this.http.get(url)
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-  addBilling(billingData: BillingData) {
+  addSave(billingData: ParametroGenerico) {
     let url = `${this.url}/save`;
     let iJson = JSON.stringify(billingData);
     return this.http.post(url, iJson, { headers: this.headers })
@@ -48,15 +51,6 @@ export class BillingService {
       .catch(this.handleError);
   }
 
-  putBilling(billingData: BillingData) {
-
-    let url = `${this.url}/edit/${billingData.idbilling}`;
-    let iJson = JSON.stringify(billingData);
-    return this.http.put(url, iJson, { headers: this.headers })
-      .map(r => r.json())
-      .catch(this.handleError);
-
-  }
 
   private handleError(error: Response | any) {
 
@@ -65,7 +59,7 @@ export class BillingService {
       let body = error.json() || '';
       let err = body.error || JSON.stringify(body);
       errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-  
+
     } else {
 
       errMsg = error.message ? error.message : error.toString();

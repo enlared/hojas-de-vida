@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { CategoryData } from './category';
+import { ParametroGenerico } from './genericoParametro';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
+import { Utilidades } from '../Utilidades.service';
+
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/catch';
@@ -10,11 +12,13 @@ import 'rxjs/add/operator/catch';
 
 export class CategoryService {
 
-  private url = 'http://45.55.95.110:7070/categoria';
+  private url = '/categoria';
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private categoryData: CategoryData = new CategoryData();
+  private categoryData: ParametroGenerico = new ParametroGenerico();
 
-  constructor(private http: Http) {
+  constructor(private http: Http,
+    private util: Utilidades) {
+      this.url = util.getServidor + this.url;
 
   }
 
@@ -26,21 +30,21 @@ export class CategoryService {
       .catch(this.handleError);
   }
 
-  getCategory(): Observable<CategoryData[]> {
+  getCategory(): Observable<ParametroGenerico[]> {
     let url = `${this.url}/findall`;
     return this.http.get(url)
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-  getCategoryData(id: number): Observable<CategoryData> {
+  getCategoryData(id: number): Observable<ParametroGenerico> {
     const url = `${this.url}/find/${id}`;
     return this.http.get(url)
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-  addCategory(categoryData: CategoryData) {
+  addCategory(categoryData: ParametroGenerico) {
     let url = `${this.url}/save`;
     let iJson = JSON.stringify(categoryData);
     return this.http.post(url, iJson, { headers: this.headers })
@@ -48,7 +52,7 @@ export class CategoryService {
       .catch(this.handleError);
   }
 
-  putCategory(categoryData: CategoryData) {
+  putCategory(categoryData: ParametroGenerico) {
 
     let url = `${this.url}/edit/${categoryData.id}`;
     let iJson = JSON.stringify(categoryData);

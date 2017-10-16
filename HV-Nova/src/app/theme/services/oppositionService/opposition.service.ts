@@ -5,37 +5,33 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/catch';
+import { Utilidades } from '../../../theme/services/Utilidades.service';
 
 @Injectable()
 
 export class OppositionService {
 
-  private url = 'http://45.55.95.110:7070/competition';
+  private url = '/competencia';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private opposition: OppositionData = new OppositionData();
 
-  constructor(private http: Http) {
+  constructor(private http: Http,
+        private util: Utilidades,
+  ) {
+    this.url = util.getServidor + this.url;
 
   }
 
-  
-  deleteOpposition(id: number)  {
-    let url = `${this.url}/delete/${id}`;
-    return this.http.delete(url)
-      .map(r => r.json())
-      .catch(this.handleError);
-  }  
 
-  getOppositions(): Observable<OppositionData[]> {
-    let url = `${this.url}/findall`;
-    return this.http.get(url)
+  deleteOpposition(id: OppositionData)  {
+    let url = `${this.url}/delete`;
+    return this.http.post(url, id)
       .map(r => r.json())
       .catch(this.handleError);
   }
-
-  getOpposition(id: number): Observable<OppositionData> {
-    const url = `${this.url}/find/${id}`;
-    return this.http.get(url)
+  getOpposition(id: OppositionData): Observable<OppositionData[]> {
+    const url = `${this.url}/find/`;
+    return this.http.post(url, id)
       .map(r => r.json())
       .catch(this.handleError);
   }
@@ -48,15 +44,6 @@ export class OppositionService {
       .catch(this.handleError);
   }
 
-  putOpposition(oppositionData: OppositionData) {
-
-    let url = `${this.url}/edit/${oppositionData.idanlcmp}`;
-    let iJson = JSON.stringify(oppositionData);
-    return this.http.put(url, iJson, { headers: this.headers })
-      .map(r => r.json())
-      .catch(this.handleError);
-
-  }
 
   private handleError(error: Response | any) {
 
@@ -65,7 +52,7 @@ export class OppositionService {
       let body = error.json() || '';
       let err = body.error || JSON.stringify(body);
       errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-  
+
     } else {
 
       errMsg = error.message ? error.message : error.toString();
