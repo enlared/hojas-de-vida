@@ -37,5 +37,8 @@
 		<class>com.nova.MsHv.entidad.Preventivo</class>
 		<class>com.nova.MsHv.entidad.RequiereCompra</class>
 		<class>com.nova.MsHv.entidad.TipoVenta</class>
+		<class>com.nova.MsHv.entidad.Rol</class>
+		<class>com.nova.MsHv.entidad.RolUsuario</class>
+		<class>com.nova.MsHv.entidad.Usuario</class>
 	</persistence-unit>
 </persistence>

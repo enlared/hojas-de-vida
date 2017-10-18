@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RoleService } from '../../../../theme/services/roleService/role.service';
-import { Role } from '../../../../theme/services/roleService/role';
+import { ParametroGenerico } from '../../../../theme/services/totalService/genericoParametro';
 import { Observable } from 'rxjs/Rx';
 import { Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -12,16 +12,16 @@ import { ViewUsers } from '../viewusers/viewusers.component';
   selector: 'edituser',
   templateUrl: './edituser.html',
   styleUrls: ['./edituser.scss'],
-  
+
 })
 
 export class Edituser implements OnInit {
 
-  roles: Role[];
+  roles: ParametroGenerico[];
   user: Users = new Users();
   msgError: string;
   users = [];
-  rol: Role = new Role();
+  rol: ParametroGenerico = new ParametroGenerico();
   idnuser: number;
 
 
@@ -35,58 +35,26 @@ export class Edituser implements OnInit {
   }
 
   ngOnInit(): void {
-  this.route.params
-  .switchMap((params: Params) => (this.idnuser = +params['idnuser'],
-this._viewUsersService.getUser(this.idnuser)))
-.subscribe(user => this.user = user);
+
   }
 
   resetForm() {
 
     if(confirm("¿Desea cancelar la accion?")){
 
-      this.user.idnuser = null;
-      this.user.name = '';
-      this.user.lastname = '';
-      this.user.nameuser = '';
-      this.user.email = '';
-      this.rol.idnrole = null;
-      this.rol.namerole = '';
-
     }
-   
-    
+
+
   }
 
 
   updateUser() {
-    
-    if(confirm("¿Desea guardar el usuario editado?")){
 
-      this._viewUsersService.putUser(this.user)
-      .subscribe(
-      rt => console.log(rt),
-      er => console.log(er),
-      );
-
+    if(confirm("¿Desea guardar el usuario editado?")) {
     }
-    if(!Error){
-      this.user.idnuser = null;
-      this.user.name = '';
-      this.user.lastname = '';
-      this.user.nameuser = '';
-      this.user.email = '';
-      this.rol.idnrole = null;
-      this.rol.namerole = '';
-    }else{
-
-      alert("Verifique los datos e intente nuevamente");
-    }
-
   }
 
   loadRoles() {
-
     this._roleService.getRole().subscribe(roles => this.roles = roles, error => this.msgError = <any>error);
-  }  
+  }
 }

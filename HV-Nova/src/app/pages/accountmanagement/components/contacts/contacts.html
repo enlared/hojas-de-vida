@@ -137,7 +137,8 @@
           <div class="col-md-12">
             <input type="email" class="form-control"
              name="email" id="email" placeholder="Email" [(ngModel)]="contactsData.email" #email="ngModel"
-              ng-required="emailObligatorio" maxlength="200" minlength="3"  (change)="validarEmail(contactsData.email)">
+              ng-required="emailObligatorio" maxlength="200" minlength="3"  pattern = "^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+              (change)="validarEmail(contactsData.email)">
             <div *ngIf="email.errors">
               <div *ngIf="emailObligatorio" class="alert alert-danger">
                 <strong>Warning!</strong>Campo requerido.

@@ -1,61 +1,54 @@
 import { Injectable } from '@angular/core';
-import { RegionalsData } from './regionals';
+import { Users } from './users';
+import { RolUsuarios } from './rolUsuarios';
+import { RespuestaRolUsuario } from '../respuestaRolUsuario';
+
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/catch';
+import { Utilidades } from '../../../theme/services/Utilidades.service';
 
 @Injectable()
 
-export class RegionalsService {
+export class RolUsuarioService {
 
-  private url = 'http://localhost:7070/regionales';
+  private url = '/rolUsuario';
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private regionalsData: RegionalsData = new RegionalsData();
 
-  constructor(private http: Http) {
-
+  constructor(private http: Http,
+    private util: Utilidades) {
+    this.url = util.getServidor + this.url;
   }
 
-
-  deleteRegionals(id: number)  {
-    let url = `${this.url}/delete/${id}`;
+  delete(id: number): Observable<RolUsuarios> {
+    let url = `${this.url}/delete`;
     return this.http.delete(url)
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-  getRegionals(): Observable<RegionalsData[]> {
-    let url = `${this.url}/findAll`;
-    return this.http.get(url)
-      .map(r => r.json())
+  get(id: number): Observable<RolUsuarios> {
+    const url = `${this.url}/find`;
+    return this.http.post(url, id).
+      map(res => res.json())
       .catch(this.handleError);
   }
 
-  getRegionalsData(id: number): Observable<RegionalsData> {
-    const url = `${this.url}/find/${id}`;
-    return this.http.get(url)
-      .map(r => r.json())
+  getXUsuario(id: RolUsuarios): Observable<RespuestaRolUsuario> {
+    const url = `${this.url}/consulta`;
+    return this.http.post(url, id).
+      map(res => res.json())
       .catch(this.handleError);
   }
 
-  addRegionals(regionalsData: RegionalsData) {
+  add(user: RolUsuarios):any {
     let url = `${this.url}/save`;
-    let iJson = JSON.stringify(regionalsData);
+    let iJson = JSON.stringify(user);
     return this.http.post(url, iJson, { headers: this.headers })
       .map(r => r.json())
       .catch(this.handleError);
-  }
-
-  putRegionals(regionalsData: RegionalsData) {
-
-    let url = `${this.url}/edit/${regionalsData.id}`;
-    let iJson = JSON.stringify(regionalsData);
-    return this.http.put(url, iJson, { headers: this.headers })
-      .map(r => r.json())
-      .catch(this.handleError);
-
   }
 
   private handleError(error: Response | any) {
@@ -72,5 +65,6 @@ export class RegionalsService {
     }
     return Observable.throw(errMsg);
   }
+
 
 }

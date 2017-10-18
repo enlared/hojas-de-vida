@@ -8,9 +8,12 @@ import { Users } from './users.component';
 import { Edituser } from './components/edituser/edituser.component';
 import { Newuser } from './components/newuser/newuser.component';
 import { ViewUsers } from './components/viewusers/viewusers.component';
-import { ViewUsersService} from '../../theme/services/viewUsersService/viewusers.service';
+import { ViewUsersService } from '../../theme/services/viewUsersService/viewusers.service';
+import { RolUsuarioService } from '../../theme/services/viewUsersService/rolUsuario.service';
+
 import { HttpModule } from '@angular/http';
-import { RoleService} from '../../theme/services/roleService/role.service';
+import { RoleService } from '../../theme/services/roleService/role.service';
+import { Utilidades } from '../../theme/services/Utilidades.service';
 
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { DataTableModule } from 'angular2-datatable';
@@ -30,20 +33,23 @@ import { HotTable, HotTableModule } from 'ng2-handsontable';
     Ng2SmartTableModule,
     DataTableModule,
 
+
   ],
   declarations: [
     Users,
     Edituser,
     Newuser,
     ViewUsers,
-    DataFilterPipe, 
+    DataFilterPipe,
   ],
   entryComponents: [
-    
+
    ],
   providers: [
   ViewUsersService,
   RoleService,
+  Utilidades,
+  RolUsuarioService,
   ]
 })
 export class UsersModule {}

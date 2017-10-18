@@ -1,9 +1,10 @@
+import { ParametroGenerico } from '../../../theme/services/totalService/genericoParametro';
+
 export class Users {
-    
-    idnuser: number;
-    name: string;
-    lastname: string;
-    nameuser: string;
-    idnrole: number;
+
+    id: number;
+    nombreCompleto: string;
+    nombreUsuario: string;
     email: string;
+    fechaRegistro:Date;
     }

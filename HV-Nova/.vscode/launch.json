@@ -4,8 +4,8 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome against 45.55.95.110",
-            "url": "http://45.55.95.110:8080",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:8080",
             "sourceMaps": true,
             "webRoot": "${workspaceRoot}"
         },

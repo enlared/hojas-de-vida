@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ViewUsersService } from '../../../../theme/services/viewUsersService/viewusers.service';
 import { RoleService } from '../../../../theme/services/roleService/role.service';
-import { Role } from '../../../../theme/services/roleService/role';
+import { ParametroGenerico } from '../../../../theme/services/totalService/genericoParametro';
 import { Observable } from 'rxjs/Rx';
 import { Users } from '../../../../theme/services/viewUsersService/users';
 import { Location } from '@angular/common';
@@ -14,14 +14,14 @@ import { Edituser } from '../edituser/edituser.component';
   selector: 'viewusers',
   templateUrl: './viewusers.html',
   styleUrls: ['./viewusers.scss'],
-  
- 
+
+
 })
 
 export class ViewUsers {
-  
+
   user: Users = new Users();
-  roles: Role[];
+  roles: ParametroGenerico[];
   users: Users[];
   msgError: string;
   filterQuery = "" ;
@@ -30,21 +30,20 @@ export class ViewUsers {
   sortOrder = 'asc';
   userSelection: Users;
 
-  constructor(private _viewUsersService: ViewUsersService, 
+  constructor(private _viewUsersService: ViewUsersService,
     private _roleService: RoleService,
     private route: ActivatedRoute,
     private router: Router,
     private location: Location) {
 
     this.loadRoles();
-    this.loadUsers();
   }
 
   ngOnitInit() {
-    
+
 
   }
-    
+
   toInt(num: string) {
     return +num;
 }
@@ -54,32 +53,32 @@ sortByWordLength = (a: any) => {
 }
 
 
-goDeleteUser(user: Users){
+goDeleteUser(user: Users) {
   if(confirm("¿Desea borrar el usuario?") == true){
 
-    this._viewUsersService.deleteUser(user.idnuser)
+    this._viewUsersService.delete(user.id)
     .subscribe(
       rt => console.log(rt),
       er => console.log(er),
       () => console.log('Terminado')
-    
+
       );
 
   }
- 
-  
+
+
     }
 
 goEditUser(user: Users){
 
   if(  confirm("¿Desea Editar el usuario?") == true) {
-    
+
     this.userSelection = user;
-    let link = ['pages/users/edituser', this.userSelection.idnuser];
-    this.router.navigate(link); 
-    
-        } 
-  
+    let link = ['pages/users/edituser', this.userSelection.id];
+    this.router.navigate(link);
+
+        }
+
 
 }
 
@@ -88,9 +87,5 @@ goEditUser(user: Users){
     this._roleService.getRole().subscribe(roles => this.roles = roles, error => this.msgError = <any>error);
   }
 
-  loadUsers() {
-
-    this._viewUsersService.getUsers().subscribe(users => this.users = users, error => this.msgError = <any>error);
-  }
 
 }
