@@ -47,7 +47,8 @@
           <div class="form-group col-md-6">
             <label for="codsap" class="control-label col-md-12">Código cliente SAP:</label>
             <div class="col-md-12">
-              <input type="text" class="form-control" name="codsap" id="codsap" [disabled]="dataEdicion" placeholder="Cod Sap" [(ngModel)]="generalData.codigosap"
+              <input type="text" (input)="validarCodigoSap()" class="form-control" name="codsap" id="codsap" [disabled]="dataEdicion" placeholder="Cod Sap"
+              [(ngModel)]="generalData.codigosap"
                 #codsap="ngModel" required maxlength="200" minlength="3">
               <div *ngIf="codsap.errors">
                 <div *ngIf="codsap.touched && !codsap.valid" class="alert alert-danger">
@@ -145,7 +146,7 @@
           <div class="form-group col-md-6">
             <label for="nit" class="control-label col-md-12">NIT:</label>
             <div class="col-md-12">
-              <input type="text" class="form-control" name="nit" id="nit" pattern="[0-9]*" [disabled]="dataEdicion" placeholder="Nit" [(ngModel)]="generalData.nit"
+              <input type="text" class="form-control" name="nit" id="nit"  [disabled]="dataEdicion" placeholder="Nit" [(ngModel)]="generalData.nit"
                 #nit="ngModel" required maxlength="200" minlength="3" (input)="validarNit()">
               <div *ngIf="nit.errors">
                 <div *ngIf="nit.touched && !nit.valid" class="alert alert-danger">
@@ -159,7 +160,7 @@
             <label for="address" class="control-label col-md-12">Dirección:</label>
             <div class="col-md-12">
               <input type="text" (input)="validarDireccion()" class="form-control" name="address" id="address" placeholder="Dirección"
-                [(ngModel)]="generalData.direccion" #address="ngModel" required maxlength="200" minlength="3" pattern="[a-zA-Z ]*">
+                [(ngModel)]="generalData.direccion" #address="ngModel" required maxlength="200" minlength="3">
               <div *ngIf="address.errors">
                 <div *ngIf="address.touched && !address.valid" class="alert alert-danger">
                   <strong>Warning!</strong>Campo requerido.
@@ -173,7 +174,7 @@
           <div class="form-group col-md-6">
             <label for="barrio" class="control-label col-md-12">Barrio:</label>
             <div class="col-md-12">
-              <input type="text" class="form-control" (input)="validarBarrio()" pattern="[a-zA-Z ]*" name="barrio" id="barrio" placeholder="Barrio"
+              <input type="text" class="form-control" (input)="validarBarrio()"  name="barrio" id="barrio" placeholder="Barrio"
                 [(ngModel)]="generalData.barrio" #barrio="ngModel" maxlength="200" minlength="3">
               <div *ngIf="barrio.errors">
                 <div *ngIf="barrio.touched && !barrio.valid" class="alert alert-danger">
@@ -201,7 +202,7 @@
           <div class="form-group col-md-6">
             <label for="telephone" class="control-label col-md-12">Teléfono Fijo:</label>
             <div class="col-md-12">
-              <input type="text" class="form-control" pattern="[0-9]*" name="telephone" id="telephone" placeholder="Teléfono" [(ngModel)]="generalData.telfonofijo"
+              <input type="text" class="form-control"  name="telephone" id="telephone" placeholder="Teléfono" [(ngModel)]="generalData.telfonofijo"
                 (input)="validarTelefono()" #telephone="ngModel" maxlength="200" minlength="3">
               <div *ngIf="telephone.errors">
                 <div *ngIf="telephone.touched && !telephone.valid" class="alert alert-danger">
@@ -214,7 +215,7 @@
           <div class="form-group col-md-6 ">
             <label for="numberSedes" class="control-label col-md-12">No Sedes:</label>
             <div class="col-md-12">
-              <input type="number" class="form-control" pattern="[0-9]*" name="sedes" id="sedes" placeholder="sedes" [(ngModel)]="generalData.numbersedes"
+              <input type="number" class="form-control"  name="sedes" id="sedes" placeholder="sedes" [(ngModel)]="generalData.numbersedes"
                 #numberSedes="ngModel" required maxlength="200" minlength="3">
               <div *ngIf="numberSedes.errors">
                 <div *ngIf="numberSedes.touched && !numberSedes.valid" class="alert alert-danger">
@@ -229,7 +230,7 @@
           <div class="form-group col-md-6">
             <label for="celphone" class="control-label col-md-12">Celular:</label>
             <div class="col-md-12">
-              <input type="text" class="form-control" pattern="[0-9]*" name="celphone" id="celphone" placeholder="Celular" [(ngModel)]="generalData.numerocelular"
+              <input type="text" class="form-control"  name="celphone" id="celphone" placeholder="Celular" [(ngModel)]="generalData.numerocelular"
                 #celphone="ngModel" required maxlength="200" minlength="3" (input)="validarCelular()">
               <div *ngIf="celphone.errors">
                 <div *ngIf="celphone.touched && !celphone.valid" class="alert alert-danger">
@@ -250,9 +251,8 @@
           <div class="form-group col-md-6">
             <label for="contractStart" class="control-label col-md-12">Fecha Inicio:</label>
             <div class="col-md-12">
-              <div class="input-group date">
-                <my-date-picker name="contractStart" [options]="myDatePickerOptions" [(ngModel)]="generalData.fechaInicioObjeto" #contractStart="ngModel"
-                  required></my-date-picker>
+              <div>
+                  <input type="date" class="form-control" name="contractStart" [(ngModel)]="generalData.fechainicio" #contractStart="ngModel" size="50" required />
               </div>
               <div *ngIf="contractStart.errors">
                 <div *ngIf="contractStart.touched && !contractStart.valid" class="alert alert-danger">
@@ -264,9 +264,8 @@
           <div class="form-group col-md-6 ">
             <label for="contractEnd" class="control-label col-md-12">Fecha Fin:</label>
             <div class="col-md-12">
-              <div class="input-group date">
-                <my-date-picker name="contractend" [options]="myDatePickerOptions" [(ngModel)]="generalData.fechaFinObjeto" #contractEnd="ngModel"
-                  required></my-date-picker>
+              <div >
+                  <input type="date" class="form-control" name="contractEnd" [(ngModel)]="generalData.fechafin" #contractEnd="ngModel" size="50" required />
               </div>
               <div *ngIf="contractEnd.errors">
                 <div *ngIf="contractEnd.touched && !contractEnd.valid" class="alert alert-danger">
@@ -283,7 +282,7 @@
           <div class="form-group col-md-6">
             <label for="objetiveyear" class="control-label col-md-12">Anual:</label>
             <div class="col-md-12">
-              <input type="number" class="form-control" name="objetiveyear" pattern="[0-9]*" id="objetiveyear" placeholder="Objetivo anual"
+              <input type="number" class="form-control" (input)="validarObjetosVenta()" name="objetiveyear" pattern="[0-9]*" id="objetiveyear" placeholder="Objetivo anual"
                 [(ngModel)]="generalData.objetivoanual" #objetiveyear="ngModel" required maxlength="200" minlength="3">
               <div *ngIf="objetiveyear.errors">
                 <div *ngIf="objetiveyear.touched && !objetiveyear.valid" class="alert alert-danger">
@@ -296,7 +295,7 @@
           <div class="form-group col-md-6 ">
             <label for="objetivemonth" class="control-label col-md-12">Mensual:</label>
             <div class="col-md-12">
-              <input type="number" class="form-control" pattern="[0-9]*" name="objetivemonth" id="objetivemonth" placeholder="Objetivo Mensual"
+              <input type="number" class="form-control" (input)="validarObjetosMensual()" pattern="[0-9]*" name="objetivemonth" id="objetivemonth" placeholder="Objetivo Mensual"
                 [(ngModel)]="generalData.objetivomensual" #objetivemonth="ngModel" required maxlength="200" minlength="3">
               <div *ngIf="objetivemonth.errors">
                 <div *ngIf="objetivemonth.touched && !objetivemonth.valid" class="alert alert-danger">

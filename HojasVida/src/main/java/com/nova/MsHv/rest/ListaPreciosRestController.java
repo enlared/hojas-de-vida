@@ -8,12 +8,15 @@ import org.apache.log4j.PropertyConfigurator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nova.MsHv.entidad.ListaPrecio;
 import com.nova.MsHv.impl.ListaDePreciosImpl;
 import com.nova.MsHvExcepciones.NovaHVDaoException;
+import com.nova.MsHvExcepciones.NovaHVRestException;
 
 @CrossOrigin
 @Controller
@@ -52,5 +55,20 @@ public class ListaPreciosRestController {
 		return categoria;
 	}
 
+	@RequestMapping(value = "listPrices/add", method = RequestMethod.POST)
+	@ResponseBody
+	public ListaPrecio addPrecio(@RequestBody ListaPrecio dato) throws NovaHVRestException {
+
+		PropertyConfigurator.configure("log4j.properties");
+		log.info("Log4j method save for ListaPrecio");
+		try {
+			return listaDePreciosImpl.save(dato);
+		} catch (Exception e) {
+			log.error("Log4j Error in method Save for ListaPrecio " + e);
+			throw new NovaHVRestException(e);
+
+		}
+
+	}
 
 }

@@ -7,4 +7,5 @@ export class RolUsuarios {
     fechaRegistro: Date;
     rol: ParametroGenerico = new ParametroGenerico();
     usuario: Users= new Users();
+    edicion: boolean;
     }

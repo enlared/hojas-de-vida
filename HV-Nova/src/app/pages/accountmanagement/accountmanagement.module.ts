@@ -40,6 +40,7 @@ import { CategoryOppositionService } from '../../theme/services/totalService/cat
 import { ListPricesService } from '../../theme/services/totalService/listPrices.service';
 import { ListPricesData } from '../../theme/services/totalService/listPrices';
 import { TypeMachineService } from '../../theme/services/totalService/typeMachine.service';
+import { TypeGlass } from '../../theme/services/totalService/typeGlass.service';
 import { TypeNegociationService } from '../../theme/services/totalService/typeNegociation.service';
 import { TypeNegociationData } from '../../theme/services/totalService/typeNegociation';
 import { AnchorageService } from '../../theme/services/totalService/anchorage.service';
@@ -132,6 +133,7 @@ import { MyDatePickerModule } from 'mydatepicker';
     PlazoArriendoService,
     CruceCarteraService,
     RequiereCompraService,
+    TypeGlass,
   ],
   exports: [
 

@@ -8,8 +8,6 @@ export class GeneralData {
 tipoBusqueda: number;
 id: number;
 codigosap: number;
-fechaInicioObjeto: any;
-fechaFinObjeto: any;
 fechainicio: Date;
 fechafin: Date;
 objetivoanual: string;

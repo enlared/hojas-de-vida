@@ -79,7 +79,7 @@ export class Contacts {
   }
 
   loadContacts() {
-    if (this.cache.getid() != null && this.cache.getid() != undefined) {
+    if (this.cache.getid() !== null && this.cache.getid() !== undefined) {
       this.dato.clienteid = this.cache.getid();
       this._contactsDataService.getContact(this.dato)
         .subscribe(contactData => this.contactDatas = contactData, error => this.msgError = <any>error);
@@ -87,7 +87,7 @@ export class Contacts {
   }
 
   loadContactsCartera() {
-    if (this.cache.getid() != null && this.cache.getid() != undefined) {
+    if (this.cache.getid() !== null && this.cache.getid() !== undefined) {
       this.dato.clienteid = this.cache.getid();
       this.contactoCarteraService.getContact(this.dato)
         .subscribe(contactsCartera => this.contactoCartera = contactsCartera, error => this.msgError = <any>error);
@@ -98,17 +98,17 @@ export class Contacts {
 
   validarNombre() {
     this.contactsData.nombre = this.utilidades.validarTexto(this.contactsData.nombre);
-    $("#contactsName").val(this.contactsData.nombre).change();
+    $('#contactsName').val(this.contactsData.nombre).change();
   }
 
   validarTelefono() {
     this.contactsData.telefono = this.utilidades.validarTelefono(this.contactsData.telefono);
-    $("#telephone").val(this.contactsData.telefono).change();
+    $('#telephone').val(this.contactsData.telefono).change();
   }
 
   validarCelular() {
     this.contactsData.celular = this.utilidades.validarTelefono(this.contactsData.celular);
-    $("#telephone").val(this.contactsData.celular).change();
+    $('#telephone').val(this.contactsData.celular).change();
   }
 
   validarEmail(valor) {
@@ -120,17 +120,17 @@ export class Contacts {
   /* Informacion cartera */
   validarNombreCartera() {
     this.contactsCartera.nombre = this.utilidades.validarTexto(this.contactsCartera.nombre);
-    $("#financialContact").val(this.contactsCartera.nombre).change();
+    $('#financialContact').val(this.contactsCartera.nombre).change();
   }
 
   validarTelefonoCartera() {
     this.contactsCartera.telefono = this.utilidades.validarTelefono(this.contactsCartera.telefono);
-    $("#financialTelephone").val(this.contactsCartera.telefono).change();
+    $('#financialTelephone').val(this.contactsCartera.telefono).change();
   }
 
   validarCelularCartera() {
     this.contactsData.celular = this.utilidades.validarTelefono(this.contactsData.celular);
-    $("#financialCelphone").val(this.contactsData.celular).change();
+    $('#financialCelphone').val(this.contactsData.celular).change();
   }
 
 
@@ -138,16 +138,16 @@ export class Contacts {
 
   validarNombreHSEQ() {
     this.contactsHseq.nombre = this.utilidades.validarTexto(this.contactsHseq.nombre);
-    $("#hseqName").val(this.contactsHseq.nombre).change();
+    $('#hseqName').val(this.contactsHseq.nombre).change();
   }
 
   validarTelefonoHseq() {
     this.contactsHseq.telefono = this.utilidades.validarTelefono(this.contactsHseq.telefono);
-    $("#hseqTelephone").val(this.contactsHseq.telefono).change();
+    $('#hseqTelephone').val(this.contactsHseq.telefono).change();
   }
   /* */
   loadcontactoHseq() {
-    if (this.cache.getid() != null && this.cache.getid() != undefined) {
+    if (this.cache.getid() !== null && this.cache.getid() !== undefined) {
       this.dato.clienteid = this.cache.getid();
       this.contactoHseqService.getContact(this.dato)
         .subscribe(contactoHseq => this.contactoHseq = contactoHseq, error => this.msgError = <any>error);
@@ -191,17 +191,28 @@ export class Contacts {
 
   saveContactsData() {
     if (confirm('¿Desea guardar un Contacto?')) {
-      this.contactsData.fechacumpleanos = this.convertirFecha(this.contactsData);
-      this.contactsData.clienteid = this.cache.getid();
-      this._contactsDataService.addContacts(this.contactsData)
-        .subscribe(
-        rt => this.actualizar(rt),
-        error => this.msgError = <any>error,
-        () => this.limpiar(),
-      );
+      if (this.validarFormulario()) {
+        this.contactsData.clienteid = this.cache.getid();
+        this._contactsDataService.addContacts(this.contactsData)
+          .subscribe(
+          rt => this.actualizar(rt),
+          error => this.msgError = <any>error,
+          () => this.limpiar(),
+        );
+      }
+
     }
   }
+  validarFormulario() {
+    let estado = true;
+    if (this.contactsData.telefono === null || this.contactsData.telefono === undefined
+      || this.contactsData.celular === null || this.contactsData.celular === undefined) {
+      estado = false;
+      alert('Es necesario Ingresar telefono o celular');
 
+    }
+    return estado;
+  }
   actualizar(datos) {
     this.loadContacts();
     this.loadContactsCartera();
@@ -212,9 +223,6 @@ export class Contacts {
     this.contactsData = new ContactsData();
   }
 
-  convertirFecha(datos: any) {
-    return datos.fechacumpleanos.jsdate;
-  }
   saveContactsCateraData() {
     if (confirm('¿Desea guardar un Contacto de cartera?')) {
       this.contactsCartera.clienteid = this.cache.getid();
@@ -222,7 +230,6 @@ export class Contacts {
         .subscribe(
         rt => this.actualizar(rt),
         error => this.msgError = <any>error,
-        () => console.log('Terminado'),
       );
     }
   }
@@ -234,7 +241,6 @@ export class Contacts {
         .subscribe(
         rt => this.actualizar(rt),
         error => this.msgError = <any>error,
-        () => console.log('Terminado'),
       );
     }
   }
@@ -245,7 +251,6 @@ export class Contacts {
         .subscribe(
         rt => this.actualizar(rt),
         error => this.msgError = <any>error,
-        () => console.log('Terminado'),
       );
     }
   }
@@ -256,7 +261,6 @@ export class Contacts {
         .subscribe(
         rt => this.actualizar(rt),
         error => this.msgError = <any>error,
-        () => console.log('Terminado'),
       );
     }
   }
@@ -267,18 +271,48 @@ export class Contacts {
         .subscribe(
         rt => this.actualizar(rt),
         error => this.msgError = <any>error,
-        () => console.log('Terminado'),
       );
     }
   }
 
   editarContacto(dato: ContactsData) {
-    this.contactsData.influenciaCompra = this.cargarDatoLista(dato.influenciaCompra, this.influenciaCompra);
-    this.contactsData.gradoInfluencia = this.cargarDatoLista(dato.gradoInfluencia, this.gradoInfluencia);
-    this.contactsData.modo = this.cargarDatoLista(dato.modo, this.modos);
-    this.contactsData.fechacumpleanos = this.crearFechaDate(dato.fechacumpleanos);
-
     this.contactsData = dato;
+
+    setTimeout(() => {
+      this.contactsData.influenciaCompra = this.cargarInfluencia(dato.influenciaCompra);
+      this.contactsData.gradoInfluencia = this.cargargradoInfluencia(dato.gradoInfluencia);
+      this.contactsData.modo = this.cargarmodos(dato.modo);
+    }, 500);
+
+  }
+  cargarmodos(data) {
+    let res;
+    this.modos.forEach(element => {
+      if (data.id === element.id) {
+        res = element;
+      }
+    });
+    return res;
+  }
+
+  cargargradoInfluencia(data) {
+    let res;
+    this.gradoInfluencia.forEach(element => {
+      if (data.id === element.id) {
+        res = element;
+      }
+    });
+    return res;
+  }
+
+  cargarInfluencia(data) {
+    let res;
+    this.influenciaCompra.forEach(element => {
+      if (data.id === element.id) {
+        res = element;
+      }
+    });
+    return res;
   }
 
   editarContactoCartera(dato) {
@@ -290,19 +324,5 @@ export class Contacts {
     this.contactsHseq = dato;
   }
 
-  cargarDatoLista(data: ParametroGenerico, lista) {
-    let res;
-    lista.forEach(element => {
-      if (data.id === element.id) {
-        res = element;
-      }
-    });
-    return res;
-  }
-
-  crearFechaDate(formater) {
-    const dato = new Date(formater);
-    return dato;
-  }
 
 }

@@ -26,7 +26,7 @@
 				<div class="form-group col-md-6">
 					<label for="numberEmployees" class="control-label col-md-12">No Empleados:</label>
 					<div class="col-md-12">
-						<input type="number"class="form-control" id="numberEmployees" name="numberEmployees"
+						<input type="number"class="form-control" (input)="validarNumero()" id="numberEmployees" name="numberEmployees"
 						[(ngModel)]="headQuarter.cantidadempleados" #numberEmployees="ngModel"
 						 required>
 						 <div *ngIf="numberEmployees.errors">
@@ -71,14 +71,14 @@
 				<div class="col-md-4">
 
 						<div *ngIf="typeEmployees.errors || numberEmployees.errors || sectorName.errors ">
-								<button class="btn btn-primary" name="buttonSave" (click)="goBusiness()" disabled>Sedes</button>
+								<button class="btn btn-primary" name="buttonSave" (click)="goBusiness()" disabled>Negocio</button>
 								<button class="btn btn-success" (click)="saveHeadQuarters()" disabled="">Guardar</button>
                 <button class="btn btn-info" (click)="resetForm()">Cancelar</button>
                 <button class="btn btn-info" (click)="consultaSectoresCliente()">Actualizar</button>
 
 							</div>
 							<div *ngIf="!typeEmployees.errors && !numberEmployees.errors && !sectorName.errors ">
-								<button class="btn btn-primary" name="buttonSave" (click)="goBusiness()">Sedes</button>
+								<button class="btn btn-primary" name="buttonSave" (click)="goBusiness()">Negocio</button>
 								<button class="btn btn-success" (click)="saveHeadQuarters()">Guardar</button>
                 <button class="btn btn-info" (click)="  consultaSectoresCliente()">Cancelar</button>
 

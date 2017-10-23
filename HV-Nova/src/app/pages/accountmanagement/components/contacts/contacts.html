@@ -10,7 +10,7 @@
           <label for="contactname" class="control-label col-md-12">Nombres:</label>
           <div class="col-md-12">
             <input type="text" class="form-control" id="contactsName" placeholder="Nombres" name="contactsName"
-             [(ngModel)]="contactsData.nombre" (input)="validarNombre()" pattern="[a-zA-Z ]*"
+             [(ngModel)]="contactsData.nombre" (input)="validarNombre()"
               #contactsName="ngModel" required maxlength="200" minlength="3">
             <div *ngIf="contactsName.errors">
               <div *ngIf="contactsName.touched && !contactsName.valid" class="alert alert-danger">
@@ -63,7 +63,7 @@
           <div class="col-md-12">
             <input type="text" class="form-control" id="telephone" (input)="validarTelefono()"
             placeholder="Teléfono" name="telephone"   pattern="[0-9]*" [(ngModel)]="contactsData.telefono"
-              #contactsTelephone="ngModel" required maxlength="200" minlength="3">
+              #contactsTelephone="ngModel" maxlength="200" minlength="3">
             <div *ngIf="contactsTelephone.errors">
               <div *ngIf="contactsTelephone.touched && !contactsTelephone.valid" class="alert alert-danger">
                 <strong>Warning!</strong>Campo requerido.
@@ -82,7 +82,7 @@
           <div class="col-md-12">
             <input type="text" class="form-control" id="celphone" placeholder="Celular" name="contactsCelphone"
             [(ngModel)]="contactsData.celular"  pattern="[0-9]*"
-              #contactsCelphone="ngModel" required maxlength="200" minlength="3">
+              #contactsCelphone="ngModel"  maxlength="200" minlength="3">
             <div *ngIf="contactsCelphone.errors">
               <div *ngIf="contactsCelphone.touched && !contactsCelphone.valid" class="alert alert-danger">
                 <strong>Warning!</strong>Campo requerido.

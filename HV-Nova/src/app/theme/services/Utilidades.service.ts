@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 
 export class Utilidades {
 
-  private servidor = 'http://localhost:7070';
+  private servidor = 'http://45.55.95.110:7070';
   private regexTelefono = "";
   private regexNumeros = "/^[0-9]*$/";
   private regexEmail = "";
@@ -45,12 +45,40 @@ export class Utilidades {
     let copy = JSON.parse(JSON.stringify(retorno));
     return copy;
   }
+
+  validarNumerosDocumentos(value): any {
+    let retorno = '';
+    if (!value) {
+      retorno = '';
+    } else {
+      const lista = value.replace(/[^\d\w\x2D .]/g, '').split('');
+      lista.forEach(element => {
+        retorno = retorno + element;
+      });
+    }
+    let copy = JSON.parse(JSON.stringify(retorno));
+    return copy;
+  }
+  validarTextoNumeros(value): any {
+    let retorno = '';
+    if (!value) {
+      retorno = '';
+    } else {
+      const lista = value.replace(/[^a-zA-Z0-9 .]/g, '').split('');
+      lista.forEach(element => {
+        retorno = retorno + element;
+      });
+    }
+    let copy = JSON.parse(JSON.stringify(retorno));
+    return copy;
+  }
+
   validarTelefono(value): any {
     let retorno = '';
     if (!value) {
       retorno = '';
     } else {
-      const lista = value.replace(/[^0-9]/g, '').split('');
+      const lista = value.toString().replace(/[^0-9]/g, '').split('');
       lista.forEach(element => {
         retorno = retorno + element;
       });

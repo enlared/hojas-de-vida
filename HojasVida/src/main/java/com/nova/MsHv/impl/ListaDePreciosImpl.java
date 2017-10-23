@@ -17,4 +17,8 @@ public class ListaDePreciosImpl {
 	public List<ListaPrecio> consultarTodos(){
 		return listaPreciosDAO.findAll();
 	}
+
+	public ListaPrecio save(ListaPrecio dato) {
+		return listaPreciosDAO.save(dato);
+	}
 }

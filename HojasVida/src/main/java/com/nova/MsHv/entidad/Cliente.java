@@ -1,8 +1,14 @@
 package com.nova.MsHv.entidad;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 
 
 /**
@@ -26,11 +32,9 @@ public class Cliente implements Serializable {
 
 	private String email;
 
-	@Temporal(TemporalType.DATE)
-	private Date fechafin;
+	private String fechafin;
 
-	@Temporal(TemporalType.DATE)
-	private Date fechainicio;
+	private String fechainicio;
 
 	private String nit;
 
@@ -107,22 +111,6 @@ public class Cliente implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public Date getFechafin() {
-		return this.fechafin;
-	}
-
-	public void setFechafin(Date fechafin) {
-		this.fechafin = fechafin;
-	}
-
-	public Date getFechainicio() {
-		return this.fechainicio;
-	}
-
-	public void setFechainicio(Date fechainicio) {
-		this.fechainicio = fechainicio;
 	}
 
 	public String getNit() {
@@ -212,5 +200,23 @@ public class Cliente implements Serializable {
 	public void setTipoCliente(TipoCliente tipoCliente) {
 		this.tipoCliente = tipoCliente;
 	}
+
+	public String getFechafin() {
+		return fechafin;
+	}
+
+	public void setFechafin(String fechafin) {
+		this.fechafin = fechafin;
+	}
+
+	public String getFechainicio() {
+		return fechainicio;
+	}
+
+	public void setFechainicio(String fechainicio) {
+		this.fechainicio = fechainicio;
+	}
+	
+	
 
 }

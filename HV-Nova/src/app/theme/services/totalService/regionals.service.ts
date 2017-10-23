@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 
 export class RegionalsService {
 
-  private url = 'http://localhost:7070/regionales';
+  private url = 'http://45.55.95.110:7070/regionales';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private regionalsData: RegionalsData = new RegionalsData();
 

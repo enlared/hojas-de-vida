@@ -154,7 +154,7 @@ export class Headquarters {
   }
 
   validarNumero() {
-    this.headQuarter.cantidadempleados= this.utilidades.validarTelefono(this.headQuarter.cantidadempleados);
+    this.headQuarter.cantidadempleados = this.utilidades.validarTelefono(this.headQuarter.cantidadempleados);
     $("#numberEmployees").val(this.headQuarter.cantidadempleados).change();
   }
 }

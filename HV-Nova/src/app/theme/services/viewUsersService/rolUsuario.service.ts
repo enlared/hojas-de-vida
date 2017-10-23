@@ -22,10 +22,17 @@ export class RolUsuarioService {
     this.url = util.getServidor + this.url;
   }
 
-  delete(id: number): Observable<RolUsuarios> {
+  delete(id: RolUsuarios): Observable<RolUsuarios> {
     let url = `${this.url}/delete`;
-    return this.http.delete(url)
+    return this.http.post(url, id)
       .map(r => r.json())
+      .catch(this.handleError);
+  }
+
+  getAll(): Observable<RolUsuarios[]> {
+    const url = `${this.url}/findAll`;
+    return this.http.get(url).
+      map(res => res.json())
       .catch(this.handleError);
   }
 

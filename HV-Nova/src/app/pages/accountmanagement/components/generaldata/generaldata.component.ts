@@ -87,19 +87,15 @@ export class Generaldata {
   resetForm() {
     if (confirm('¿Desea cancelar la acción?')) {
       this.generalData = new GeneralData();
-      this.generalData.fechaFinObjeto = null;
-      this.generalData.fechaInicioObjeto = null;
       this.dataEdicion = false;
-
+      this.cache.setid = null;
     }
 
   }
   goSedes() {
     if (confirm('¿Desea guardar y agregar una Sede?')) {
       if (this.validarFormulario()) {
-        this.cache.setid(this.generalData.id);
-        const link = ['pages/accountmanagement/headquarters'];
-        this.router.navigate(link);
+        this.guardar(true);
       }
 
     }
@@ -138,16 +134,8 @@ export class Generaldata {
   saveGeneralData() {
 
     if (confirm('¿Desea guardar?')) {
-      this.generalData.fechafin = this.generalData.fechaFinObjeto.formatted;
-      this.generalData.fechainicio = this.generalData.fechaInicioObjeto.formatted;
       if (this.validarFormulario()) {
-        this._generalDataService.addGeneralData(this.generalData)
-          .subscribe(
-          rt => console.log(rt),
-          error => this.msgError = <any>error,
-          () => console.log('Terminado'),
-        );
-        alert('Cliente Guardado Con exito');
+        this.guardar(false);
 
       }
 
@@ -156,12 +144,31 @@ export class Generaldata {
 
   }
 
+  guardar(llamado) {
+    this._generalDataService.addGeneralData(this.generalData)
+    .subscribe(
+    rt => this.redirigir(rt, llamado),
+    error => this.msgError = <any>error,
+
+  );
+  }
+
+  redirigir(rt, valor){
+    alert('Cliente Guardado Con exito');
+
+    if(valor){
+      this.cache.setid(rt.id);
+      const link = ['pages/accountmanagement/headquarters'];
+      this.router.navigate(link);
+    }else{
+      this.generalData = new GeneralData();
+
+    }
+  }
   cargarConsulta(datos: GeneralData) {
     this.cache.setid(datos.id);
     this.dataEdicion = true;
     this.generalData = datos;
-    this.generalData.fechaFinObjeto = this.crearFechaDate(datos.fechafin);
-    this.generalData.fechaInicioObjeto = this.crearFechaDate(datos.fechainicio);
     this.generalData.tipoCliente = this.seleccionarTipoCliente(this.generalData.tipoCliente);
     this.generalData.ejecutivoNegocio = this.seleccionarEjecutivoNegocio(this.generalData.ejecutivoNegocio);
     this.generalData.ejecutivoCuenta = this.seleccionarEjecutivoCuenta(this.generalData.ejecutivoCuenta);
@@ -179,22 +186,6 @@ export class Generaldata {
     return tipoClienteSeleccion;
   }
 
-  crearFechaDate(formater) {
-    let dato = new Date(formater);
-
-    let fecha = {
-      'date': {
-        'year': dato.getFullYear(),
-        'month': dato.getMonth() + 1,
-        'day': dato.getDate(),
-      },
-      'jsdate': formater + 'T05:00:00.000Z',
-      'formatted': formater,
-      'epoc': 1507438800,
-    };
-
-    return fecha;
-  }
 
   seleccionarEjecutivoNegocio(ejecutivo: EjecutivoNegocios) {
     let seleccion;
@@ -239,6 +230,7 @@ export class Generaldata {
 
   clienteNuevoCliente() {
     this.mostrarDataCliente = true;
+    this.dataEdicion = false;
     this.generalData = new GeneralData();
   }
 
@@ -254,22 +246,26 @@ export class Generaldata {
     );
   }
 
+  validarCodigoSap() {
+    this.generalData.codigosap = this.utilidades.validarNumerosDocumentos(this.generalData.codigosap);
+    $("#codsap").val(this.generalData.codigosap).change();
+  }
   validarNombre() {
     this.generalData.razonsocial = this.utilidades.validarTexto(this.generalData.razonsocial);
     $("#nameComercial").val(this.generalData.razonsocial).change();
   }
 
   validarNit() {
-    this.generalData.nit = this.utilidades.validarTelefono(this.generalData.nit);
+    this.generalData.nit = this.utilidades.validarNumerosDocumentos(this.generalData.nit);
     $("#nit").val(this.generalData.nit).change();
   }
   validarDireccion() {
-    this.generalData.direccion = this.utilidades.validarTexto(this.generalData.direccion);
+    this.generalData.direccion = this.utilidades.validarTextoNumeros(this.generalData.direccion);
     $("#address").val(this.generalData.direccion).change();
   }
 
   validarBarrio() {
-    this.generalData.barrio = this.utilidades.validarTexto(this.generalData.barrio);
+    this.generalData.barrio = this.utilidades.validarTextoNumeros(this.generalData.barrio);
     $("#barrio").val(this.generalData.barrio).change();
   }
   validarTelefono() {
@@ -287,18 +283,27 @@ export class Generaldata {
       alert('Email: Campo requerido');
     }
   }
+  validarObjetosVenta() {
+    this.generalData.objetivoanual = this.utilidades.validarTelefono(this.generalData.objetivoanual);
+    $("#objetiveyear").val(this.generalData.objetivoanual).change();
 
+  }
+  validarObjetosMensual() {
+    this.generalData.objetivomensual = this.utilidades.validarTelefono(this.generalData.objetivomensual);
+    $("#objetiveyear").val(this.generalData.objetivomensual).change();
+
+    }
   validarVigenciaContrato(): boolean {
-    if (this.generalData.fechaFinObjeto === null || this.generalData.fechaFinObjeto === undefined) {
+    if (this.generalData.fechainicio === null || this.generalData.fechainicio === undefined) {
       alert('La fecha de inicio debe ser ingresada');
       return false;
     }
-    if (this.generalData.fechaFinObjeto === null || this.generalData.fechaFinObjeto === undefined) {
+    if (this.generalData.fechafin === null || this.generalData.fechafin === undefined) {
       alert('La fecha de fin debe ser ingresada');
       return false;
     }
-    const dateObj = new Date(this.generalData.fechaInicioObjeto.formatted);
-    const dateFin = new Date(this.generalData.fechaFinObjeto.formatted);
+    const dateObj = new Date(this.generalData.fechainicio);
+    const dateFin = new Date(this.generalData.fechafin);
 
     if (dateObj > dateFin) {
       alert('La fecha de inicio no puede ser mayor, que la fecha fin del contrato');

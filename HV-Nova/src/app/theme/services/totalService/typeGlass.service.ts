@@ -1,57 +1,61 @@
 import { Injectable } from '@angular/core';
-import { TipoEmpleadoData } from './TipoEmpleadoData';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
+import { Utilidades } from '../Utilidades.service';
+import { ParametroGenerico } from '../../../theme/services/totalService/genericoParametro';
+
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/catch';
 
 @Injectable()
 
-export class TypeEmployeesService {
+export class TypeGlass {
 
-  private url = 'http://45.55.95.110:7070/tipoEmpleado';
+  private url = '/tipoVaso';
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private typeEmployeesData: TipoEmpleadoData = new TipoEmpleadoData();
+  private typeMachineData: ParametroGenerico = new ParametroGenerico();
 
-  constructor(private http: Http) {
+  constructor(private http: Http,
+  private util: Utilidades) {
+    this.url = util.getServidor + this.url;
 
   }
 
 
-  deleteTypeEmployees(id: number)  {
+  delete(id: number)  {
     let url = `${this.url}/delete/${id}`;
     return this.http.delete(url)
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-  getTypeEmployees(): Observable<TipoEmpleadoData[]> {
+  getAll(): Observable<ParametroGenerico[]> {
     let url = `${this.url}/findall`;
     return this.http.get(url)
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-  getTypeEmployeesData(id: number): Observable<TipoEmpleadoData> {
+  getId(id: number): Observable<ParametroGenerico> {
     const url = `${this.url}/find/${id}`;
     return this.http.get(url)
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-  addTypeEmployees(typeEmployeesData: TipoEmpleadoData) {
+  add(type: ParametroGenerico) {
     let url = `${this.url}/save`;
-    let iJson = JSON.stringify(typeEmployeesData);
+    let iJson = JSON.stringify(type);
     return this.http.post(url, iJson, { headers: this.headers })
       .map(r => r.json())
       .catch(this.handleError);
   }
 
-  putTypeEmployees(typeEmployeesData: TipoEmpleadoData) {
+  putTypeMachine(typeMachineData: ParametroGenerico) {
 
-    let url = `${this.url}/edit/${typeEmployeesData.id}`;
-    let iJson = JSON.stringify(typeEmployeesData);
+    let url = `${this.url}/edit/${typeMachineData.id}`;
+    let iJson = JSON.stringify(typeMachineData);
     return this.http.put(url, iJson, { headers: this.headers })
       .map(r => r.json())
       .catch(this.handleError);

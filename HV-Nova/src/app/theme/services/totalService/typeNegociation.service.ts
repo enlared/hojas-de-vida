@@ -5,16 +5,20 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/catch';
+import { Utilidades } from '../Utilidades.service';
+
 
 @Injectable()
 
 export class TypeNegociationService {
 
-  private url = 'http://localhost:7070/typeNegociation';
+  private url = '/typeNegociation';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private typeNegociationData: TypeNegociationData = new TypeNegociationData();
 
-  constructor(private http: Http) {
+  constructor(private http: Http,
+    private util: Utilidades) {
+      this.url = util.getServidor + this.url;
 
   }
 

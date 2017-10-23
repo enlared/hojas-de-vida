@@ -5,11 +5,11 @@ import { NgaModule } from '../../theme/nga.module';
 import { NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { routing } from './users.routing';
 import { Users } from './users.component';
-import { Edituser } from './components/edituser/edituser.component';
 import { Newuser } from './components/newuser/newuser.component';
 import { ViewUsers } from './components/viewusers/viewusers.component';
 import { ViewUsersService } from '../../theme/services/viewUsersService/viewusers.service';
 import { RolUsuarioService } from '../../theme/services/viewUsersService/rolUsuario.service';
+import { cache } from '../../theme/services/cache';
 
 import { HttpModule } from '@angular/http';
 import { RoleService } from '../../theme/services/roleService/role.service';
@@ -37,7 +37,6 @@ import { HotTable, HotTableModule } from 'ng2-handsontable';
   ],
   declarations: [
     Users,
-    Edituser,
     Newuser,
     ViewUsers,
     DataFilterPipe,
@@ -50,6 +49,7 @@ import { HotTable, HotTableModule } from 'ng2-handsontable';
   RoleService,
   Utilidades,
   RolUsuarioService,
+  cache,
   ]
 })
 export class UsersModule {}

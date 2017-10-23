@@ -14,8 +14,6 @@
 		<class>com.nova.MsHv.entidad.TipoMaquina</class>
 		<class>com.nova.MsHv.entidad.TipoNegociacion</class>
 		<class>com.nova.MsHv.entidad.TipoVaso</class>
-		<class>com.nova.MsHv.entidad.ListaPrecio</class>
-		<class>com.nova.MsHv.entidad.Negocio</class>
 		<class>com.nova.MsHv.entidad.GradoInfluencia</class>
 		<class>com.nova.MsHv.entidad.InfluenciaCompra</class>
 		<class>com.nova.MsHv.entidad.Modo</class>
@@ -40,5 +38,7 @@
 		<class>com.nova.MsHv.entidad.Rol</class>
 		<class>com.nova.MsHv.entidad.RolUsuario</class>
 		<class>com.nova.MsHv.entidad.Usuario</class>
+		<class>com.nova.MsHv.entidad.Negocio</class>
+		<class>com.nova.MsHv.entidad.ListaPrecio</class>
 	</persistence-unit>
 </persistence>

@@ -1,5 +1,7 @@
 package com.nova.MsHv.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +16,8 @@ public class RolUsuarioImpl {
 
 	@Autowired private RolUsuarioDAO dao ;
 	
-	public Iterable<RolUsuario> consultarTodos(){
-		return dao.findAll();
+	public List<RolUsuario> consultarTodos(){
+		return (List<RolUsuario>) dao.findAll();
 	}
 
 	public RolUsuario save(RolUsuario data) {
@@ -23,7 +25,7 @@ public class RolUsuarioImpl {
 	}
 
 	public boolean remove(RolUsuario data) {
-		remove(data);
+		dao.delete(data);
 		return true;
 	}
 	
